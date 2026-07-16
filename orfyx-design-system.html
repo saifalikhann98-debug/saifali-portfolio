@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ORFYX — Design System Case Study | Saifali Khan</title>
+<meta name="description" content="The design system behind ORFYX — one token sheet powering a two-sided gym-access marketplace: member app, owner app, dashboards and marketing across UAE and India." />
+<meta name="theme-color" content="#0A0A0A" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A0A0A'/%3E%3Ctext x='50' y='54' font-family='Arial,Helvetica,sans-serif' font-size='46' font-weight='800' fill='%23FAFAF7' text-anchor='middle' dominant-baseline='middle'%3ESK%3C/text%3E%3C/svg%3E" />
+<!-- Open Graph / social sharing -->
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Saifali Khan" />
+<meta property="og:url" content="https://saifali-portfolio-sooty.vercel.app/orfyx-design-system" />
+<meta property="og:title" content="ORFYX — Design System Case Study" />
+<meta property="og:description" content="One token sheet, 80+ screens, two apps, four surfaces — the design system behind a two-sided gym-access marketplace in UAE and India." />
+<meta property="og:image" content="https://saifali-portfolio-sooty.vercel.app/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_AE" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="ORFYX — Design System Case Study" />
+<meta name="twitter:description" content="One token sheet, 80+ screens, two apps, four surfaces — the design system behind a two-sided gym-access marketplace." />
+<meta name="twitter:image" content="https://saifali-portfolio-sooty.vercel.app/og.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+:root{--font:'Inter',system-ui,sans-serif;--ink:#0a0a0a;--t2:#5a5a58;--t3:#8e8e8a;--t4:#b8b8b3;--s1:#ffffff;--s2:#faf9f6;--s3:#f4f3ee;--bd:#ececea;--bds:#dcdcd8;--volt:#E5FF3D;--voltsoft:#f3ffa3;--success:#1f8a5b;--rc:24px;--ri:16px;--sh1:0 1px 0 rgba(10,10,10,.04),0 1px 2px rgba(10,10,10,.04);--sh2:0 1px 0 rgba(10,10,10,.04),0 6px 20px -6px rgba(10,10,10,.10);--sh3:0 2px 0 rgba(10,10,10,.04),0 18px 50px -16px rgba(10,10,10,.18)}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:var(--font);background:var(--s2);color:var(--ink);-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;line-height:1.5;font-feature-settings:'cv11','ss01','ss03'}
+a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}a:hover{color:var(--t2)}
+.backlink{display:inline-flex;align-items:center;gap:8px;margin:40px 0 0;height:40px;padding:0 18px;border-radius:999px;background:var(--s1);border:1px solid var(--bd);box-shadow:var(--sh1);font-size:13px;font-weight:600;letter-spacing:.01em;color:var(--t2);text-decoration:none;transition:color .2s,border-color .2s}
+.backlink:hover{color:var(--ink);border-color:var(--bds)}
+.backlink+.hero{padding-top:48px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 48px}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--t2)}
+.sec{margin-top:96px}
+.sec-head{display:flex;align-items:baseline;gap:14px;padding-bottom:16px;border-bottom:1px solid var(--bd);margin-bottom:28px}
+.sec-head .num{font-size:13px;font-weight:600;color:var(--t3);font-variant-numeric:tabular-nums}
+.sec-head h2{font-size:30px;font-weight:700;letter-spacing:-.03em;margin:0}
+.lede{font-size:17px;color:var(--t2);line-height:1.6;max-width:640px;margin:0}
+.lede strong{color:var(--ink);font-weight:600}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:var(--rc);box-shadow:var(--sh1)}
+/* hero */
+.hero{padding:110px 0 0}
+.hero h1{font-size:76px;font-weight:800;letter-spacing:-.05em;line-height:.98;margin:18px 0 0}
+.hero h1 em{font-style:normal;background:var(--volt);padding:0 12px;border-radius:14px;box-decoration-break:clone}
+.hero .sub{font-size:18px;color:var(--t2);max-width:620px;margin:26px 0 0;line-height:1.6}
+.meta{display:flex;gap:36px;margin-top:44px;padding:22px 0;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);flex-wrap:wrap}
+.meta div{display:flex;flex-direction:column;gap:4px}
+.meta .k{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
+.meta .v{font-size:14px;font-weight:600}
+/* stats band */
+.band{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:36px}
+.band .stat{padding:24px;border-radius:20px;background:var(--s1);border:1px solid var(--bd)}
+.band .n{font-size:38px;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.band .l{font-size:13px;color:var(--t2);margin-top:4px}
+/* principles */
+.prin{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.prin .p{padding:28px;display:flex;flex-direction:column;gap:10px}
+.prin .p .pn{font-size:12px;font-weight:700;color:var(--t3);font-variant-numeric:tabular-nums}
+.prin .p h3{margin:0;font-size:19px;font-weight:700;letter-spacing:-.02em}
+.prin .p p{margin:0;font-size:14px;color:var(--t2);line-height:1.55}
+.prin .p.voltp{background:var(--ink);border-color:var(--ink);color:#fff}
+.prin .p.voltp h3{color:#fff}.prin .p.voltp p{color:#b8b8b3}.prin .p.voltp .pn{color:var(--volt)}
+/* color */
+.swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.sw{border-radius:16px;overflow:hidden;border:1px solid var(--bd)}
+.sw .chip{height:84px}
+.sw .info{padding:10px 12px;background:var(--s1)}
+.sw .nm{font-size:12px;font-weight:700}
+.sw .hx{font-size:11px;color:var(--t3);font-family:ui-monospace,Menlo,monospace}
+.color-note{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+.color-note .cn{padding:24px 28px;font-size:14px;color:var(--t2);line-height:1.55}
+.color-note .cn strong{color:var(--ink)}
+/* type */
+.typerow{display:flex;align-items:baseline;gap:28px;padding:20px 0;border-bottom:1px solid var(--bd)}
+.typerow:last-child{border-bottom:0}
+.typerow .spec{width:170px;flex:none;font-size:12px;color:var(--t3);font-family:ui-monospace,Menlo,monospace}
+.t-d{font-size:64px;font-weight:700;letter-spacing:-.04em;line-height:1}
+.t-h2{font-size:40px;font-weight:600;letter-spacing:-.035em;line-height:1.05}
+.t-h3{font-size:28px;font-weight:600;letter-spacing:-.025em}
+.t-h4{font-size:20px;font-weight:600;letter-spacing:-.02em}
+.t-b{font-size:14px;line-height:1.5}
+.t-eb{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--t2)}
+/* tokens grid */
+.tok{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.tok .tk{padding:24px;min-width:0}
+.tk h4{margin:0 0 14px;font-size:14px;font-weight:700}
+.radii{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+.radii .r{background:var(--s3);border:1px solid var(--bds);width:64px;height:64px;display:flex;align-items:flex-end;justify-content:center;font-size:10px;color:var(--t3);padding-bottom:6px}
+.shadows{display:flex;gap:16px;flex-wrap:wrap}
+.shadows .s{width:72px;height:72px;border-radius:16px;background:#fff;border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--t3)}
+.spaces{display:flex;gap:8px;align-items:flex-end;height:80px}
+.spaces i{background:var(--volt);border-radius:4px;width:14px;display:block}
+/* components */
+.comp{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.comp .c{padding:26px;display:flex;flex-direction:column;gap:16px}
+.comp .c h4{margin:0;font-size:13px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--t3)}
+.demo-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 18px;border-radius:var(--ri);font-family:inherit;font-size:14px;font-weight:600;border:1px solid transparent;cursor:pointer;transition:transform .15s,background .15s,box-shadow .15s,border-color .15s;white-space:nowrap;background:transparent}
+.btn:active{transform:translateY(1px)}
+.btn-volt{background:var(--volt);color:var(--ink);font-weight:700}.btn-volt:hover{box-shadow:var(--sh2);transform:translateY(-1px)}
+.btn-primary{background:var(--ink);color:#fff}.btn-primary:hover{background:#222}
+.btn-secondary{background:var(--s1);border-color:var(--bd);box-shadow:var(--sh1)}.btn-secondary:hover{border-color:var(--bds)}
+.btn-ghost{border-color:var(--bd)}.btn-ghost:hover{background:var(--s3)}
+.pill{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 12px;border-radius:999px;font-size:12px;font-weight:600;background:var(--s3);color:var(--t2)}
+.pill.live{background:var(--voltsoft);color:var(--ink)}
+.pill.live i{width:6px;height:6px;border-radius:99px;background:var(--success);display:block}
+.pill.dark{background:var(--ink);color:#fff}
+.input{height:48px;border:1px solid var(--bd);border-radius:var(--ri);background:#fff;display:flex;align-items:center;padding:0 14px;gap:10px;color:var(--t3);font-size:14px;width:100%}
+.gbtn{position:relative;display:flex;align-items:center;width:100%;height:52px;padding:0 18px;border:1px solid var(--bds);border-radius:var(--ri);background:#fff;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;box-shadow:var(--sh1);transition:transform .16s,box-shadow .16s,border-color .16s}
+.gbtn:hover{border-color:#c6c6c1;transform:translateY(-1px);box-shadow:var(--sh2)}
+.gbtn .glogo{position:absolute;left:16px;display:flex}
+.gbtn .glabel{flex:1;text-align:center;padding:0 28px}
+.gymcard{border-radius:20px;overflow:hidden;background:#fff;border:1px solid var(--bd);box-shadow:var(--sh1);max-width:280px}
+.gymcard .ph{height:120px;background:linear-gradient(135deg,#2a2a28,#4a4a46);position:relative}
+.gymcard .ph .pill{position:absolute;top:10px;left:10px}
+.gymcard .gi{padding:14px 16px}
+.gymcard .gn{font-size:15px;font-weight:700;letter-spacing:-.01em}
+.gymcard .gm{font-size:12px;color:var(--t3);margin-top:2px}
+.gymcard .gp{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.gymcard .pr{font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}
+.gymcard .pr small{font-size:11px;color:var(--t3);font-weight:500}
+/* qr */
+.qr-demo{background:var(--ink);border-radius:24px;padding:26px;color:#fff;max-width:280px;text-align:center}
+.qr-demo .qrbox{background:#fff;border-radius:16px;padding:14px;display:inline-block;margin-top:14px}
+.qr-demo .tok-t{font-size:11px;color:#8e8e8a;margin-top:12px}
+.qr-demo .tok-t b{color:var(--volt);font-variant-numeric:tabular-nums}
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;align-items:stretch}
+.flow .f{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:16px;position:relative}
+.flow .f .fn{width:22px;height:22px;border-radius:99px;background:var(--ink);color:var(--volt);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.flow .f h5{margin:0 0 4px;font-size:13.5px;font-weight:700;letter-spacing:-.01em}
+.flow .f p{margin:0;font-size:12px;color:var(--t2);line-height:1.45}
+.flow .f.voltf{background:var(--voltsoft);border-color:#dbe98a}
+.branch{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.branch .b{border:1px dashed var(--bds);border-radius:14px;padding:14px 16px;font-size:12.5px;color:var(--t2);background:var(--s2)}
+.branch .b b{display:block;color:var(--ink);font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+/* qr states */
+.qrstates{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.qrs{border-radius:18px;padding:18px;background:var(--ink);color:#fff;text-align:center}
+.qrs .dot{width:10px;height:10px;border-radius:99px;margin:0 auto 10px}
+.qrs h5{margin:0 0 4px;font-size:14px;font-weight:700}
+.qrs p{margin:0;font-size:11.5px;color:#8e8e8a;line-height:1.45}
+/* density */
+.dens{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.dens .d .dl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:8px}
+.mini{background:#fff;border:1px solid var(--bd);border-radius:16px;box-shadow:var(--sh1)}
+.mini .mr{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--bd)}
+.mini .mr:last-child{border-bottom:0}
+.mini .mn{font-size:13px;font-weight:600}
+.mini .mv{font-size:12px;color:var(--t3);font-variant-numeric:tabular-nums}
+/* process */
+.proc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;counter-reset:step}
+.proc .st{padding:20px;border-radius:18px;background:var(--s1);border:1px solid var(--bd)}
+.proc .st::before{counter-increment:step;content:counter(step,decimal-leading-zero);font-size:12px;font-weight:800;color:var(--t4);display:block;margin-bottom:8px}
+.proc .st h5{margin:0 0 4px;font-size:14px;font-weight:700}
+.proc .st p{margin:0;font-size:12.5px;color:var(--t2);line-height:1.5}
+/* market */
+.mkt{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.mkt .m{padding:24px 28px}
+.mkt h4{margin:0 0 6px;font-size:16px;font-weight:700}
+.mkt p{margin:0;font-size:13.5px;color:var(--t2);line-height:1.55}
+.mkt .px{font-size:26px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;margin-top:12px}
+.mkt .px small{font-size:12px;color:var(--t3);font-weight:500}
+/* dark section */
+.darksec{background:var(--ink);border-radius:32px;padding:56px;color:#fff;margin-top:96px}
+.darksec h2{font-size:30px;font-weight:700;letter-spacing:-.03em;margin:0 0 8px}
+.darksec .eyebrow{color:var(--volt)}
+.darksec p{color:#b8b8b3;font-size:15px;line-height:1.6;max-width:620px}
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px}
+.rule{border:1px solid #2a2a28;border-radius:18px;padding:20px 22px}
+.rule .rk{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.rule .rk.do{color:var(--volt)}.rule .rk.dont{color:#8e8e8a}
+.rule p{margin:0;font-size:14px;color:#d8d8d4}
+/* platforms */
+.plats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.plat{padding:26px;display:flex;flex-direction:column;gap:8px}
+.plat h4{margin:0;font-size:17px;font-weight:700;letter-spacing:-.015em}
+.plat p{margin:0;font-size:13.5px;color:var(--t2);line-height:1.55}
+.plat .tagz{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+/* outcomes */
+.out{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.out .o{padding:26px}
+.out h4{margin:0 0 8px;font-size:16px;font-weight:700}
+.out p{margin:0;font-size:14px;color:var(--t2);line-height:1.55}
+footer{margin:110px 0 70px;padding-top:24px;border-top:1px solid var(--bd);display:flex;justify-content:space-between;font-size:13px;color:var(--t3)}
+@media(max-width:900px){.wrap{padding:0 24px}.hero h1{font-size:48px}.band,.swatches,.qrstates,.proc{grid-template-columns:repeat(2,1fr)}.prin,.comp,.tok,.plats,.out,.color-note,.rules,.mkt,.dens,.branch{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.darksec{padding:32px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="backlink" href="/#case-orfyx">← Back to portfolio</a>
+
+<header class="hero">
+  <div class="eyebrow">Case study · Design system · 2026</div>
+  <h1>ORFYX<br>One pass. <em>Every gym.</em></h1>
+  <p class="sub">A single design system powering a two-sided gym-access marketplace — a member app for finding gyms and buying passes, an owner app for scanning people in, plus web dashboards and marketing — across UAE and India.</p>
+  <div class="meta">
+    <div><span class="k">Role</span><span class="v">End-to-end product design</span></div>
+    <div><span class="k">Scope</span><span class="v">2 mobile apps · 2 dashboards · web auth · marketing</span></div>
+    <div><span class="k">Platforms</span><span class="v">iOS · Android · Web</span></div>
+    <div><span class="k">Markets</span><span class="v">UAE (AED) · India (INR)</span></div>
+  </div>
+  <div class="band">
+    <div class="stat"><div class="n">80+</div><div class="l">screens designed across member, owner &amp; admin</div></div>
+    <div class="stat"><div class="n">1</div><div class="l">token sheet shared by every surface</div></div>
+    <div class="stat"><div class="n">2</div><div class="l">apps, one visual language, different density</div></div>
+    <div class="stat"><div class="n">5 min</div><div class="l">rotating QR token — the moment of truth</div></div>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">01</span><h2>The problem</h2></div>
+  <p class="lede">Members want to <strong>walk into any gym with one pass</strong>. Owners want a <strong>zero-friction door</strong> — scan, validate, let them in. The system had to serve both sides with opposite needs: members browse in leisure light-mode contexts; owners operate <strong>one-thumb, at a busy front desk</strong>. And in-market reality: many members <strong>pay cash at the gym</strong> — so offline and pending states are first-class, not edge cases.</p>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">02</span><h2>Principles</h2></div>
+  <div class="prin">
+    <div class="card p voltp"><span class="pn">P1</span><h3>Volt is a spotlight, not a fill</h3><p>One electric accent — #E5FF3D — reserved for the single primary action and "live/active" signals. Everything else is ink and warm neutrals. If two things are volt, one of them is wrong.</p></div>
+    <div class="card p"><span class="pn">P2</span><h3>Failure paths are designed, not afterthoughts</h3><p>Expired QR, declined payment, wrong venue, offline entry — every failure state got the same fidelity as the happy path, because the door is where trust is won or lost.</p></div>
+    <div class="card p"><span class="pn">P3</span><h3>Two apps, one language</h3><p>Member and Owner share tokens, type and accent, but diverge in density and navigation: member is browsing-first and airy; owner is operational and compact.</p></div>
+    <div class="card p"><span class="pn">P4</span><h3>Cash is a first-class citizen</h3><p>Pay-at-gym isn't a fallback — it's a designed loop: member requests → pass sits pending → owner validates cash/card in person → pass activates.</p></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">03</span><h2>The core loop</h2></div>
+  <p class="lede" style="margin-bottom:24px">Everything in the system exists to serve one loop: <strong>discover → buy → enter</strong>. Both payment branches were designed to the same fidelity.</p>
+  <div class="flow">
+    <div class="f"><div class="fn">1</div><h5>Discover</h5><p>Photo-led feed, map explore, filters: distance / price / amenities / rating.</p></div>
+    <div class="f"><div class="fn">2</div><h5>Gym detail</h5><p>Gallery, live occupancy, pass picker — day / week / month plans.</p></div>
+    <div class="f"><div class="fn">3</div><h5>Checkout</h5><p>Cards, Apple Pay / Google Pay, or pay at the gym. Biometric confirm.</p></div>
+    <div class="f"><div class="fn">4</div><h5>Wallet</h5><p>Active, pending and past passes in one place. Tap to open the QR.</p></div>
+    <div class="f voltf"><div class="fn">5</div><h5>Enter</h5><p>Owner scans the rotating QR — verified server-side, entry logged.</p></div>
+  </div>
+  <div class="branch">
+    <div class="b"><b>Branch A · Online</b>Stripe / Razorpay charge → QR issued instantly. Success, declined and retry states all designed.</div>
+    <div class="b"><b>Branch B · Pay at gym</b>Request goes to the owner; the pass sits <em>pending</em> until cash/card is validated at the desk — then activates. ~2h worst case, and the member always sees why they're waiting.</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">04</span><h2>Color</h2></div>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#0a0a0a"></div><div class="info"><div class="nm">Ink</div><div class="hx">#0A0A0A</div></div></div>
+    <div class="sw"><div class="chip" style="background:#E5FF3D"></div><div class="info"><div class="nm">Volt</div><div class="hx">#E5FF3D</div></div></div>
+    <div class="sw"><div class="chip" style="background:#f3ffa3"></div><div class="info"><div class="nm">Volt soft</div><div class="hx">#F3FFA3</div></div></div>
+    <div class="sw"><div class="chip" style="background:#faf9f6;border-bottom:1px solid var(--bd)"></div><div class="info"><div class="nm">Surface 2</div><div class="hx">#FAF9F6</div></div></div>
+    <div class="sw"><div class="chip" style="background:#f4f3ee"></div><div class="info"><div class="nm">Surface 3</div><div class="hx">#F4F3EE</div></div></div>
+    <div class="sw"><div class="chip" style="background:#1f8a5b"></div><div class="info"><div class="nm">Success</div><div class="hx">#1F8A5B</div></div></div>
+  </div>
+  <div class="color-note">
+    <div class="card cn"><strong>Warm, not white.</strong> Surfaces are cream-tinted (#FAF9F6 / #F4F3EE) instead of pure grey — it makes the volt accent feel energetic rather than clinical, and photography of real gyms sits comfortably on it.</div>
+    <div class="card cn"><strong>Ink flips for the moment of truth.</strong> The QR pass and scanner run on pure ink backgrounds — maximum screen contrast at the door, with volt reserved for the live countdown.</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">05</span><h2>Typography</h2></div>
+  <div class="card" style="padding:12px 28px">
+    <div class="typerow"><span class="spec">Display · 64/700/-4%</span><span class="t-d">Find your gym</span></div>
+    <div class="typerow"><span class="spec">H2 · 40/600/-3.5%</span><span class="t-h2">Today at the desk</span></div>
+    <div class="typerow"><span class="spec">H3 · 28/600/-2.5%</span><span class="t-h3">Iron Temple Fitness</span></div>
+    <div class="typerow"><span class="spec">H4 · 20/600/-2%</span><span class="t-h4">Day pass · AED 45</span></div>
+    <div class="typerow"><span class="spec">Body · 14/400</span><span class="t-b">Your pass activates the moment the owner validates your payment at the front desk.</span></div>
+    <div class="typerow"><span class="spec">Eyebrow · 11/600/+12%</span><span class="t-eb">Pending approval</span></div>
+  </div>
+  <p style="font-size:14px;color:var(--t2);margin-top:16px;max-width:640px">Single family — <strong>Inter</strong> with alternate glyphs (cv11, ss01, ss03) for a rounder, friendlier voice. Tight negative tracking at display sizes; tabular numerals everywhere money, counts, or countdowns appear.</p>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">06</span><h2>Tokens</h2></div>
+  <div class="tok">
+    <div class="card tk"><h4>Radius scale</h4><div class="radii">
+      <div class="r" style="border-radius:12px">chip 12</div>
+      <div class="r" style="border-radius:16px">input 16</div>
+      <div class="r" style="border-radius:24px">card 24</div>
+      <div class="r" style="border-radius:999px;height:44px">pill</div>
+    </div><p style="font-size:12.5px;color:var(--t2);margin:14px 0 0">Three tweakable presets — sharp / soft / round — flow through every component via CSS variables.</p></div>
+    <div class="card tk"><h4>Elevation</h4><div class="shadows">
+      <div class="s" style="box-shadow:var(--sh1)">sh-1</div>
+      <div class="s" style="box-shadow:var(--sh2)">sh-2</div>
+      <div class="s" style="box-shadow:var(--sh3)">sh-3</div>
+    </div><p style="font-size:12.5px;color:var(--t2);margin:14px 0 0">Soft ink-tinted shadows with a 1px "contact" line — cards rest, hover lifts, overlays float.</p></div>
+    <div class="card tk"><h4>Spacing · 4px base</h4><div class="spaces">
+      <i style="height:4px"></i><i style="height:8px"></i><i style="height:12px"></i><i style="height:16px"></i><i style="height:20px"></i><i style="height:24px"></i><i style="height:32px"></i><i style="height:40px"></i><i style="height:48px"></i><i style="height:64px"></i><i style="height:80px"></i>
+    </div><p style="font-size:12.5px;color:var(--t2);margin:14px 0 0">11 steps, 4→80px. Card density is itself a token (compact / default / comfortable) so owner screens pack tighter without new components.</p></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">07</span><h2>Density is a token, not a fork</h2></div>
+  <p class="lede" style="margin-bottom:24px">The owner app never diverged from the system — it flips <code style="font-family:ui-monospace,Menlo,monospace;font-size:14px;background:var(--s3);padding:2px 7px;border-radius:6px">--card-pad</code>. Same component, three densities.</p>
+  <div class="dens">
+    <div class="d"><div class="dl">Compact · 14px · owner ops</div><div class="mini"><div class="mr" style="padding:10px 14px"><span class="mn">A. Rahman</span><span class="mv">09:12</span></div><div class="mr" style="padding:10px 14px"><span class="mn">S. Kapoor</span><span class="mv">09:15</span></div><div class="mr" style="padding:10px 14px"><span class="mn">J. Okafor</span><span class="mv">09:21</span></div></div></div>
+    <div class="d"><div class="dl">Default · 20px · member app</div><div class="mini"><div class="mr" style="padding:16px 20px"><span class="mn">Day pass</span><span class="mv">AED 45</span></div><div class="mr" style="padding:16px 20px"><span class="mn">Week pass</span><span class="mv">AED 199</span></div></div></div>
+    <div class="d"><div class="dl">Comfortable · 26px · marketing</div><div class="mini"><div class="mr" style="padding:22px 26px"><span class="mn">One pass. Every gym.</span><span class="mv">→</span></div></div></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">08</span><h2>Core components</h2></div>
+  <div class="comp">
+    <div class="card c"><h4>Buttons — one loud, the rest quiet</h4>
+      <div class="demo-row">
+        <button class="btn btn-volt" type="button">Buy day pass</button>
+        <button class="btn btn-primary" type="button">Scan member</button>
+        <button class="btn btn-secondary" type="button">View gym</button>
+        <button class="btn btn-ghost" type="button">Cancel</button>
+      </div>
+      <p style="font-size:13px;color:var(--t2);margin:0">Volt = the one primary per screen. Ink for operational actions, bordered white for secondary, ghost for dismissals. 44px targets minimum.</p>
+    </div>
+    <div class="card c"><h4>Pills — status language</h4>
+      <div class="demo-row">
+        <span class="pill live"><i></i>Live · 34 inside</span>
+        <span class="pill">Pending · pay at gym</span>
+        <span class="pill dark">Open 24/7</span>
+        <span class="pill" style="background:#fdeceb;color:#b3271e">Declined</span>
+      </div>
+      <p style="font-size:13px;color:var(--t2);margin:0">One pill anatomy carries every status: live occupancy, pass state, payment outcome. Color says the state before the words do.</p>
+    </div>
+    <div class="card c"><h4>Auth — social + email</h4>
+      <button class="gbtn" type="button"><span class="glogo"><svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg></span><span class="glabel">Continue with Google</span></button>
+      <div class="input"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>you@orfyx.app</div>
+      <p style="font-size:13px;color:var(--t2);margin:0">Phone-first with Google/Apple fallback. The social button stays neutral-white with the official 4-color mark, so the volt submit remains the loudest element.</p>
+    </div>
+    <div class="card c"><h4>Cards — discovery &amp; the moment of truth</h4>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <div class="gymcard"><div class="ph"><span class="pill live"><i></i>Live</span></div><div class="gi"><div class="gn">Iron Temple Fitness</div><div class="gm">Al Barsha · 1.2 km · ★ 4.8</div><div class="gp"><span class="pr">AED 45 <small>/ day</small></span><span class="pill dark">Pass</span></div></div></div>
+        <div class="qr-demo"><div class="eyebrow" style="color:#8e8e8a">Day pass · Iron Temple</div><div class="qrbox"><svg width="96" height="96" viewBox="0 0 21 21"><rect width="21" height="21" fill="#fff"/><path fill="#0a0a0a" d="M0 0h7v7H0zM2 2h3v3H2zM14 0h7v7h-7zM16 2h3v3h-3zM0 14h7v7H0zM2 16h3v3H2zM9 0h1v2H9zM12 1h1v3h-1zM9 4h2v1H9zM8 6h1v2H8zM10 8h3v1h-3zM14 9h2v2h-2zM18 8h1v3h-1zM8 10h1v3H8zM10 12h2v1h-2zM13 13h1v2h-1zM9 14h1v2H9zM11 16h2v1h-2zM15 15h2v2h-2zM18 13h2v1h-2zM19 16h1v2h-1zM14 18h1v2h-1zM17 19h2v1h-2zM10 18h2v2h-2z"/></svg></div><div class="tok-t">Rotates in <b>04:37</b> · works offline</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">09</span><h2>The QR pass — designed to fail well</h2></div>
+  <p class="lede" style="margin-bottom:24px">The QR is the moment of truth, so it got the deepest treatment: a <strong>5-minute rotating token</strong>, verified server-side (the client never self-validates), brightness-boosted on open, and cached to <strong>work offline</strong>. All four states shipped at full fidelity — on both sides of the door.</p>
+  <div class="qrstates">
+    <div class="qrs"><div class="dot" style="background:var(--volt)"></div><h5>Active</h5><p>Live countdown in volt; token auto-refreshes before expiry.</p></div>
+    <div class="qrs"><div class="dot" style="background:#e6a23c"></div><h5>Expired</h5><p>Token older than 5 min — one tap regenerates. No dead ends.</p></div>
+    <div class="qrs"><div class="dot" style="background:#8e8e8a"></div><h5>Used</h5><p>Already scanned today — shows entry time so the desk can resolve disputes.</p></div>
+    <div class="qrs"><div class="dot" style="background:#e5484d"></div><h5>Invalid</h5><p>Cancelled or bad signature — clear reason plus a support path.</p></div>
+  </div>
+  <p style="font-size:14px;color:var(--t2);margin-top:18px;max-width:640px">The owner's scanner mirrors the same four outcomes — success (welcome), expired, wrong venue, invalid — so both people at the door always see the same truth.</p>
+</section>
+
+<div class="darksec">
+  <div class="eyebrow">System rules</div>
+  <h2>Using volt without shouting</h2>
+  <p>The accent survives across 80+ screens because its usage is governed, not vibes-based.</p>
+  <div class="rules">
+    <div class="rule"><div class="rk do">Do</div><p>One volt CTA per screen — the action that moves money or opens a door.</p></div>
+    <div class="rule"><div class="rk do">Do</div><p>Volt for live signals: occupancy dots, QR countdown, active pass state.</p></div>
+    <div class="rule"><div class="rk dont">Don't</div><p>Volt backgrounds, volt text on cream, or two volt buttons in one view.</p></div>
+    <div class="rule"><div class="rk dont">Don't</div><p>Use volt for errors or warnings — failure states get their own quiet reds and ambers.</p></div>
+  </div>
+</div>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">10</span><h2>One system, four surfaces</h2></div>
+  <div class="plats">
+    <div class="card plat"><h4>Member app</h4><p>Browsing-first: photo-led discovery feed, map explore, pass picker, wallet with QR. Airy density, big imagery, volt on "Buy pass".</p><div class="tagz"><span class="pill">iOS + Android</span><span class="pill">28 screens</span></div></div>
+    <div class="card plat"><h4>Owner app</h4><p>Operational: scanner, pending pay-at-gym queue, live activity, roster. Compact density, one-thumb reach, ink-heavy with volt only on "live".</p><div class="tagz"><span class="pill">iOS + Android</span><span class="pill">24 screens</span></div></div>
+    <div class="card plat"><h4>Web dashboards + marketing</h4><p>Owner dashboard, admin console, auth, and the marketing site reuse the identical token sheet — the same radius, shadows and volt discipline at desktop scale.</p><div class="tagz"><span class="pill">Web</span><span class="pill">30+ screens</span></div></div>
+  </div>
+  <p style="font-size:14px;color:var(--t2);margin-top:18px;max-width:680px">Every mobile screen was designed <strong>iOS and Android side-by-side</strong> — same logic, platform-appropriate chrome: status bar, back affordance (swipe/chevron vs system back), nav metrics, keyboards, biometric sheets. Icons map to SF Symbols and Material Symbols from one named set (1.6px stroke, currentColor).</p>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">11</span><h2>Two markets, one system</h2></div>
+  <div class="mkt">
+    <div class="card m"><h4>🇦🇪 UAE</h4><p>AED pricing, cards + Apple Pay / Google Pay forward. Trade-licence verification for owner accounts.</p><div class="px">AED 45 <small>/ day pass</small></div></div>
+    <div class="card m"><h4>🇮🇳 India</h4><p>INR pricing via Razorpay; pay-at-gym prominent — cash is a primary path, and online payments can be disabled per market with checkout gracefully collapsing to a single branch.</p><div class="px">₹499 <small>/ day pass</small></div></div>
+  </div>
+  <p style="font-size:14px;color:var(--t2);margin-top:18px;max-width:640px">Currency, payment methods and copy switch on a single <strong>market token</strong> — no forked screens. Tabular numerals keep prices aligned in both scripts.</p>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">12</span><h2>Process</h2></div>
+  <div class="proc">
+    <div class="st"><h5>Storyboard first</h5><p>The whole install → first-scan journey as numbered tiles, both payment branches included, before any hi-fi pixels.</p></div>
+    <div class="st"><h5>Tokens before screens</h5><p>Color, type, radius, elevation and density locked as CSS variables — every later screen consumed the contract.</p></div>
+    <div class="st"><h5>Variations, then commitment</h5><p>3 QR layouts, 3 bottom-nav styles, 4 social-button directions — explored side-by-side with live tweaks, one picked to ship.</p></div>
+    <div class="st"><h5>Handoff by README</h5><p>Each flow shipped with anatomy, tokens, states, state-to-wire and a suggested API surface — engineers rebuild against the contract, not screenshots.</p></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">13</span><h2>What made it work</h2></div>
+  <div class="out">
+    <div class="card o"><h4>Tokens as the contract</h4><p>Every surface consumes one CSS variable sheet. Radius, density and accent are tweakable presets — a rebrand-level change is a variable edit, and prototypes stayed pixel-consistent with handoff specs.</p></div>
+    <div class="card o"><h4>Designed failure = trust at the door</h4><p>Expired / used / invalid QR, declined payments, offline entry and camera-permission-denied all shipped as designed states — the owner never improvises at the desk, the member never stares at a spinner.</p></div>
+    <div class="card o"><h4>Density instead of divergence</h4><p>The owner app never forked the system — it flips a density token. Same components, tighter padding. Half the maintenance, twice the coherence.</p></div>
+    <div class="card o"><h4>Handoff-ready by construction</h4><p>Every flow ships with a README spec: anatomy, tokens, states, API surface. Prototypes are references; engineers rebuild against the token contract, not screenshots.</p></div>
+  </div>
+</section>
+
+<footer>
+  <span>ORFYX design system · case study</span>
+  <span>Inter · volt #E5FF3D · 2026</span>
+</footer>
+</div>
+</body>
+</html>
