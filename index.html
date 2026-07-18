@@ -329,8 +329,9 @@
   .states{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
   .states .s{border:1px solid var(--g-800);padding:12px 13px}
   .states .s .dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:7px;vertical-align:middle}
-  .states .s .t{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;color:var(--white);text-transform:uppercase}
-  .states .s .d{font-size:.79rem;line-height:1.45;color:var(--g-200);margin-top:6px}
+  .states .s .t{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;color:var(--white);text-transform:uppercase}
+  .states .s .d{display:block;font-size:.79rem;line-height:1.45;color:var(--g-200);margin-top:6px}
+  .branch .b .d{display:block}
 
   .shots-2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,24px);margin:clamp(20px,3vw,36px) 0}
   @media(max-width:680px){.shots-2{grid-template-columns:1fr}}
