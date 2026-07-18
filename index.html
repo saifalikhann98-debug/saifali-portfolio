@@ -294,6 +294,44 @@
     background:var(--g-800);padding:1px 6px}
   .edit{color:var(--g-400);font-family:var(--mono);font-size:.82em}
 
+  /* ---- UX layer: IA trees, user flows, state matrices ---- */
+  .ux{margin-top:clamp(18px,2.5vw,26px)}
+  .ux+.ux{margin-top:clamp(26px,4vw,44px)}
+  .ux-cap{font-family:var(--mono);font-size:.7rem;letter-spacing:.05em;color:var(--g-400);margin-bottom:14px}
+  /* IA tree */
+  .ia{font-family:var(--mono);font-size:.78rem;line-height:1.5;color:var(--g-200)}
+  .ia .node{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;padding:9px 0;border-bottom:1px solid var(--g-800)}
+  .ia .node:last-child{border-bottom:0}
+  .ia .lvl2{padding-left:clamp(14px,3vw,30px)}
+  .ia .lvl3{padding-left:clamp(28px,6vw,60px)}
+  .ia .u{color:var(--white)}
+  .ia .n{color:var(--g-400);font-size:.72rem}
+  .ia .tag{border:1px solid var(--g-600);color:var(--g-400);font-size:.62rem;letter-spacing:.06em;
+    text-transform:uppercase;padding:2px 7px;border-radius:2px}
+  /* flow */
+  .flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px}
+  .flow .step{flex:1 1 128px;min-width:128px;border:1px solid var(--g-600);padding:12px 13px;
+    display:flex;flex-direction:column;gap:5px;background:var(--g-900,transparent)}
+  .flow .step .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--g-400)}
+  .flow .step .t{font-family:var(--display);font-weight:600;font-size:.98rem;line-height:1.15;color:var(--white)}
+  .flow .step .d{font-size:.8rem;line-height:1.45;color:var(--g-200)}
+  .flow .step.key{border-color:var(--white)}
+  .flow .arrow{align-self:center;font-family:var(--mono);font-size:.8rem;color:var(--g-600);padding:0 1px}
+  @media(max-width:560px){.flow{flex-direction:column}.flow .arrow{transform:rotate(90deg);padding:2px 0}}
+  /* branch */
+  .branch{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+  @media(max-width:560px){.branch{grid-template-columns:1fr}}
+  .branch .b{border:1px dashed var(--g-600);padding:12px 13px}
+  .branch .b .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--white);
+    text-transform:uppercase;display:block;margin-bottom:5px}
+  .branch .b .d{font-size:.8rem;line-height:1.45;color:var(--g-200)}
+  /* states */
+  .states{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+  .states .s{border:1px solid var(--g-800);padding:12px 13px}
+  .states .s .dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:7px;vertical-align:middle}
+  .states .s .t{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;color:var(--white);text-transform:uppercase}
+  .states .s .d{font-size:.79rem;line-height:1.45;color:var(--g-200);margin-top:6px}
+
   .shots-2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,24px);margin:clamp(20px,3vw,36px) 0}
   @media(max-width:680px){.shots-2{grid-template-columns:1fr}}
   .shot-sm{aspect-ratio:4/5;border:1px solid var(--g-800);background:
@@ -613,6 +651,70 @@
   </div>
 
   <div class="wrap case-body reveal">
+    <h3>Information architecture</h3>
+    <div class="bodytext">
+      <p>One checker at the root, then a wide SEO surface underneath — <em>214 pages</em> across three verticals, each service its own guide so a search for "AC cleaning price Dubai" lands directly on the answer.</p>
+      <div class="ux">
+        <div class="ux-cap">Site map — 214 indexed URLs, mirrored in Arabic</div>
+        <div class="ia">
+          <div class="node"><span class="u">/</span><span class="n">Price checker — service, area, quoted price → verdict</span></div>
+          <div class="node lvl2"><span class="u">/prices/</span><span class="tag">98 guides</span><span class="n">Home & property services</span></div>
+          <div class="node lvl3"><span class="n">ac-cleaning · deep-cleaning · pest-control · plumber · electrician · handyman · painting …</span></div>
+          <div class="node lvl2"><span class="u">/rent/</span><span class="tag">64 guides</span><span class="n">Rental price references by area &amp; property type</span></div>
+          <div class="node lvl2"><span class="u">/motor/</span><span class="tag">46 guides</span><span class="n">Car service, wash, tyres, battery, tinting …</span></div>
+          <div class="node lvl2"><span class="u">/ar</span><span class="tag">mirror</span><span class="n">Full Arabic translation — RTL, same structure</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap case-body reveal">
+    <h3>User flow</h3>
+    <div class="bodytext">
+      <p>Three inputs to a verdict — the whole point is that it ends in a <em>judgement</em>, not a chart. A second loop feeds the paid layer: anyone who just checked a price is the best-placed person to report one.</p>
+      <div class="ux">
+        <div class="ux-cap">Primary flow — check a price</div>
+        <div class="flow">
+          <div class="step"><span class="k">01</span><span class="t">Service</span><span class="d">"What are you paying for?" — 200+ services.</span></div>
+          <span class="arrow">→</span>
+          <div class="step"><span class="k">02</span><span class="t">Area</span><span class="d">"In which area?" — all 7 emirates.</span></div>
+          <span class="arrow">→</span>
+          <div class="step"><span class="k">03</span><span class="t">Quote</span><span class="d">"The price you were quoted" + unit.</span></div>
+          <span class="arrow">→</span>
+          <div class="step key"><span class="k">04</span><span class="t">Verdict</span><span class="d">Fair, steep, or walk away — against both layers.</span></div>
+        </div>
+      </div>
+      <div class="ux">
+        <div class="ux-cap">Secondary loop — contribute (what keeps the data alive)</div>
+        <div class="flow">
+          <div class="step"><span class="k">01</span><span class="t">Report paid</span><span class="d">Anonymous — service, area, what you actually paid.</span></div>
+          <span class="arrow">→</span>
+          <div class="step"><span class="k">02</span><span class="t">Trim outliers</span><span class="d">One odd price can't move a verdict.</span></div>
+          <span class="arrow">→</span>
+          <div class="step key"><span class="k">03</span><span class="t">Sharpen range</span><span class="d">Paid layer tightens with every report.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap case-body reveal">
+    <h3>States &amp; edge cases</h3>
+    <div class="bodytext">
+      <p>A price tool is only trusted if it admits what it doesn't know. The hardest state isn't a steep quote — it's <em>thin data</em>, where saying nothing beats guessing.</p>
+      <div class="ux">
+        <div class="states">
+          <div class="s"><span class="t"><span class="dot" style="background:#4ADE80"></span>Fair</span><span class="d">Quote sits inside the paid range. Confirm and move on.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#FACC15"></span>Steep</span><span class="d">Above paid, below advertised — shows the gap in dirhams.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#F87171"></span>Walk away</span><span class="d">Far above what residents report paying.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#8E8E8A"></span>Thin data</span><span class="d">Too few reports for that service-area cell — says so instead of inventing a range.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#8E8E8A"></span>Advertised only</span><span class="d">List prices exist, no paid reports yet — one layer shown, labelled.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#8E8E8A"></span>Outlier caught</span><span class="d">A report far outside the spread is trimmed, not published.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap case-body reveal">
     <h3>What I did</h3>
     <div class="bodytext">
       <p>Defined the concept and the two-layer data model, designed the full interface, and built and shipped it as a live product — including an Arabic version. The whole loop, from idea to something residents check before they pay.</p>
@@ -674,6 +776,93 @@
       <p><em>Verification before volume.</em> Every gym is ID-verified before it goes live instead of open self-serve listings. Slower to grow — but one fake listing breaks the "walk straight in" promise, and the promise is the product.</p>
       <p><em>The pass is the product.</em> No accounts modelled on memberships — a pass you request in seconds, held as a QR that's offline-cached and wallet-ready, because the moment of truth is a doorway with weak signal.</p>
       <p><em>Don't replace the POS.</em> Owner tools stay deliberately small: list in about twenty minutes, validate entries with a one-handed scanner at reception. Asking gyms to swap their systems would have killed adoption before it started.</p>
+    </div>
+  </div>
+
+  <div class="wrap case-body reveal">
+    <h3>Information architecture</h3>
+    <div class="bodytext">
+      <p>A two-sided product, so the IA splits by audience before it splits by feature — <em>80+ screens</em> across two apps and the web. Members get browsing depth; owners get a shallow tree they can operate one-handed at a busy front desk.</p>
+      <div class="ux">
+        <div class="ux-cap">Product structure — member app, owner app, web</div>
+        <div class="ia">
+          <div class="node"><span class="u">Member app</span><span class="tag">28 screens</span><span class="n">iOS + Android · browsing-first, airy density</span></div>
+          <div class="node lvl2"><span class="n">Auth — splash (session check) · login · forgot password · role chooser</span></div>
+          <div class="node lvl2"><span class="n">Onboarding — welcome · pick interests · phone-first sign-up</span></div>
+          <div class="node lvl2"><span class="n">Core — home feed · explore (list + map) · gym detail · checkout · wallet · QR pass</span></div>
+          <div class="node lvl2"><span class="n">Search — free-text, chip rail, filter sheet (distance · price · amenities · rating)</span></div>
+          <div class="node lvl2"><span class="n">Account — saved gyms · profile &amp; settings</span></div>
+          <div class="node"><span class="u">Owner app</span><span class="tag">24 screens</span><span class="n">iOS + Android · operational, compact, ink-heavy</span></div>
+          <div class="node lvl2"><span class="n">Core — overview (today) · scanner · pending approvals · activity · members roster</span></div>
+          <div class="node lvl2"><span class="n">Setup — trade-licence login · onboarding · create venue · go-live checklist</span></div>
+          <div class="node lvl2"><span class="n">Ops — validate pay-at-gym · check-ins · gallery · operator settings</span></div>
+          <div class="node"><span class="u">Web</span><span class="tag">30+ screens</span><span class="n">Owner dashboard · admin console · auth · marketing</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap case-body reveal">
+    <h3>User flow</h3>
+    <div class="bodytext">
+      <p>Everything serves one loop — <em>discover → buy → enter</em>. The fork is payment: cash is a designed path, not a fallback, so a pass can sit pending until an owner validates it in person.</p>
+      <div class="ux">
+        <div class="ux-cap">Member — buy &amp; enter</div>
+        <div class="flow">
+          <div class="step"><span class="k">01</span><span class="t">Discover</span><span class="d">Photo-led feed, or explore by list and map.</span></div>
+          <span class="arrow">→</span>
+          <div class="step"><span class="k">02</span><span class="t">Gym detail</span><span class="d">Gallery, amenities, occupancy, pass picker.</span></div>
+          <span class="arrow">→</span>
+          <div class="step"><span class="k">03</span><span class="t">Checkout</span><span class="d">Day, week or monthly — then the fork below.</span></div>
+          <span class="arrow">→</span>
+          <div class="step"><span class="k">04</span><span class="t">Wallet</span><span class="d">Active, pending and past passes.</span></div>
+          <span class="arrow">→</span>
+          <div class="step key"><span class="k">05</span><span class="t">Enter</span><span class="d">Rotating QR, verified server-side.</span></div>
+        </div>
+        <div class="branch">
+          <div class="b"><span class="k">Branch A · online</span><span class="d">Card, Apple Pay, Google Pay — Stripe in the UAE, Razorpay in India. QR issued instantly.</span></div>
+          <div class="b"><span class="k">Branch B · pay at gym</span><span class="d">Request goes to the owner; pass sits <em>pending</em> until cash or card is validated at reception, then activates.</span></div>
+        </div>
+      </div>
+      <div class="ux">
+        <div class="ux-cap">Owner — scan &amp; validate (the other side of branch B)</div>
+        <div class="flow">
+          <div class="step"><span class="k">01</span><span class="t">Scan</span><span class="d">Centre FAB, live camera at the door.</span></div>
+          <span class="arrow">→</span>
+          <div class="step"><span class="k">02</span><span class="t">Verify</span><span class="d">Token checked server-side against the venue.</span></div>
+          <span class="arrow">→</span>
+          <div class="step"><span class="k">03</span><span class="t">Approve</span><span class="d">Pending cash requests validated — cash, card or bank.</span></div>
+          <span class="arrow">→</span>
+          <div class="step key"><span class="k">04</span><span class="t">Logged</span><span class="d">Entry recorded in today's check-ins.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap case-body reveal">
+    <h3>States &amp; edge cases</h3>
+    <div class="bodytext">
+      <p>The QR is the moment of truth — a doorway, often with weak signal, sometimes with a queue behind you. So every way it can fail was designed at <em>full fidelity</em>, on both sides of the door, each with one-tap recovery.</p>
+      <div class="ux">
+        <div class="ux-cap">QR pass — four states, both sides of the door</div>
+        <div class="states">
+          <div class="s"><span class="t"><span class="dot" style="background:#E5FF3D"></span>Active</span><span class="d">Live countdown; 5-minute token auto-refreshes before expiry.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#E6A23C"></span>Expired</span><span class="d">One tap regenerates. No dead ends.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#8E8E8A"></span>Used</span><span class="d">Shows entry time so the desk can settle disputes.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#E5484D"></span>Invalid</span><span class="d">Clear reason plus a support path.</span></div>
+        </div>
+      </div>
+      <div class="ux">
+        <div class="ux-cap">Designed edge cases</div>
+        <div class="states">
+          <div class="s"><span class="t"><span class="dot" style="background:#8E8E8A"></span>Offline</span><span class="d">Pass cached on device — the QR still opens the door with no signal.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#E5484D"></span>Wrong venue</span><span class="d">Valid pass, wrong door — names the gym it's actually for.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#E5484D"></span>Payment declined</span><span class="d">Keeps the basket, offers pay-at-gym as the recovery.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#E6A23C"></span>Pending approval</span><span class="d">Cash request awaiting the owner — worst case ~2h, state is explicit.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#8E8E8A"></span>Empty wallet</span><span class="d">No passes yet — routes back into discovery.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#8E8E8A"></span>Camera denied</span><span class="d">Owner scanner without permission — explains and deep-links to settings.</span></div>
+        </div>
+      </div>
     </div>
   </div>
 
