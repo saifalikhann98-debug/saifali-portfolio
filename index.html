@@ -298,16 +298,25 @@
   .ux{margin-top:clamp(18px,2.5vw,26px)}
   .ux+.ux{margin-top:clamp(26px,4vw,44px)}
   .ux-cap{font-family:var(--mono);font-size:.7rem;letter-spacing:.05em;color:var(--g-400);margin-bottom:14px}
-  /* IA tree */
-  .ia{font-family:var(--mono);font-size:.78rem;line-height:1.5;color:var(--g-200)}
-  .ia .node{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;padding:9px 0;border-bottom:1px solid var(--g-800)}
-  .ia .node:last-child{border-bottom:0}
-  .ia .lvl2{padding-left:clamp(14px,3vw,30px)}
-  .ia .lvl3{padding-left:clamp(28px,6vw,60px)}
-  .ia .u{color:var(--white)}
-  .ia .n{color:var(--g-400);font-size:.72rem}
-  .ia .tag{border:1px solid var(--g-600);color:var(--g-400);font-size:.62rem;letter-spacing:.06em;
-    text-transform:uppercase;padding:2px 7px;border-radius:2px}
+  /* IA — surface blocks with grouped chips */
+  .ia{display:flex;flex-direction:column;gap:9px}
+  .ia .sf{border:1px solid var(--g-800)}
+  .ia .sfh{display:flex;flex-wrap:wrap;align-items:center;gap:9px;padding:13px 15px;
+    background:rgba(250,250,247,.035)}
+  .ia .sfh .nm{font-family:var(--display);font-weight:700;font-size:1rem;letter-spacing:-.015em;color:var(--white)}
+  .ia .sfh .nm.url{font-family:var(--mono);font-weight:500;font-size:.86rem;letter-spacing:0}
+  .ia .sfh .ct{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--black);background:var(--g-100);padding:3px 7px}
+  .ia .sfh .ds{font-family:var(--mono);font-size:.66rem;letter-spacing:.02em;color:var(--g-400)}
+  .ia .grp{display:grid;grid-template-columns:88px 1fr;gap:12px;align-items:start;
+    padding:10px 15px;border-top:1px solid var(--g-800)}
+  .ia .grp .gl{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--g-400);padding-top:4px}
+  .ia .ch{display:flex;flex-wrap:wrap;gap:5px}
+  .ia .ch span{font-family:var(--mono);font-size:.67rem;letter-spacing:.01em;color:var(--g-200);
+    border:1px solid var(--g-800);background:rgba(250,250,247,.02);padding:3px 8px}
+  .ia .ch span.more{color:var(--g-600);border-style:dashed;background:transparent}
+  @media(max-width:560px){.ia .grp{grid-template-columns:1fr;gap:6px}.ia .grp .gl{padding-top:0}}
   /* flow */
   .flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px}
   .flow .step{flex:1 1 128px;min-width:128px;border:1px solid var(--g-600);padding:12px 13px;
@@ -654,16 +663,30 @@
   <div class="wrap case-body reveal">
     <h3>Information architecture</h3>
     <div class="bodytext">
-      <p>One checker at the root, then a wide SEO surface underneath — <em>214 pages</em> across three verticals, each service its own guide so a search for "AC cleaning price Dubai" lands directly on the answer.</p>
+      <p>One checker at the root, then a wide SEO surface underneath — <em>107 pages</em> across three verticals, each one its own guide so a search for "AC cleaning price Dubai" lands directly on the answer. Every page is mirrored 1:1 in Arabic, which doubles it to 214 indexed URLs.</p>
       <div class="ux">
-        <div class="ux-cap">Site map — 214 indexed URLs, mirrored in Arabic</div>
+        <div class="ux-cap">Site map — 107 pages × 2 languages = 214 indexed URLs</div>
         <div class="ia">
-          <div class="node"><span class="u">/</span><span class="n">Price checker — service, area, quoted price → verdict</span></div>
-          <div class="node lvl2"><span class="u">/prices/</span><span class="tag">98 guides</span><span class="n">Home & property services</span></div>
-          <div class="node lvl3"><span class="n">ac-cleaning · deep-cleaning · pest-control · plumber · electrician · handyman · painting …</span></div>
-          <div class="node lvl2"><span class="u">/rent/</span><span class="tag">64 guides</span><span class="n">Rental price references by area &amp; property type</span></div>
-          <div class="node lvl2"><span class="u">/motor/</span><span class="tag">46 guides</span><span class="n">Car service, wash, tyres, battery, tinting …</span></div>
-          <div class="node lvl2"><span class="u">/ar</span><span class="tag">mirror</span><span class="n">Full Arabic translation — RTL, same structure</span></div>
+          <div class="sf">
+            <div class="sfh"><span class="nm url">/</span><span class="ct">entry</span><span class="ds">The checker — service, area, quoted price → verdict</span></div>
+          </div>
+          <div class="sf">
+            <div class="sfh"><span class="nm url">/prices/</span><span class="ct">48 services</span><span class="ds">Indexed by service</span></div>
+            <div class="grp"><span class="gl">Cleaning</span><span class="ch"><span>ac-cleaning</span><span>home-deep-cleaning</span><span>sofa-carpet-cleaning</span><span>water-tank-cleaning</span><span>window-cleaning</span><span>pest-control</span></span></div>
+            <div class="grp"><span class="gl">Trades</span><span class="ch"><span>plumber</span><span>electrician</span><span>handyman</span><span>painting</span><span>appliance-repair</span><span>ac-installation</span></span></div>
+            <div class="grp"><span class="gl">Grooming</span><span class="ch"><span>mens-haircut</span><span>salon-blow-dry</span><span>womens-cut-colour</span><span>keratin-treatment</span><span class="more">+ 4 more</span></span></div>
+          </div>
+          <div class="sf">
+            <div class="sfh"><span class="nm url">/rent/</span><span class="ct">32 areas</span><span class="ds">Indexed by area</span></div>
+            <div class="grp"><span class="gl">Areas</span><span class="ch"><span>dubai-marina</span><span>jlt</span><span>downtown-dubai</span><span>business-bay</span><span>jvc</span><span>al-barsha</span><span>deira</span><span class="more">+ 25 more</span></span></div>
+          </div>
+          <div class="sf">
+            <div class="sfh"><span class="nm url">/motor/</span><span class="ct">23 jobs</span><span class="ds">Indexed by job</span></div>
+            <div class="grp"><span class="gl">Jobs</span><span class="ch"><span>oil-change</span><span>minor-service</span><span>wheel-alignment</span><span>brake-pads</span><span>battery-replacement</span><span>tyres-set-of-4</span><span class="more">+ 17 more</span></span></div>
+          </div>
+          <div class="sf">
+            <div class="sfh"><span class="nm url">/ar</span><span class="ct">×2 mirror</span><span class="ds">Every page again in Arabic — RTL, same structure, +107 URLs</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -787,17 +810,24 @@
       <div class="ux">
         <div class="ux-cap">Product structure — member app, owner app, web</div>
         <div class="ia">
-          <div class="node"><span class="u">Member app</span><span class="tag">28 screens</span><span class="n">iOS + Android · browsing-first, airy density</span></div>
-          <div class="node lvl2"><span class="n">Auth — splash (session check) · login · forgot password · role chooser</span></div>
-          <div class="node lvl2"><span class="n">Onboarding — welcome · pick interests · phone-first sign-up</span></div>
-          <div class="node lvl2"><span class="n">Core — home feed · explore (list + map) · gym detail · checkout · wallet · QR pass</span></div>
-          <div class="node lvl2"><span class="n">Search — free-text, chip rail, filter sheet (distance · price · amenities · rating)</span></div>
-          <div class="node lvl2"><span class="n">Account — saved gyms · profile &amp; settings</span></div>
-          <div class="node"><span class="u">Owner app</span><span class="tag">24 screens</span><span class="n">iOS + Android · operational, compact, ink-heavy</span></div>
-          <div class="node lvl2"><span class="n">Core — overview (today) · scanner · pending approvals · activity · members roster</span></div>
-          <div class="node lvl2"><span class="n">Setup — trade-licence login · onboarding · create venue · go-live checklist</span></div>
-          <div class="node lvl2"><span class="n">Ops — validate pay-at-gym · check-ins · gallery · operator settings</span></div>
-          <div class="node"><span class="u">Web</span><span class="tag">30+ screens</span><span class="n">Owner dashboard · admin console · auth · marketing</span></div>
+          <div class="sf">
+            <div class="sfh"><span class="nm">Member app</span><span class="ct">28 screens</span><span class="ds">iOS + Android · browsing-first, airy density</span></div>
+            <div class="grp"><span class="gl">Auth</span><span class="ch"><span>splash</span><span>login</span><span>forgot password</span><span>role chooser</span></span></div>
+            <div class="grp"><span class="gl">Onboarding</span><span class="ch"><span>welcome</span><span>pick interests</span><span>phone-first sign-up</span></span></div>
+            <div class="grp"><span class="gl">Core</span><span class="ch"><span>home feed</span><span>explore — list + map</span><span>gym detail</span><span>checkout</span><span>wallet</span><span>QR pass</span></span></div>
+            <div class="grp"><span class="gl">Search</span><span class="ch"><span>free-text</span><span>chip rail</span><span>filter sheet</span></span></div>
+            <div class="grp"><span class="gl">Account</span><span class="ch"><span>saved gyms</span><span>profile &amp; settings</span></span></div>
+          </div>
+          <div class="sf">
+            <div class="sfh"><span class="nm">Owner app</span><span class="ct">24 screens</span><span class="ds">iOS + Android · operational, compact, ink-heavy</span></div>
+            <div class="grp"><span class="gl">Core</span><span class="ch"><span>overview — today</span><span>scanner</span><span>pending approvals</span><span>activity</span><span>members roster</span></span></div>
+            <div class="grp"><span class="gl">Setup</span><span class="ch"><span>trade-licence login</span><span>onboarding</span><span>create venue</span><span>go-live checklist</span></span></div>
+            <div class="grp"><span class="gl">Ops</span><span class="ch"><span>validate pay-at-gym</span><span>check-ins</span><span>gallery</span><span>operator settings</span></span></div>
+          </div>
+          <div class="sf">
+            <div class="sfh"><span class="nm">Web</span><span class="ct">30+ screens</span><span class="ds">Desktop scale · same token sheet</span></div>
+            <div class="grp"><span class="gl">Surfaces</span><span class="ch"><span>owner dashboard</span><span>admin console</span><span>auth</span><span>marketing</span></span></div>
+          </div>
         </div>
       </div>
     </div>
