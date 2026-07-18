@@ -349,14 +349,6 @@
   /* in a case view the fixed Back link replaces the brand — they share the same corner */
   body.in-case .brand{opacity:0;pointer-events:none}
   .brand{padding:13px 10px;margin:-13px -10px}
-  /* mobile legibility floor — nothing below ~12px on small screens */
-  @media(max-width:680px){
-    .label,.nav-r,.hero-top,.scrollcue,.sm p,.shead .cnt,.grouplbl,.wrow .meta,.wrow .go,
-    .tcol h5,footer,.back,.case-eyebrow,.ux-cap,.shot figcaption,.case-nav .k,
-    .states .s .t,.shot-lg .ph{font-size:.78rem}
-    .about-photo .rl,.pcard .u,.xrow .loc,.case-meta .k,.shot-sm span,.ia .sfh .ds,
-    .ia .ch span,.ia .sfh .ct,.ia .grp .gl,.flow .step .k,.branch .b .k{font-size:.75rem}
-  }
 
   .shots-2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,24px);margin:clamp(20px,3vw,36px) 0}
   @media(max-width:680px){.shots-2{grid-template-columns:1fr}}
@@ -392,6 +384,16 @@
   /* larger tap targets on small links */
   .nav-r a,.wrow .go .golive,.back{padding:13px 10px;margin:-13px -10px}
   :focus-visible{outline:2px solid currentColor;outline-offset:3px}
+
+  /* mobile legibility floor — must stay LAST so it wins over the
+     case-study rules defined above it at equal specificity */
+  @media(max-width:680px){
+    .label,.nav-r,.hero-top,.scrollcue,.sm p,.shead .cnt,.grouplbl,.wrow .meta,.wrow .go,
+    .tcol h5,footer,.back,.case-eyebrow,.ux-cap,.shot figcaption,.case-nav .k,
+    .states .s .t,.shot-lg .ph{font-size:.78rem}
+    .about-photo .rl,.pcard .u,.xrow .loc,.case-meta .k,.shot-sm span,.ia .sfh .ds,
+    .ia .ch span,.ia .sfh .ct,.ia .grp .gl,.flow .step .k,.branch .b .k{font-size:.75rem}
+  }
 </style>
 </head>
 <body>
