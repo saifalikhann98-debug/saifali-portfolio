@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://saifali-portfolio-sooty.vercel.app/sitemap.xml
