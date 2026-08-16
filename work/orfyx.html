@@ -466,6 +466,20 @@
           <div class="s"><span class="t"><span class="dot" style="background:#E5484D"></span>Invalid</span><span class="d">Clear reason plus a support path.</span></div>
         </div>
       </div>
+      <div class="ux">
+        <div class="ux-cap">Designed edge cases</div>
+        <div class="states">
+          <div class="s"><span class="t"><span class="dot" style="background:#8E8E8A"></span>Offline</span><span class="d">Pass cached on device — the QR still opens the door with no signal.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#E5484D"></span>Wrong venue</span><span class="d">Valid pass, wrong door — names the gym it's actually for.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#E5484D"></span>Payment declined</span><span class="d">Keeps the basket, offers pay-at-gym as the recovery.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#E6A23C"></span>Pending approval</span><span class="d">Cash request awaiting the owner — worst case ~2h, state is explicit.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#8E8E8A"></span>Empty wallet</span><span class="d">No passes yet — routes back into discovery.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#8E8E8A"></span>Camera denied</span><span class="d">Owner scanner without permission — explains and deep-links to settings.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <div class="wrap">
     <figure class="shot reveal"><img src="/img/06-orfyx-explore-search-verified-gyms-by-activi.jpg" alt="Orfyx explore — search verified gyms by activity and area with a map" loading="lazy" decoding="async" width="1500" height="771"><figcaption>Discovery — search verified gyms by activity and area. No fake listings.</figcaption></figure>
@@ -548,21 +562,6 @@
       </div>
     </div>
   </div>
-
-      <div class="ux">
-        <div class="ux-cap">Designed edge cases</div>
-        <div class="states">
-          <div class="s"><span class="t"><span class="dot" style="background:#8E8E8A"></span>Offline</span><span class="d">Pass cached on device — the QR still opens the door with no signal.</span></div>
-          <div class="s"><span class="t"><span class="dot" style="background:#E5484D"></span>Wrong venue</span><span class="d">Valid pass, wrong door — names the gym it's actually for.</span></div>
-          <div class="s"><span class="t"><span class="dot" style="background:#E5484D"></span>Payment declined</span><span class="d">Keeps the basket, offers pay-at-gym as the recovery.</span></div>
-          <div class="s"><span class="t"><span class="dot" style="background:#E6A23C"></span>Pending approval</span><span class="d">Cash request awaiting the owner — worst case ~2h, state is explicit.</span></div>
-          <div class="s"><span class="t"><span class="dot" style="background:#8E8E8A"></span>Empty wallet</span><span class="d">No passes yet — routes back into discovery.</span></div>
-          <div class="s"><span class="t"><span class="dot" style="background:#8E8E8A"></span>Camera denied</span><span class="d">Owner scanner without permission — explains and deep-links to settings.</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="wrap case-body reveal">
     <h3>Outcome</h3>
     <div class="bodytext">
