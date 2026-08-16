@@ -33,3 +33,22 @@ Open `index.html` directly, or:
 python3 -m http.server 8000
 # visit http://localhost:8000
 ```
+
+## Custom domain — how to switch
+
+This is a no-build static site, so there is no env var for the site URL.
+Absolute URLs (canonical, OG, sitemap, robots) are hardcoded and verified
+consistent. To move to a custom domain, run this from the repo root and push:
+
+```bash
+grep -rl 'saifali-portfolio-sooty.vercel.app' --include='*.html' --include='*.xml' --include='*.txt' . \
+  | xargs sed -i '' 's|saifali-portfolio-sooty.vercel.app|YOUR-DOMAIN.com|g'
+```
+
+Then, in the Vercel dashboard (project **saifali-portfolio**):
+
+1. Settings → Domains → Add → enter the domain.
+2. At your registrar: apex `A` record → `76.76.21.21`; `www` `CNAME` → `cname.vercel-dns.com`.
+3. Set the custom domain as **primary** (Vercel then 308-redirects the *.vercel.app URL).
+4. Push the URL swap commit (step above) so canonical/OG/sitemap match the new domain.
+5. Re-scrape the OG cards (opengraph.xyz or the platform debuggers) — they cache.
