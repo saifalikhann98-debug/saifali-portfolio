@@ -3,25 +3,25 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Saifali Khan — Product Designer Who Builds</title>
-<meta name="description" content="Saifali Khan — product designer in Dubai who designs products and then builds them. Fintech UI/UX and 0 to 1 products: Mizan, Orfyx." />
+<title>Mizan — Case Study | Saifali Khan</title>
+<meta name="description" content="Case study — Mizan, a crowdsourced fair-price checker for UAE services: two data layers, a verdict engine, and 214 bilingual guide pages. Designed and built by Saifali Khan." />
 <meta name="theme-color" content="#0A0A0A" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A0A0A'/%3E%3Ctext x='50' y='54' font-family='Arial,Helvetica,sans-serif' font-size='46' font-weight='800' fill='%23FAFAF7' text-anchor='middle' dominant-baseline='middle'%3ESK%3C/text%3E%3C/svg%3E" />
 <!-- Open Graph / social sharing -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://saifali-portfolio-sooty.vercel.app/" />
-<link rel="canonical" href="https://saifali-portfolio-sooty.vercel.app/" />
+<meta property="og:url" content="https://saifali-portfolio-sooty.vercel.app/work/mizan" />
+<link rel="canonical" href="https://saifali-portfolio-sooty.vercel.app/work/mizan" />
 <meta property="og:site_name" content="Saifali Khan" />
-<meta property="og:title" content="Saifali Khan — Product Designer Who Builds" />
-<meta property="og:description" content="Product designer in Dubai who designs products and then builds them. Fintech UI/UX and 0 to 1 products: Mizan, Orfyx." />
-<meta property="og:image" content="https://saifali-portfolio-sooty.vercel.app/og.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
+<meta property="og:title" content="Mizan — Case Study" />
+<meta property="og:description" content="Case study — Mizan, a crowdsourced fair-price checker for UAE services: two data layers, a verdict engine, and 214 bilingual guide pages. Designed and built by Saifali Khan." />
+<meta property="og:image" content="https://saifali-portfolio-sooty.vercel.app/img/02-mizan-pick-a-service-and-area-then-compare-a.jpg" />
+<meta property="og:image:width" content="1500" />
+<meta property="og:image:height" content="771" />
 <meta property="og:locale" content="en_AE" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Saifali Khan — Product Designer Who Builds" />
-<meta name="twitter:description" content="Designs it. Then builds it. Fintech UI/UX and 0 to 1 products from Dubai." />
-<meta name="twitter:image" content="https://saifali-portfolio-sooty.vercel.app/og.png" />
+<meta name="twitter:title" content="Mizan — Case Study" />
+<meta name="twitter:description" content="Case study — Mizan, a crowdsourced fair-price checker for UAE services: two data layers, a verdict engine, and 214 bilingual guide pages. Designed and built by Saifali Khan." />
+<meta name="twitter:image" content="https://saifali-portfolio-sooty.vercel.app/img/02-mizan-pick-a-service-and-area-then-compare-a.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -346,6 +346,8 @@
   .skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--white);color:var(--black);
     font-family:var(--mono);font-size:.8rem;padding:12px 18px;text-decoration:none}
   .skip:focus{left:12px;top:12px}
+  /* in a case view the fixed Back link replaces the brand — they share the same corner */
+  body.in-case .brand{opacity:0;pointer-events:none}
   .brand{padding:13px 10px;margin:-13px -10px}
 
   .shots-2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,24px);margin:clamp(20px,3vw,36px) 0}
@@ -392,247 +394,163 @@
     .about-photo .rl,.pcard .u,.xrow .loc,.case-meta .k,.shot-sm span,.ia .sfh .ds,
     .ia .ch span,.ia .sfh .ct,.ia .grp .gl,.flow .step .k,.branch .b .k{font-size:.75rem}
   }
+
+  /* ---- work-page overrides (standalone case route) ---- */
+  .case{display:block}
+  .page-work .back{position:static;display:inline-flex;margin:clamp(96px,13vw,140px) 0 -20px;
+    padding:11px 16px;border:1px solid var(--g-600)}
 </style>
 </head>
-<body>
+<body class="page-work">
 
-<a class="skip" href="#home">Skip to content</a>
+<a class="skip" href="#case-mizan">Skip to content</a>
 
 <nav>
-  <a class="brand" href="#home">Saifali Khan</a>
-  <div class="nav-r">
-    <span class="m">Dubai, GMT+4</span>
-    <a href="#contact">Contact</a>
-  </div>
+  <a class="brand" href="/">Saifali Khan</a>
+  <div class="nav-r"><span class="m">Dubai, GMT+4</span><a href="/#contact">Contact</a></div>
 </nav>
 
-<!-- ============ HOME ============ -->
-<main id="home">
-
-  <!-- HERO -->
-  <header class="band ink hero">
-    <div class="wrap" style="width:100%">
-      <div class="hero-top">
-        <span>Product Designer — <b>Dubai, UAE</b></span>
-        <span>Fintech, 0 to 1 products, <b>available</b></span>
-      </div>
-      <h1 class="giant">
-        <span class="ln"><span>Designs it.</span></span>
-        <span class="ln"><span class="thin">Then builds</span></span>
-        <span class="ln"><span>it.</span></span>
-      </h1>
-      <div class="hero-foot">
-        <p class="hero-sub">
-          Product designer with seven years across fintech, commerce and brand
-          work — now shipping products <b>end to end</b>, from the first Figma
-          frame to working code.
-        </p>
-        <span class="scrollcue">SCROLL</span>
-      </div>
+<article id="case-mizan" class="case ink">
+  <div class="wrap case-hero">
+    <a class="back" href="/"><span class="ar">←</span>&nbsp; Back to all work</a>
+    <div class="case-eyebrow reveal">
+      <span>01 / Built from scratch</span><span><b>2025—26</b></span><span>Design, Frontend</span>
     </div>
-  </header>
+    <h1 class="case-title reveal">Mizan</h1>
+    <p class="case-lede reveal">Know the fair price before you pay — what UAE residents actually pay, laid over advertised list prices.</p>
+    <a class="livelink reveal" href="https://www.mizan-price.com/" target="_blank" rel="noopener"><span class="dot"></span>Visit live site — mizan-price.com</a>
+    <div class="case-meta reveal">
+      <div><div class="k">Role</div><div class="v">Solo — design & build</div></div>
+      <div><div class="k">Type</div><div class="v">Consumer, Web</div></div>
+      <div><div class="k">Coverage</div><div class="v">All 7 emirates</div></div>
+      <div><div class="k">Status</div><div class="v">Live, UAE</div></div>
+    </div>
+  </div>
 
-  <!-- MARQUEE -->
-  <div class="ink">
-    <div class="marquee" aria-hidden="true">
-      <div class="track">
-        <span class="item">Design</span><span class="item out">Build</span><span class="item">Ship</span><span class="item out">Repeat</span>
-        <span class="item">Design</span><span class="item out">Build</span><span class="item">Ship</span><span class="item out">Repeat</span>
+  <div class="wrap">
+    <figure class="shot reveal"><img src="/img/02-mizan-pick-a-service-and-area-then-compare-a.jpg" alt="Mizan — pick a service and area, then compare advertised list prices against what residents actually paid, with a verdict" loading="lazy" decoding="async" width="1500" height="771"><figcaption>The core flow — pick a service and area, compare advertised vs paid, get a verdict.</figcaption></figure>
+  </div>
+
+  <div class="wrap case-body reveal">
+    <h3>The problem</h3>
+    <div class="bodytext">
+      <p>Across the UAE, the price you're quoted for everyday services — AC cleaning, a haircut, movers, a gym — often isn't what people actually pay. Markups and opaque pricing leave residents with no reference point, and no way to tell whether a quote is fair or steep.</p>
+    </div>
+  </div>
+  <div class="wrap case-body reveal">
+    <h3>How it works</h3>
+    <div class="bodytext">
+      <p>Mizan — <em>ميزان</em>, "the scale" — shows two layers side by side: the <em>market estimate</em> (advertised list prices harvested from the web) and the <em>paid range</em> (what residents report actually paying). Pick a service and your area, enter the price you were quoted, and it returns a verdict: <em>fair, steep, or walk away</em>.</p>
+      <p>The paid layer is community-reported and anonymous, with outlier trimming so one odd price can't skew the result — and it sharpens with every report. Free to use, no paid placements, across all seven emirates.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <figure class="shot reveal"><img src="/img/03-mizan-recently-paid-prices-reported-by-resid.jpg" alt="Mizan — recently paid prices reported by residents across UAE areas" loading="lazy" decoding="async" width="1500" height="771"><figcaption>Recently paid — fresh community reports keep the ranges honest.</figcaption></figure>
+    <figure class="shot reveal"><img src="/img/04-mizan-common-questions-and-price-guides-for-.jpg" alt="Mizan — common questions and price guides for every service" loading="lazy" decoding="async" width="1500" height="771"><figcaption>Common questions and price guides for every service.</figcaption></figure>
+  </div>
+
+  <div class="wrap case-body reveal">
+    <h3>Design decisions</h3>
+    <div class="bodytext">
+      <p><em>Two layers, never blended.</em> The obvious version averaged advertised and paid prices into one number. Rejected — the gap between what's advertised and what residents actually pay <em>is</em> the product. Collapsing it hides the exact markup story people come to see.</p>
+      <p><em>A verdict, not a dataset.</em> Early screens showed the raw price ranges and stopped. That pushes the judgment back onto the user — the very work Mizan exists to remove. So every check ends in plain language: <em>fair, steep, or walk away</em>.</p>
+      <p><em>Trust before scale.</em> Open community averages are easy to skew, so reports are anonymous, per-area, and outlier-trimmed — one odd price can't move a verdict. And it launches deep in fewer service-area cells rather than shallow everywhere, because a wrong answer costs more trust than no answer.</p>
+    </div>
+  </div>
+
+  <div class="wrap case-body reveal">
+    <h3>Information architecture</h3>
+    <div class="bodytext">
+      <p>One checker at the root, then a wide SEO surface underneath — <em>107 pages</em> across three verticals, each one its own guide so a search for "AC cleaning price Dubai" lands directly on the answer. Every page is mirrored 1:1 in Arabic, which doubles it to 214 indexed URLs.</p>
+      <div class="ux">
+        <div class="ux-cap">Site map — 107 pages × 2 languages = 214 indexed URLs</div>
+        <div class="ia">
+          <div class="sf">
+            <div class="sfh"><span class="nm url">/</span><span class="ct">entry</span><span class="ds">The checker — service, area, quoted price → verdict</span></div>
+          </div>
+          <div class="sf">
+            <div class="sfh"><span class="nm url">/prices/</span><span class="ct">48 services</span><span class="ds">Indexed by service</span></div>
+            <div class="grp"><span class="gl">Cleaning</span><span class="ch"><span>ac-cleaning</span><span>home-deep-cleaning</span><span>sofa-carpet-cleaning</span><span>water-tank-cleaning</span><span>window-cleaning</span><span>pest-control</span></span></div>
+            <div class="grp"><span class="gl">Trades</span><span class="ch"><span>plumber</span><span>electrician</span><span>handyman</span><span>painting</span><span>appliance-repair</span><span>ac-installation</span></span></div>
+            <div class="grp"><span class="gl">Grooming</span><span class="ch"><span>mens-haircut</span><span>salon-blow-dry</span><span>womens-cut-colour</span><span>keratin-treatment</span><span class="more">+ 4 more</span></span></div>
+          </div>
+          <div class="sf">
+            <div class="sfh"><span class="nm url">/rent/</span><span class="ct">32 areas</span><span class="ds">Indexed by area</span></div>
+            <div class="grp"><span class="gl">Areas</span><span class="ch"><span>dubai-marina</span><span>jlt</span><span>downtown-dubai</span><span>business-bay</span><span>jvc</span><span>al-barsha</span><span>deira</span><span class="more">+ 25 more</span></span></div>
+          </div>
+          <div class="sf">
+            <div class="sfh"><span class="nm url">/motor/</span><span class="ct">23 jobs</span><span class="ds">Indexed by job</span></div>
+            <div class="grp"><span class="gl">Jobs</span><span class="ch"><span>oil-change</span><span>minor-service</span><span>wheel-alignment</span><span>brake-pads</span><span>battery-replacement</span><span>tyres-set-of-4</span><span class="more">+ 17 more</span></span></div>
+          </div>
+          <div class="sf">
+            <div class="sfh"><span class="nm url">/ar</span><span class="ct">×2 mirror</span><span class="ds">Every page again in Arabic — RTL, same structure, +107 URLs</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ABOUT -->
-  <section class="light about-dyn" id="about">
-    <figure class="about-photo reveal">
-      <img src="/img/01-saifali-khan-product-designer-based-in-dubai.jpg" alt="Saifali Khan, product designer based in Dubai" loading="lazy" decoding="async" width="900" height="1350">
-      <figcaption><span class="nm">Saifali Khan</span><span class="rl">Product Designer<br>Dubai, UAE</span></figcaption>
-    </figure>
-    <div class="about-content">
-      <span class="label reveal">The short version</span>
-      <p class="statement reveal" style="margin-top:22px">
-        Most designers hand off a prototype and wait. I keep going until it's
-        <span class="hl">real</span> — built, interactive, and in someone's hands.
-      </p>
-      <p class="about-sub reveal">
-        I take ideas the whole distance myself — research, interface,
-        prototype and a working frontend — so design and build stop being
-        a handoff and become one loop. Recent work spans fintech platforms,
-        consumer products and e-commerce for the UAE and India.
-      </p>
-      <div class="about-stats">
-        <div class="sm reveal"><div class="n">7 yrs</div><p>Fintech, commerce & brand product design</p></div>
-        <div class="sm reveal"><div class="n">0 to 1</div><p>Products built from scratch — design + code</p></div>
-        <div class="sm reveal"><div class="n">Figma to code</div><p>Prototype to working frontend</p></div>
-        <div class="sm reveal"><div class="n">Dubai</div><p>Teams & clients, GMT+4</p></div>
+  <div class="wrap case-body reveal">
+    <h3>User flow</h3>
+    <div class="bodytext">
+      <p>Three inputs to a verdict — the whole point is that it ends in a <em>judgement</em>, not a chart. A second loop feeds the paid layer: anyone who just checked a price is the best-placed person to report one.</p>
+      <div class="ux">
+        <div class="ux-cap">Primary flow — check a price</div>
+        <div class="flow">
+          <div class="step"><span class="k">01</span><span class="t">Service</span><span class="d">"What are you paying for?" — 200+ services.</span></div>
+          <span class="arrow">→</span>
+          <div class="step"><span class="k">02</span><span class="t">Area</span><span class="d">"In which area?" — all 7 emirates.</span></div>
+          <span class="arrow">→</span>
+          <div class="step"><span class="k">03</span><span class="t">Quote</span><span class="d">"The price you were quoted" + unit.</span></div>
+          <span class="arrow">→</span>
+          <div class="step key"><span class="k">04</span><span class="t">Verdict</span><span class="d">Fair, steep, or walk away — against both layers.</span></div>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- WORK -->
-  <section class="band ink" id="work">
-    <div class="wrap">
-      <div class="shead reveal">
-        <h2>Selected<br>work</h2>
-        <span class="cnt">2019 to now</span>
-      </div>
-
-      <p class="grouplbl reveal">Built from scratch — design + code</p>
-      <div class="work-list">
-        <div class="wrow reveal">
-          <span class="fill"></span>
-          <a class="rowlink" href="/work/mizan" aria-label="Mizan — case study"></a>
-          <span class="inner">
-            <span class="num">01</span>
-            <span><h3>Mizan</h3><span class="meta">Concept, Design, Frontend</span></span>
-            <span class="blurb">Fair-price transparency for the UAE — what's advertised vs. what residents actually pay.</span>
-            <span class="go">Case study <a class="golive" href="https://www.mizan-price.com/" target="_blank" rel="noopener">Live</a></span>
-          </span>
-        </div>
-        <div class="wrow reveal">
-          <span class="fill"></span>
-          <a class="rowlink" href="/work/orfyx" aria-label="Orfyx — case study"></a>
-          <span class="inner">
-            <span class="num">02</span>
-            <span><h3>Orfyx</h3><span class="meta">Product, Mobile, Frontend</span></span>
-            <span class="blurb">A premium fitness-pass platform for the UAE & India — find a verified gym, get a QR pass, walk straight in.</span>
-            <span class="go">Case study <a class="golive" href="https://www.orfyx.com/" target="_blank" rel="noopener">Live</a></span>
-          </span>
-        </div>
-        <a class="wrow reveal" href="https://www.punarnavamayur.com/" target="_blank" rel="noopener">
-          <span class="fill"></span>
-          <span class="inner">
-            <span class="num">03</span>
-            <span><h3>Punarnavam</h3><span class="meta">Brand, Web, Frontend</span></span>
-            <span class="blurb">Brand and site for an Ayurvedic healing retreat in the hills of Kerala.</span>
-            <span class="go">Visit live</span>
-          </span>
-        </a>
-        <a class="wrow reveal" href="https://www.arabianmistperfumes.com/" target="_blank" rel="noopener">
-          <span class="fill"></span>
-          <span class="inner">
-            <span class="num">04</span>
-            <span><h3>Arabian Mist</h3><span class="meta">Brand, E-commerce, Frontend</span></span>
-            <span class="blurb">A UAE luxury perfume house — brand, storefront and the full shopping experience.</span>
-            <span class="go">Visit live</span>
-          </span>
-        </a>
-      </div>
-
-      <p class="grouplbl reveal" style="margin-top:clamp(56px,8vw,90px)">Fintech product design — shipped</p>
-      <p class="reveal" style="font-size:.98rem;line-height:1.6;color:var(--g-200);max-width:54ch;margin:14px 0 26px">Seven years of fintech interface work — exchanges, FX and trading platforms — shipped in-house and freelance. Deeper case walkthroughs available on request.</p>
-      <div class="pgrid">
-        <a class="pcard reveal" href="https://bitdelta.com/en" target="_blank" rel="noopener">
-          <span class="pt"><h4>BitDelta</h4></span>
-          <p>UI/UX for a crypto exchange — trading, onboarding and account flows on web.</p>
-          <span class="u">bitdelta.com</span>
-        </a>
-        <a class="pcard reveal" href="https://doshfx.io/" target="_blank" rel="noopener">
-          <span class="pt"><h4>DoshFX</h4></span>
-          <p>FX & trading platform — interface design across both web and the mobile app.</p>
-          <span class="u">doshfx.io, play store</span>
-        </a>
-        <a class="pcard reveal" href="https://ofza.com/en" target="_blank" rel="noopener">
-          <span class="pt"><h4>OFZA</h4></span>
-          <p>Trading platform UI — dashboards, market views and data-dense screens.</p>
-          <span class="u">ofza.com</span>
-        </a>
-        <a class="pcard reveal" href="https://visiion.io/en" target="_blank" rel="noopener">
-          <span class="pt"><h4>Visiion</h4></span>
-          <p>Product interface design — a clean, conversion-focused web experience.</p>
-          <span class="u">visiion.io</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section class="band light" id="experience">
-    <div class="wrap">
-      <div class="shead reveal"><h2>Experience</h2><span class="cnt" style="color:var(--g-600)">résumé</span></div>
-      <div class="work-x">
-        <div class="xrow reveal" style="border-color:var(--g-100)">
-          <span class="yr" style="color:var(--g-600)">Now</span>
-          <div><h3>Independent Product Designer & Builder</h3>
-            <div class="co" style="color:var(--g-600)">Building my own products (Mizan, Orfyx) and live client sites (Punarnavam, Arabian Mist)</div></div>
-          <span class="loc" style="color:var(--g-600)">Dubai, UAE</span>
-        </div>
-        <div class="xrow reveal" style="border-color:var(--g-100)">
-          <span class="yr" style="color:var(--g-600)">2021—Now</span>
-          <div><h3>Product Designer — D24</h3>
-            <div class="co" style="color:var(--g-600)">Led design strategy and a team of UI/UX designers (joined as DIFX Technology); product design & frontend across the group</div></div>
-          <span class="loc" style="color:var(--g-600)">Dubai, UAE</span>
-        </div>
-        <div class="xrow reveal" style="border-color:var(--g-100)">
-          <span class="yr" style="color:var(--g-600)">2021</span>
-          <div><h3>UI/UX Designer — VIC Inspection Holding</h3>
-            <div class="co" style="color:var(--g-600)">End-to-end design ownership, concept to implementation</div></div>
-          <span class="loc" style="color:var(--g-600)">Dubai, UAE</span>
-        </div>
-        <div class="xrow reveal" style="border-color:var(--g-100)">
-          <span class="yr" style="color:var(--g-600)">2020—21</span>
-          <div><h3>UI/UX Designer — Synclovis Systems</h3>
-            <div class="co" style="color:var(--g-600)">User research and product interface design</div></div>
-          <span class="loc" style="color:var(--g-600)">Bangalore, India</span>
-        </div>
-        <div class="xrow reveal" style="border-color:var(--g-100)">
-          <span class="yr" style="color:var(--g-600)">2019—20</span>
-          <div><h3>Junior UI Designer — Crazydes Design Studio</h3>
-            <div class="co" style="color:var(--g-600)">Interface design across digital products</div></div>
-          <span class="loc" style="color:var(--g-600)">Kochi, India</span>
-        </div>
-        <div class="xrow reveal" style="border-color:var(--g-100)">
-          <span class="yr" style="color:var(--g-600)">2016—19</span>
-          <div><h3>BSc Interactive Media (UI/UX) — ICAT</h3>
-            <div class="co" style="color:var(--g-600)">Design & Media College</div></div>
-          <span class="loc" style="color:var(--g-600)">Bangalore, India</span>
+      <div class="ux">
+        <div class="ux-cap">Secondary loop — contribute (what keeps the data alive)</div>
+        <div class="flow">
+          <div class="step"><span class="k">01</span><span class="t">Report paid</span><span class="d">Anonymous — service, area, what you actually paid.</span></div>
+          <span class="arrow">→</span>
+          <div class="step"><span class="k">02</span><span class="t">Trim outliers</span><span class="d">One odd price can't move a verdict.</span></div>
+          <span class="arrow">→</span>
+          <div class="step key"><span class="k">03</span><span class="t">Sharpen range</span><span class="d">Paid layer tightens with every report.</span></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- TOOLS -->
-  <section class="band light" id="tools" style="padding-top:0">
-    <div class="wrap">
-      <span class="label reveal">How I work</span>
-      <div class="tools" style="margin-top:30px">
-        <div class="tcol reveal"><h5>Design</h5><ul>
-          <li>Figma</li><li>Adobe XD, Sketch</li><li>Photoshop, Illustrator</li><li>Design systems</li><li>User research</li></ul></div>
-        <div class="tcol reveal"><h5>Prototype</h5><ul>
-          <li>Framer</li><li>InVision</li><li>Zeplin (handoff)</li><li>Interaction & motion</li><li>Premiere Pro</li></ul></div>
-        <div class="tcol reveal"><h5>Build</h5><ul>
-          <li>HTML, CSS, JS</li><li>Claude Design</li><li>AI-assisted development (Claude Code)</li><li>Working prototypes</li><li>Frontend handoff</li></ul></div>
+  <div class="wrap case-body reveal">
+    <h3>States &amp; edge cases</h3>
+    <div class="bodytext">
+      <p>A price tool is only trusted if it admits what it doesn't know. The hardest state isn't a steep quote — it's <em>thin data</em>, where saying nothing beats guessing.</p>
+      <div class="ux">
+        <div class="states">
+          <div class="s"><span class="t"><span class="dot" style="background:#4ADE80"></span>Fair</span><span class="d">Quote sits inside the paid range. Confirm and move on.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#FACC15"></span>Steep</span><span class="d">Above paid, below advertised — shows the gap in dirhams.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#F87171"></span>Walk away</span><span class="d">Far above what residents report paying.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#8E8E8A"></span>Thin data</span><span class="d">Too few reports for that service-area cell — says so instead of inventing a range.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#8E8E8A"></span>Advertised only</span><span class="d">List prices exist, no paid reports yet — one layer shown, labelled.</span></div>
+          <div class="s"><span class="t"><span class="dot" style="background:#8E8E8A"></span>Outlier caught</span><span class="d">A report far outside the spread is trimmed, not published.</span></div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- CONTACT -->
-  <section class="band ink" id="contact">
-    <div class="wrap">
-      <span class="label reveal">Contact</span>
-      <div class="reveal">
-        <a class="cmail" href="mailto:Saifalikhann98@gmail.com">Let's<br><span class="out">build</span> something.</a>
-      </div>
-      <div class="clinks">
-        <a class="clink" href="mailto:Saifalikhann98@gmail.com">Saifalikhann98@gmail.com</a>
-        <a class="clink" href="tel:+971523548023">+971 52 354 8023</a>
-        <a class="clink" href="https://www.linkedin.com/in/saifali-khan-84a3a3186/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="clink" href="https://www.behance.net/saifalikha004b" target="_blank" rel="noopener">Behance</a>
-      </div>
+  <div class="wrap case-body reveal">
+    <h3>What I did</h3>
+    <div class="bodytext">
+      <p>Defined the concept and the two-layer data model, designed the full interface, and built and shipped it as a live product — including an Arabic version. The whole loop, from idea to something residents check before they pay.</p>
     </div>
-  </section>
+  </div>
 
-  <footer>
-    <span>Saifali Khan © <span id="yr"></span></span>
-    <span>Designed & built in Dubai</span>
-  </footer>
-</main>
-
+  <div class="case-nav">
+    <a href="/"><div class="k">Index</div><div class="n">All work</div></a>
+    <a href="/work/orfyx"><div class="k">Next</div><div class="n">Orfyx</div></a>
+  </div>
+</article>
 
 <script>
-  document.getElementById('yr').textContent=new Date().getFullYear();
-
-  // Case studies are real routes now (/work/*) — old #case-* anchors redirect below.
   const io=new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
@@ -643,37 +561,9 @@
       }
     });
   },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
-
-  function observeAll(){document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));}
-
-  function revealInView(){
-    document.querySelectorAll('.reveal:not(.in)').forEach(el=>{
-      const r=el.getBoundingClientRect();
-      if(r.top<innerHeight*0.96){el.classList.add('in');}
-    });
-  }
-
-  function route(){
-    const id=(location.hash||'').slice(1);
-    if(id.startsWith('case-')){location.replace('/work/'+id.slice(5));return;}
-    if(id && id!=='home'){
-      requestAnimationFrame(()=>{
-        const el=document.getElementById(id);
-        if(el) el.scrollIntoView({behavior:'auto',block:'start'});
-      });
-    }
-    requestAnimationFrame(revealInView);
-  }
-
-  observeAll();
-  window.addEventListener('hashchange',route);
-  route();
-
-  // Skip link focuses whichever view is active, not always home
-  document.querySelector('.skip')?.addEventListener('click',e=>{
-    e.preventDefault();
-    const v=document.getElementById('home');
-    if(v){v.setAttribute('tabindex','-1');v.focus({preventScroll:true});v.scrollIntoView({block:'start'});}
+  document.querySelectorAll('.reveal').forEach(el=>{
+    if(el.getBoundingClientRect().top<innerHeight*0.96){el.classList.add('in');}
+    else{io.observe(el);}
   });
 </script>
 </body>
