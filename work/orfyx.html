@@ -399,6 +399,13 @@
   .case{display:block}
   .page-work .back{position:static;display:inline-flex;margin:clamp(96px,13vw,140px) 0 -20px;
     padding:11px 16px;border:1px solid var(--g-600)}
+
+  /* ---- expandable chip lists ---- */
+  .ia .ch .chx{display:none}
+  .ia .ch.open .chx{display:contents}
+  .ia .morebtn{font-family:var(--mono);font-size:.67rem;letter-spacing:.01em;color:var(--g-400);
+    border:1px dashed var(--g-600);background:transparent;padding:3px 8px;cursor:pointer}
+  .ia .morebtn:hover{color:var(--g-200)}
 </style>
 </head>
 <body class="page-work">
@@ -472,7 +479,7 @@
             <div class="sfh"><span class="nm">Member app</span><span class="ct">28 screens</span><span class="ds">iOS + Android · browsing-first, airy density</span></div>
             <div class="grp"><span class="gl">Auth</span><span class="ch"><span>splash</span><span>login</span><span>forgot password</span><span>role chooser</span></span></div>
             <div class="grp"><span class="gl">Onboarding</span><span class="ch"><span>welcome</span><span>pick interests</span><span>phone-first sign-up</span></span></div>
-            <div class="grp"><span class="gl">Core</span><span class="ch"><span>home feed</span><span>explore — list + map</span><span>gym detail</span><span>checkout</span><span>wallet</span><span>QR pass</span></span></div>
+            <div class="grp"><span class="gl">Core</span><span class="ch"><span>home feed</span><span>explore — list + map</span><span>gym detail</span><span>checkout</span><span>wallet</span><span class="chx"><span>QR pass</span></span><button class="morebtn" type="button" data-more="+ 1 more" aria-expanded="false">+ 1 more</button></span></div>
             <div class="grp"><span class="gl">Search</span><span class="ch"><span>free-text</span><span>chip rail</span><span>filter sheet</span></span></div>
             <div class="grp"><span class="gl">Account</span><span class="ch"><span>saved gyms</span><span>profile &amp; settings</span></span></div>
           </div>
@@ -592,6 +599,15 @@
   document.querySelectorAll('.reveal').forEach(el=>{
     if(el.getBoundingClientRect().top<innerHeight*0.96){el.classList.add('in');}
     else{io.observe(el);}
+  });
+
+  document.querySelectorAll('.morebtn').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const ch=b.closest('.ch');
+      const open=ch.classList.toggle('open');
+      b.textContent=open?'− less':b.dataset.more;
+      b.setAttribute('aria-expanded',open);
+    });
   });
 </script>
 </body>

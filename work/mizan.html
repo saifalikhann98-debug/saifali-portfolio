@@ -399,6 +399,13 @@
   .case{display:block}
   .page-work .back{position:static;display:inline-flex;margin:clamp(96px,13vw,140px) 0 -20px;
     padding:11px 16px;border:1px solid var(--g-600)}
+
+  /* ---- expandable chip lists ---- */
+  .ia .ch .chx{display:none}
+  .ia .ch.open .chx{display:contents}
+  .ia .morebtn{font-family:var(--mono);font-size:.67rem;letter-spacing:.01em;color:var(--g-400);
+    border:1px dashed var(--g-600);background:transparent;padding:3px 8px;cursor:pointer}
+  .ia .morebtn:hover{color:var(--g-200)}
 </style>
 </head>
 <body class="page-work">
@@ -471,17 +478,16 @@
           </div>
           <div class="sf">
             <div class="sfh"><span class="nm url">/prices/</span><span class="ct">48 services</span><span class="ds">Indexed by service</span></div>
-            <div class="grp"><span class="gl">Cleaning</span><span class="ch"><span>ac-cleaning</span><span>home-deep-cleaning</span><span>sofa-carpet-cleaning</span><span>water-tank-cleaning</span><span>window-cleaning</span><span>pest-control</span></span></div>
-            <div class="grp"><span class="gl">Trades</span><span class="ch"><span>plumber</span><span>electrician</span><span>handyman</span><span>painting</span><span>appliance-repair</span><span>ac-installation</span></span></div>
-            <div class="grp"><span class="gl">Grooming</span><span class="ch"><span>mens-haircut</span><span>salon-blow-dry</span><span>womens-cut-colour</span><span>keratin-treatment</span><span class="more">+ 4 more</span></span></div>
+                        <div class="grp"><span class="gl">Services</span><span class="ch"><span>ac-cleaning</span><span>home-deep-cleaning</span><span>pest-control</span><span>ac-duct-cleaning</span><span>sofa-carpet-cleaning</span><span class="chx"><span>water-tank-cleaning</span><span>pool-maintenance</span><span>window-cleaning</span><span>handyman</span><span>plumber</span><span>electrician</span><span>painting</span><span>appliance-repair</span><span>tv-wall-mounting</span><span>ac-installation</span><span>car-service</span><span>car-wash-detailing</span><span>oil-change</span><span>tyre-replacement</span><span>car-ac-regas</span><span>car-battery-replacement</span><span>car-window-tinting</span><span>mens-haircut</span><span>salon-blow-dry</span><span>womens-cut-colour</span><span>keratin-treatment</span><span>mani-pedi</span><span>facial</span><span>massage</span><span>waxing-threading</span><span>eyelash-extensions</span><span>gym-membership</span><span>gp-consultation</span><span>dental-cleaning</span><span>physiotherapy</span><span>eye-test</span><span>blood-test</span><span>pet-grooming</span><span>vet-consultation</span><span>pet-boarding</span><span>maid-cleaner</span><span>nanny</span><span>private-tutor</span><span>swimming-lessons</span><span>laundry</span><span>dry-cleaning</span><span>tailoring-alterations</span><span>movers</span></span><button class="morebtn" type="button" data-more="+ 43 more" aria-expanded="false">+ 43 more</button></span></div>
+          
           </div>
           <div class="sf">
-            <div class="sfh"><span class="nm url">/rent/</span><span class="ct">32 areas</span><span class="ds">Indexed by area</span></div>
-            <div class="grp"><span class="gl">Areas</span><span class="ch"><span>dubai-marina</span><span>jlt</span><span>downtown-dubai</span><span>business-bay</span><span>jvc</span><span>al-barsha</span><span>deira</span><span class="more">+ 25 more</span></span></div>
+            <div class="sfh"><span class="nm url">/rent/</span><span class="ct">31 areas</span><span class="ds">Indexed by area</span></div>
+            <div class="grp"><span class="gl">Areas</span><span class="ch"><span>dubai-marina</span><span>jlt</span><span>downtown-dubai</span><span>business-bay</span><span>jvc</span><span class="chx"><span>al-barsha</span><span>dubai-silicon-oasis</span><span>deira</span><span>bur-dubai</span><span>al-qusais</span><span>international-city</span><span>al-reem-island</span><span>khalifa-city</span><span>al-nahda-sharjah</span><span>al-majaz</span><span>palm-jumeirah</span><span>jbr</span><span>dubai-hills-estate</span><span>the-greens</span><span>barsha-heights</span><span>motor-city</span><span>al-furjan</span><span>jvt</span><span>arjan</span><span>town-square</span><span>dubai-sports-city</span><span>discovery-gardens</span><span>mirdif</span><span>saadiyat-island</span><span>al-raha-beach</span><span>muwailih</span></span><button class="morebtn" type="button" data-more="+ 26 more" aria-expanded="false">+ 26 more</button></span></div>
           </div>
           <div class="sf">
-            <div class="sfh"><span class="nm url">/motor/</span><span class="ct">23 jobs</span><span class="ds">Indexed by job</span></div>
-            <div class="grp"><span class="gl">Jobs</span><span class="ch"><span>oil-change</span><span>minor-service</span><span>wheel-alignment</span><span>brake-pads</span><span>battery-replacement</span><span>tyres-set-of-4</span><span class="more">+ 17 more</span></span></div>
+            <div class="sfh"><span class="nm url">/motor/</span><span class="ct">22 jobs</span><span class="ds">Indexed by job</span></div>
+            <div class="grp"><span class="gl">Jobs</span><span class="ch"><span>oil-change</span><span>minor-service-oil-check</span><span>major-service-30k-60k-km</span><span>wheel-alignment-balancing</span><span>spark-plugs</span><span class="chx"><span>ac-re-gas</span><span>battery-replacement</span><span>tyres-set-of-4</span><span>brake-pads-front</span><span>brake-pads-discs-front</span><span>clutch-replacement</span><span>ac-compressor</span><span>timing-belt-chain</span><span>alternator</span><span>starter-motor</span><span>suspension-shocks-pair</span><span>radiator-replacement</span><span>denting-painting</span><span>windshield-replacement</span><span>window-tinting</span><span>wash-detailing</span><span>ceramic-coating</span></span><button class="morebtn" type="button" data-more="+ 17 more" aria-expanded="false">+ 17 more</button></span></div>
           </div>
           <div class="sf">
             <div class="sfh"><span class="nm url">/ar</span><span class="ct">×2 mirror</span><span class="ds">Every page again in Arabic — RTL, same structure, +107 URLs</span></div>
@@ -570,6 +576,15 @@
   document.querySelectorAll('.reveal').forEach(el=>{
     if(el.getBoundingClientRect().top<innerHeight*0.96){el.classList.add('in');}
     else{io.observe(el);}
+  });
+
+  document.querySelectorAll('.morebtn').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const ch=b.closest('.ch');
+      const open=ch.classList.toggle('open');
+      b.textContent=open?'− less':b.dataset.more;
+      b.setAttribute('aria-expanded',open);
+    });
   });
 </script>
 </body>
