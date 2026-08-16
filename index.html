@@ -165,6 +165,8 @@
     flex-wrap:wrap;margin-bottom:clamp(34px,5vw,60px)}
   .shead h2{font-family:var(--display);font-weight:800;text-transform:uppercase;
     font-size:clamp(2rem,6vw,4.4rem);letter-spacing:-.03em;line-height:.92}
+  .rdl{margin-left:14px;text-decoration:underline;text-underline-offset:3px;color:var(--black)}
+  .rdl:hover{opacity:.6}
   .shead .cnt{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;color:var(--g-400)}
 
   .grouplbl{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
@@ -572,7 +574,9 @@
   <!-- EXPERIENCE -->
   <section class="band light" id="experience">
     <div class="wrap">
-      <div class="shead reveal"><h2>Experience</h2><span class="cnt" style="color:var(--g-600)">résumé</span></div>
+      <div class="shead reveal"><h2>Experience</h2><span class="cnt" style="color:var(--g-600)">résumé
+        <!-- TODO(saif): supply resume.pdf at the repo root — the button unhides itself -->
+        <a class="rdl" href="/resume.pdf" download hidden>Download ↓</a></span></div>
       <div class="work-x">
         <div class="xrow reveal" style="border-color:var(--g-100)">
           <span class="yr" style="color:var(--g-600)">2021—Now</span>
@@ -704,6 +708,11 @@
     const v=document.getElementById('home');
     if(v){v.setAttribute('tabindex','-1');v.focus({preventScroll:true});v.scrollIntoView({block:'start'});}
   });
+
+  // Résumé button appears only if /resume.pdf actually exists
+  fetch('/resume.pdf',{method:'HEAD'}).then(r=>{
+    if(r.ok) document.querySelector('.rdl').hidden=false;
+  }).catch(()=>{});
 </script>
 </body>
 </html>
