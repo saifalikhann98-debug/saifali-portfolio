@@ -80,6 +80,14 @@
   .brand{font-family:var(--display);font-weight:700;font-size:1.05rem;letter-spacing:-.01em;
     display:flex;align-items:center;gap:.4em}
   .brand sup{font-family:var(--mono);font-size:.5em;font-weight:400;top:-.8em}
+  .nav-l{display:flex;align-items:center;gap:14px}
+  .avail{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.62rem;
+    letter-spacing:.1em;text-transform:uppercase;border:1px solid currentColor;border-radius:999px;
+    padding:5px 10px;opacity:.92}
+  .avail i{width:6px;height:6px;border-radius:50%;background:currentColor}
+  .cavail{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.74rem;
+    letter-spacing:.06em;color:var(--g-200);margin:20px 0 4px}
+  .cavail i{width:7px;height:7px;border-radius:50%;background:#4ADE80}
   .nav-r{display:flex;align-items:center;gap:24px;font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
   .nav-r a{transition:opacity .2s}.nav-r a:hover{opacity:.6}
   .nav-r .m{opacity:.7}
@@ -404,7 +412,11 @@
 <a class="skip" href="#home">Skip to content</a>
 
 <nav>
-  <a class="brand" href="#home">Saifali Khan</a>
+  <span class="nav-l">
+    <a class="brand" href="#home">Saifali Khan</a>
+    <!-- TODO(saif): final availability copy — "Available for X, Dubai or remote" -->
+    <span class="avail"><i></i>Available</span>
+  </span>
   <div class="nav-r">
     <span class="m">Dubai, GMT+4</span>
     <a href="#contact">Contact</a>
@@ -419,7 +431,7 @@
     <div class="wrap" style="width:100%">
       <div class="hero-top">
         <span>Product Designer — <b>Dubai, UAE</b></span>
-        <span>Fintech, 0 to 1 products, <b>available</b></span>
+        <span>Fintech, 0 to 1 products</span>
       </div>
       <h1 class="giant">
         <span class="ln"><span>Designs it.</span></span>
@@ -634,6 +646,7 @@
       <div class="reveal">
         <a class="cmail" href="mailto:Saifalikhann98@gmail.com">Let's<br><span class="out">build</span> something.</a>
       </div>
+      <p class="cavail reveal"><i></i>Available for new work<!-- TODO(saif): final copy, e.g. "Available for product design roles &amp; select builds — Dubai or remote" --></p>
       <div class="clinks">
         <a class="clink" href="mailto:Saifalikhann98@gmail.com">Saifalikhann98@gmail.com</a>
         <a class="clink" href="tel:+971523548023">+971 52 354 8023</a>
