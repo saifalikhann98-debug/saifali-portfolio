@@ -231,7 +231,9 @@
   @media(max-width:680px){.xrow .loc{text-align:left;margin-top:4px}}
 
   /* ---- tools ---- */
-  .tools{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,5vw,64px)}
+  .tools{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:clamp(28px,5vw,64px)}
+  .tcol-lead li{font-size:1.22rem;font-weight:600}
+  .tcol-lead h5{color:var(--black)}
   @media(max-width:760px){.tools{grid-template-columns:1fr;gap:36px}}
   .tcol h5{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
     color:var(--g-400);padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--g-100)}
@@ -610,12 +612,17 @@
     <div class="wrap">
       <span class="label reveal">How I work</span>
       <div class="tools" style="margin-top:30px">
+        <div class="tcol tcol-lead reveal"><h5>Build</h5><ul>
+          <li>HTML, CSS, JS</li>
+          <!-- TODO(saif): frameworks — React / Next? add as a li here -->
+          <li>Claude Code</li>
+          <li>Vercel</li>
+          <li>Working prototypes</li>
+          <li>Frontend handoff</li></ul></div>
         <div class="tcol reveal"><h5>Design</h5><ul>
-          <li>Figma</li><li>Adobe XD, Sketch</li><li>Photoshop, Illustrator</li><li>Design systems</li><li>User research</li></ul></div>
+          <li>Figma</li><li>Design systems</li><li>User research</li></ul></div>
         <div class="tcol reveal"><h5>Prototype</h5><ul>
-          <li>Framer</li><li>InVision</li><li>Zeplin (handoff)</li><li>Interaction & motion</li><li>Premiere Pro</li></ul></div>
-        <div class="tcol reveal"><h5>Build</h5><ul>
-          <li>HTML, CSS, JS</li><li>Claude Design</li><li>AI-assisted development (Claude Code)</li><li>Working prototypes</li><li>Frontend handoff</li></ul></div>
+          <li>Framer</li><li>Interaction &amp; motion</li></ul></div>
       </div>
     </div>
   </section>
