@@ -365,7 +365,8 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
 .intro-grid{display:grid;grid-template-columns:minmax(0,1fr) min(50vw,calc((100svh - var(--strip)) * .8));
   padding-left:max(var(--pad),calc((100% - var(--maxw)) / 2 + var(--pad)))}
 .intro-photo{position:relative;overflow:hidden;margin:0;background:#ECEDE8}
-.intro-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%}
+.intro-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%;
+  transition:translate .7s cubic-bezier(.16,1,.3,1)}   /* drifts against the pointer */
 .intro-text{display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,2.2vw,26px);
   padding:calc(64px + clamp(20px,4vh,48px)) clamp(36px,5vw,80px) clamp(32px,5vh,56px) 0}
 .intro-hello{font-family:var(--display);font-weight:400;font-size:clamp(1.4rem,2.2vw,2.1rem);
@@ -382,7 +383,7 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
 .skills{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
-.skills-track{display:flex;width:max-content;animation:scroll 70s linear infinite}
+.skills-track{display:flex;width:max-content;animation:scroll 110s linear infinite}
 .skills:hover .skills-track{animation-play-state:paused}
 .skills-track>div{display:flex}
 .skills-track span{display:inline-flex;align-items:center;gap:14px;white-space:nowrap;
@@ -400,6 +401,39 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
   .intro-photo{width:100%;height:min(125vw,70svh)}   /* by height, not aspect-ratio: a capped ratio would shrink the width too */
   .intro-text{padding:calc(64px + clamp(20px,6vw,40px)) var(--pad) clamp(32px,8vw,56px)}
 }
+
+/* ---- intro: a design-tool layer — dot canvas, cursor guides, layer selection ----
+   All decorative (aria-hidden, created by site.js); guides only with a mouse. */
+.intro{position:relative;background-image:radial-gradient(circle,rgba(10,10,10,.12) 1px,transparent 1.3px);
+  background-size:22px 22px}
+.intro-grid{position:relative;z-index:1}
+.skills{position:relative;z-index:1;background:var(--white)}
+.light .btn:not(.btn-solid){background:var(--white)}
+.tool{--mx:-999px;--my:-999px;position:absolute;left:0;top:0;width:100%;height:100%;z-index:0;
+  pointer-events:none;overflow:hidden}
+.tool>*{position:absolute;opacity:0;transition:opacity .35s ease}
+.tool.on>*{opacity:1}
+/* the same dot grid, darker, revealed in a circle around the pointer */
+.tool-glow{inset:0;background-image:radial-gradient(circle,rgba(10,10,10,.55) 1.1px,transparent 1.5px);
+  background-size:22px 22px;
+  -webkit-mask-image:radial-gradient(circle 170px at var(--mx) var(--my),#000,transparent);
+  mask-image:radial-gradient(circle 170px at var(--mx) var(--my),#000,transparent)}
+.tool-gx{left:0;right:0;top:0;height:1px;background:rgba(10,10,10,.2);translate:0 var(--my)}
+.tool-gy{top:0;bottom:0;left:0;width:1px;background:rgba(10,10,10,.2);translate:var(--mx) 0}
+.tool-tag{left:0;top:0;translate:calc(var(--mx) + 12px) calc(var(--my) + 12px);white-space:nowrap;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;color:var(--g-600)}
+/* layer selection: box, corner handles, size tag */
+.sel{position:absolute;z-index:2;pointer-events:none;border:1px solid var(--black);opacity:0;
+  transition:opacity .25s ease,left .45s cubic-bezier(.16,1,.3,1),top .45s cubic-bezier(.16,1,.3,1),
+    width .45s cubic-bezier(.16,1,.3,1),height .45s cubic-bezier(.16,1,.3,1)}
+.sel.on{opacity:1}
+.sel i{position:absolute;width:7px;height:7px;background:var(--white);border:1px solid var(--black)}
+.sel i:nth-child(1){left:-4px;top:-4px}
+.sel i:nth-child(2){right:-4px;top:-4px}
+.sel i:nth-child(3){left:-4px;bottom:-4px}
+.sel i:nth-child(4){right:-4px;bottom:-4px}
+.sel b{position:absolute;left:50%;top:calc(100% + 8px);translate:-50% 0;padding:4px 7px;white-space:nowrap;
+  background:var(--black);color:var(--white);font:500 .62rem/1 var(--mono);letter-spacing:.05em}
 
 /* ---- intro entrance on load: portrait wipes up, the sentence rises, the rest fades up ----
    Keyframes only hold the "from" state, so with motion reduced everything is simply there. */

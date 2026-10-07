@@ -122,6 +122,82 @@ if (!reduce) document.querySelectorAll('.tw').forEach(tw => {
   };
 });
 
+// ---- intro: a design-tool layer ----
+// Hovering a text block or button selects it like a layer (box, handles, size);
+// once after load the statement is selected on its own, so touch screens see it
+// too. With a mouse: guides and an x/y readout follow the pointer, the dot
+// canvas darkens around it, and the portrait drifts slightly the other way.
+const intro = document.querySelector('.intro');
+if (intro) {
+  const sel = document.createElement('div');
+  sel.className = 'sel';
+  sel.setAttribute('aria-hidden', 'true');
+  sel.innerHTML = '<i></i><i></i><i></i><i></i><b></b>';
+  intro.append(sel);
+  const size = sel.querySelector('b');
+  let hideT = 0, current = null;
+  const place = el => {
+    const a = intro.getBoundingClientRect(), r = el.getBoundingClientRect(), pad = 8;
+    sel.style.left = r.left - a.left - pad + 'px';
+    sel.style.top = r.top - a.top - pad + 'px';
+    sel.style.width = r.width + pad * 2 + 'px';
+    sel.style.height = r.height + pad * 2 + 'px';
+    size.textContent = `${Math.round(r.width)} × ${Math.round(r.height)}`;
+  };
+  const select = el => { clearTimeout(hideT); current = el; place(el); sel.classList.add('on'); };
+  const release = (ms = 150) => {
+    clearTimeout(hideT);
+    hideT = setTimeout(() => { sel.classList.remove('on'); current = null; }, ms);
+  };
+  intro.querySelectorAll('.intro-hello, .intro-h, .hero-cta .btn').forEach(t => {
+    t.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') select(t); });
+    t.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') release(); });
+  });
+  addEventListener('resize', () => { if (current) place(current); });
+  setTimeout(() => {                       // after the entrance has played
+    if (current) return;
+    select(intro.querySelector('.intro-h'));
+    release(1900);
+  }, reduce ? 600 : 2600);
+
+  if (finePointer) {
+    const photo = intro.querySelector('.intro-photo'), img = photo?.querySelector('img');
+    const tool = document.createElement('div');
+    tool.className = 'tool';
+    tool.setAttribute('aria-hidden', 'true');
+    tool.innerHTML = '<div class="tool-glow"></div><span class="tool-gx"></span><span class="tool-gy"></span><span class="tool-tag"></span>';
+    intro.prepend(tool);
+    const tag = tool.lastChild;
+    // the tool layer covers the text side only: left of the portrait, or above it when stacked
+    const fit = () => {
+      const beside = photo && photo.offsetTop < 10;
+      tool.style.width = beside ? photo.offsetLeft + 'px' : '100%';
+      tool.style.height = !beside && photo ? photo.offsetTop + 'px' : '100%';
+    };
+    fit();
+    new ResizeObserver(fit).observe(intro);
+    let queued = false, mx = 0, my = 0, rx = .5;
+    intro.addEventListener('pointermove', e => {
+      const a = intro.getBoundingClientRect();
+      mx = e.clientX - a.left; my = e.clientY - a.top; rx = mx / a.width;
+      tool.classList.toggle('on', mx < tool.offsetWidth && my < tool.offsetHeight);
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => {
+        queued = false;
+        tool.style.setProperty('--mx', mx + 'px');
+        tool.style.setProperty('--my', my + 'px');
+        tag.textContent = `x ${Math.round(mx)}  y ${Math.round(my)}`;
+        if (img && !reduce) img.style.translate = `${(rx - .5) * -18}px 0`;
+      });
+    });
+    intro.addEventListener('pointerleave', () => {
+      tool.classList.remove('on');
+      if (img) img.style.translate = '';
+    });
+  }
+}
+
 // ---- marquee: drifts on its own, speeds up and follows scroll direction ----
 const mq = document.querySelector('.marquee');
 const track = mq?.querySelector('.track');
