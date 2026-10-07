@@ -122,74 +122,130 @@ if (!reduce) document.querySelectorAll('.tw').forEach(tw => {
   };
 });
 
-// ---- intro: a design-tool layer ----
-// Hovering a text block or button selects it like a layer (box, handles, size);
-// once after load the statement is selected on its own, so touch screens see it
-// too. With a mouse: guides and an x/y readout follow the pointer, the dot
-// canvas darkens around it (also behind the cut-out portrait), and the
-// portrait drifts slightly the other way.
-const intro = document.querySelector('.intro');
-if (intro) {
+// ---- design canvas: any [data-canvas] section ----
+// Hovering a [data-layer] element selects it like a layer in a design tool (box,
+// corner handles, W × H); data-layer="text" measures the text itself rather than
+// the element's box. data-canvas-auto names one element to select on its own the
+// first time it is on screen (after data-canvas-delay ms, for data-canvas-hold ms),
+// so touch screens see it too. With a mouse, guides and an x/y readout follow the pointer and the dot
+// canvas brightens around it. All of it is decorative and aria-hidden.
+const layerBox = (el, asText) => {
+  if (!asText && el.dataset.layer !== 'text') return el.getBoundingClientRect();
+  // the glyph runs plus inline boxes such as the caret, minus screen-reader-only copies
+  let l = Infinity, t = Infinity, r = -Infinity, b = -Infinity;
+  const add = q => {
+    if (!q.width) return;
+    l = Math.min(l, q.left); t = Math.min(t, q.top); r = Math.max(r, q.right); b = Math.max(b, q.bottom);
+  };
+  const range = document.createRange();
+  const walk = document.createTreeWalker(el, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT, {
+    acceptNode: n => n.nodeType === 1 && n.classList.contains('vh') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+  });
+  for (let n = walk.nextNode(); n; n = walk.nextNode()) {
+    if (n.nodeType === 3) { range.selectNodeContents(n); for (const q of range.getClientRects()) add(q); }
+    else if (!n.firstChild) add(n.getBoundingClientRect());
+  }
+  // vertically a text layer is its line boxes, not the font's taller content area
+  let blk = el;
+  while (blk.parentElement && getComputedStyle(blk).display === 'inline') blk = blk.parentElement;
+  const k = blk.getBoundingClientRect();
+  if (l > r) return k;
+  t = Math.max(t, k.top); b = Math.min(b, k.bottom);
+  return { left: l, top: t, width: r - l, height: Math.max(0, b - t) };
+};
+document.querySelectorAll('[data-canvas]').forEach(sec => {
   const sel = document.createElement('div');
   sel.className = 'sel';
   sel.setAttribute('aria-hidden', 'true');
   sel.innerHTML = '<i></i><i></i><i></i><i></i><b></b>';
-  intro.append(sel);
+  sec.append(sel);
   const size = sel.querySelector('b');
-  let hideT = 0, current = null;
-  const place = el => {
-    const a = intro.getBoundingClientRect(), r = el.getBoundingClientRect(), pad = 8;
+  let hideT = 0, current = null, asText = false;
+  const place = () => {
+    const a = sec.getBoundingClientRect(), r = layerBox(current, asText), pad = 8;
     sel.style.left = r.left - a.left - pad + 'px';
     sel.style.top = r.top - a.top - pad + 'px';
     sel.style.width = r.width + pad * 2 + 'px';
     sel.style.height = r.height + pad * 2 + 'px';
-    size.textContent = `${Math.round(r.width)} × ${Math.round(r.height)}`;
+    const wh = `${Math.round(r.width)} × ${Math.round(r.height)}`;
+    if (size.textContent !== wh) size.textContent = wh;
   };
-  const select = el => { clearTimeout(hideT); current = el; place(el); sel.classList.add('on'); };
+  const select = (el, text = false) => {
+    clearTimeout(hideT); current = el; asText = text; place(); sel.classList.add('on');
+  };
   const release = (ms = 150) => {
     clearTimeout(hideT);
     hideT = setTimeout(() => { sel.classList.remove('on'); current = null; }, ms);
   };
-  intro.querySelectorAll('.intro-hello, .intro-h, .hero-cta .btn').forEach(t => {
+  sec.querySelectorAll('[data-layer]').forEach(t => {
     t.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') select(t); });
     t.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') release(); });
   });
-  addEventListener('resize', () => { if (current) place(current); });
-  setTimeout(() => {                       // after the entrance has played
-    if (current) return;
-    select(intro.querySelector('.intro-h'));
-    release(1900);
-  }, reduce ? 600 : 2600);
+  addEventListener('resize', () => { if (current) place(); });
+  // the box follows text that changes under it (the typed words), like an auto-width text layer
+  let follow = false;
+  const ours = r => (r.target.nodeType === 1 ? r.target : r.target.parentElement).closest('.sel,.tool');
+  new MutationObserver(recs => {
+    if (!current || follow || recs.every(ours)) return;
+    follow = true;
+    requestAnimationFrame(() => { follow = false; if (current) place(); });
+  }).observe(sec, { subtree: true, childList: true, characterData: true });
+  // and re-measures once a reveal or entrance animation under it settles
+  const settle = e => { if (current && !e.target.closest('.sel,.tool')) place(); };
+  sec.addEventListener('animationend', settle);
+  sec.addEventListener('transitionend', settle);
 
-  if (finePointer) {
-    const img = intro.querySelector('.intro-photo img');
-    const tool = document.createElement('div');
-    tool.className = 'tool';
-    tool.setAttribute('aria-hidden', 'true');
-    tool.innerHTML = '<div class="tool-glow"></div><span class="tool-gx"></span><span class="tool-gy"></span><span class="tool-tag"></span>';
-    intro.prepend(tool);
-    const tag = tool.lastChild;
-    // the layer spans the whole intro and sits under it: guides pass behind the cut-out portrait
-    let queued = false, mx = 0, my = 0, rx = .5;
-    intro.addEventListener('pointermove', e => {
-      const a = intro.getBoundingClientRect();
-      mx = e.clientX - a.left; my = e.clientY - a.top; rx = mx / a.width;
-      tool.classList.toggle('on', mx < tool.offsetWidth && my < tool.offsetHeight);
-      if (queued) return;
-      queued = true;
-      requestAnimationFrame(() => {
-        queued = false;
-        tool.style.setProperty('--mx', mx + 'px');
-        tool.style.setProperty('--my', my + 'px');
-        tag.textContent = `x ${Math.round(mx)}  y ${Math.round(my)}`;
-        if (img && !reduce) img.style.translate = `${(rx - .5) * -18}px 0`;
-      });
-    });
-    intro.addEventListener('pointerleave', () => {
-      tool.classList.remove('on');
-      if (img) img.style.translate = '';
-    });
+  const auto = sec.dataset.canvasAuto && sec.querySelector(sec.dataset.canvasAuto);
+  if (auto) {
+    const watch = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      watch.disconnect();
+      setTimeout(() => {
+        if (current) return;              // someone is already hovering a layer
+        select(auto, true);
+        release(+sec.dataset.canvasHold || 1900);
+      }, reduce ? 300 : +sec.dataset.canvasDelay || 900);
+    }, { threshold: .6 });
+    watch.observe(auto);
   }
+
+  if (!finePointer) return;
+  const tool = document.createElement('div');
+  tool.className = 'tool';
+  tool.setAttribute('aria-hidden', 'true');
+  tool.innerHTML = '<div class="tool-glow"></div><span class="tool-gx"></span><span class="tool-gy"></span><span class="tool-tag"></span>';
+  sec.prepend(tool);
+  const tag = tool.lastChild;
+  let queued = false, mx = 0, my = 0;
+  sec.addEventListener('pointermove', e => {
+    const a = sec.getBoundingClientRect();
+    mx = e.clientX - a.left; my = e.clientY - a.top;
+    tool.classList.add('on');
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => {
+      queued = false;
+      tool.style.setProperty('--mx', mx + 'px');
+      tool.style.setProperty('--my', my + 'px');
+      tag.textContent = `x ${Math.round(mx)}  y ${Math.round(my)}`;
+    });
+  });
+  sec.addEventListener('pointerleave', () => tool.classList.remove('on'));
+});
+
+// ---- the intro portrait drifts slightly against the pointer ----
+const heroImg = document.querySelector('.intro-photo img');
+if (heroImg && finePointer && !reduce) {
+  const hero = heroImg.closest('.intro');
+  let queued = false, rx = .5;
+  hero.addEventListener('pointermove', e => {
+    const a = hero.getBoundingClientRect();
+    rx = (e.clientX - a.left) / a.width;
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => { queued = false; heroImg.style.translate = `${(rx - .5) * -18}px 0`; });
+  });
+  hero.addEventListener('pointerleave', () => { heroImg.style.translate = ''; });
 }
 
 // ---- marquee: drifts on its own, speeds up and follows scroll direction ----

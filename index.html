@@ -69,14 +69,14 @@
 <main id="home">
 
   <!-- INTRO -->
-  <header class="intro light">
+  <header class="intro light" data-canvas data-canvas-auto=".intro-h" data-canvas-delay="2600">
     <div class="intro-grid">
       <div class="intro-text">
-        <p class="intro-hello"><span class="tw" data-words='["Hello", "Marhaba", "Namaste", "Hola", "Bonjour", "Ciao", "Konnichiwa", "Salaam", "Olá", "Ni hao", "Hallo", "Annyeong", "Kumusta"]' data-hold-first="2400" data-hold="1600" data-delay="2800"><span class="vh">Hello</span><span class="tw-word" aria-hidden="true">Hello</span><span class="tw-caret" aria-hidden="true"></span></span></p>
-        <h1 class="intro-h"><span class="ln"><span>I'm a product designer leading <span class="ul">fintech design</span> by day and building <span class="ul">my own products</span> end to end.</span></span></h1>
+        <p class="intro-hello" data-layer="text"><span class="tw" data-words='["Hello", "Marhaba", "Namaste", "Hola", "Bonjour", "Ciao", "Konnichiwa", "Salaam", "Olá", "Ni hao", "Hallo", "Annyeong", "Kumusta"]' data-hold-first="2400" data-hold="1600" data-delay="2800"><span class="vh">Hello</span><span class="tw-word" aria-hidden="true">Hello</span><span class="tw-caret" aria-hidden="true"></span></span></p>
+        <h1 class="intro-h" data-layer="text"><span class="ln"><span>I'm a product designer leading <span class="ul">fintech design</span> by day and building <span class="ul">my own products</span> end to end.</span></span></h1>
         <div class="hero-cta">
-          <a class="btn btn-solid" href="#work">See the work <span class="ar">↓</span></a>
-          <a class="btn" href="/resume.pdf" download>Download CV</a>
+          <a class="btn btn-solid" href="#work" data-layer>See the work <span class="ar">↓</span></a>
+          <a class="btn" href="/resume.pdf" download data-layer>Download CV</a>
         </div>
       </div>
       <figure class="intro-photo">
@@ -89,18 +89,18 @@
   </header>
 
   <!-- MANIFESTO (was the hero) -->
-  <section class="band ink manifesto">
+  <section class="band ink manifesto" data-canvas data-canvas-auto=".giant .tw" data-canvas-delay="1300" data-canvas-hold="6500">
     <div class="wrap">
       <div class="hero-top">
-        <span>The approach</span>
-        <span>Figma → working code</span>
+        <span data-layer="text">The approach</span>
+        <span data-layer="text">Figma → working code</span>
       </div>
       <h2 class="giant reveal">
-        <span class="ln"><span>Designs it.</span></span>
-        <span class="ln"><span class="thin">Then builds<span class="solid" aria-hidden="true">Then builds</span></span></span>
-        <span class="ln"><span class="tw" data-words='["it.", "Mizan.", "Orfyx.", "BrickBrief."]' data-hold-first="3600" data-hold="1900"><span class="vh">it.</span><span class="tw-word" aria-hidden="true">it.</span><span class="tw-caret" aria-hidden="true"></span></span></span>
+        <span class="ln" data-layer="text"><span>Designs it.</span></span>
+        <span class="ln" data-layer="text"><span class="thin">Then builds<span class="solid" aria-hidden="true">Then builds</span></span></span>
+        <span class="ln" data-layer="text"><span class="tw" data-words='["it.", "Mizan.", "Orfyx.", "BrickBrief."]' data-hold-first="3600" data-hold="1900"><span class="vh">it.</span><span class="tw-word" aria-hidden="true">it.</span><span class="tw-caret" aria-hidden="true"></span></span></span>
       </h2>
-      <p class="manifesto-sub reveal">
+      <p class="manifesto-sub reveal" data-layer="text">
         Most designers hand off a prototype and wait. I keep going until it's
         <span class="hl">real</span> — built, interactive, and in someone's hands.
       </p>
@@ -118,14 +118,14 @@
   </div>
 
   <!-- WORK -->
-  <section class="band ink" id="work">
+  <section class="band ink" id="work" data-canvas>
     <div class="wrap">
       <div class="shead reveal">
-        <h2>Selected<br>work</h2>
+        <h2 data-layer="text">Selected<br>work</h2>
         <span class="cnt">2019 to now</span>
       </div>
 
-      <p class="grouplbl reveal">Built from scratch — design + code</p>
+      <p class="grouplbl reveal" data-layer="text">Built from scratch — design + code</p>
       <div class="work-list">
         <div class="wrow reveal" data-peek="/img/09-mizan-services-checker-advertised-vs-paid-750.webp">
           <span class="fill"></span>
@@ -162,30 +162,32 @@
         </div>
       </div>
 
-      <p class="grouplbl reveal" style="margin-top:clamp(44px,6vw,70px)">Fintech product design — in-house</p>
+      <p class="grouplbl reveal" data-layer="text" style="margin-top:clamp(44px,6vw,70px)">Fintech product design — in-house</p>
       <div class="work-list">
-        <!-- Not linked: the live sites have since changed. Swap BitDelta to the case-study rowlink
-             pattern once /work/bitdelta is filled in (and drop it from .vercelignore). -->
+        <!-- Swap BitDelta to the case-study rowlink pattern once /work/bitdelta is filled in
+             (and drop it from .vercelignore). -->
         <!-- TODO(saif): per-product years if you want them shown -->
-        <div class="wrow wrow-static reveal">
+        <a class="wrow reveal" href="https://bitdelta.com/en" target="_blank" rel="noopener">
+          <span class="fill"></span>
           <span class="inner">
             <span class="num">04</span>
             <span><h3>BitDelta</h3><span class="meta">Fintech, Product, Web</span></span>
             <span class="blurb">D24's flagship exchange — trading, onboarding and account flows on web and mobile. Site has since changed.</span>
-            <span class="go">In-house, D24</span>
+            <span class="go">Visit live</span>
           </span>
-        </div>
-        <div class="wrow wrow-static reveal">
+        </a>
+        <a class="wrow reveal" href="https://ofza.com/en" target="_blank" rel="noopener">
+          <span class="fill"></span>
           <span class="inner">
             <span class="num">05</span>
             <span><h3>OFZA</h3><span class="meta">Fintech, Dashboards, Web</span></span>
             <span class="blurb">White-label trading platform on the BitDelta system — dashboards, market views, data-dense screens. Site has since changed.</span>
-            <span class="go">In-house, D24</span>
+            <span class="go">Visit live</span>
           </span>
-        </div>
+        </a>
       </div>
 
-      <p class="grouplbl reveal" style="margin-top:clamp(44px,6vw,70px)">Freelance — brand &amp; client sites</p>
+      <p class="grouplbl reveal" data-layer="text" style="margin-top:clamp(44px,6vw,70px)">Freelance — brand &amp; client sites</p>
       <div class="work-list">
         <a class="wrow reveal" href="https://www.punarnavamayur.com/" target="_blank" rel="noopener">
           <span class="fill"></span>
@@ -207,60 +209,62 @@
         </a>
       </div>
 
-      <p class="grouplbl reveal" style="margin-top:clamp(56px,8vw,90px)">More fintech — shipped</p>
-      <p class="reveal" style="font-size:.98rem;line-height:1.6;color:var(--g-200);max-width:54ch;margin:14px 0 26px">Seven years of fintech interface work — exchanges, FX and trading platforms serving 400K+ verified users across 150+ countries, shipped in-house and freelance.</p>
+      <p class="grouplbl reveal" data-layer="text" style="margin-top:clamp(56px,8vw,90px)">More fintech — shipped</p>
+      <p class="reveal" data-layer="text" style="font-size:.98rem;line-height:1.6;color:var(--g-200);max-width:54ch;margin:14px 0 26px">Seven years of fintech interface work — exchanges, FX and trading platforms serving 400K+ verified users across 150+ countries, shipped in-house and freelance.</p>
       <div class="pgrid">
-        <div class="pcard reveal">
+        <div class="pcard reveal" data-layer>
           <span class="pt"><h4>DoshFX</h4></span>
           <p>FX & trading platform — interface design across both web and the mobile app.</p>
           <span class="note">White-label platform on the BitDelta system, at D24 · site has since changed.</span>
+          <a class="u" href="https://doshfx.io/" target="_blank" rel="noopener">doshfx.io ↗</a>
         </div>
-        <div class="pcard reveal">
+        <div class="pcard reveal" data-layer>
           <span class="pt"><h4>Visiion</h4></span>
           <p>Product interface design — a clean, conversion-focused web experience.</p>
           <span class="note">White-label platform on the BitDelta system, at D24 · site has since changed.</span>
+          <a class="u" href="https://visiion.io/en" target="_blank" rel="noopener">visiion.io ↗</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- EXPERIENCE -->
-  <section class="band light" id="experience">
+  <section class="band light" id="experience" data-canvas>
     <div class="wrap">
-      <div class="shead reveal"><h2>Experience</h2><span class="cnt" style="color:var(--g-600)">résumé
+      <div class="shead reveal"><h2 data-layer="text">Experience</h2><span class="cnt" style="color:var(--g-600)">résumé
         <a class="rdl" href="/resume.pdf" download>Download ↓</a></span></div>
       <div class="work-x">
-        <div class="xrow reveal" style="border-color:var(--g-100)">
+        <div class="xrow reveal" style="border-color:var(--g-100)" data-layer>
           <span class="yr" style="color:var(--g-600)">2021—Now</span>
           <div><h3>Senior UI/UX Designer — D24 Fintech Group</h3>
             <div class="co" style="color:var(--g-600)">Lead a team of 6 designers and the design system 20+ engineers build from (joined as DIFX Technology); BitDelta and the white-label platforms on it, across the group</div></div>
           <span class="loc" style="color:var(--g-600)">Dubai, UAE</span>
         </div>
-        <div class="xrow reveal" style="border-color:var(--g-100)">
+        <div class="xrow reveal" style="border-color:var(--g-100)" data-layer>
           <span class="yr" style="color:var(--g-600)">Now</span>
           <div><h3>Independent Product Designer & Builder</h3>
             <div class="co" style="color:var(--g-600)">Alongside full-time — building Mizan, Orfyx, BrickBrief and live client sites (Punarnavam, Arabian Mist)</div></div>
           <span class="loc" style="color:var(--g-600)">Dubai, UAE</span>
         </div>
-        <div class="xrow reveal" style="border-color:var(--g-100)">
+        <div class="xrow reveal" style="border-color:var(--g-100)" data-layer>
           <span class="yr" style="color:var(--g-600)">2021</span>
           <div><h3>UI/UX Designer — VIC Worldwide</h3>
             <div class="co" style="color:var(--g-600)">End-to-end design ownership, concept to implementation</div></div>
           <span class="loc" style="color:var(--g-600)">Dubai, UAE</span>
         </div>
-        <div class="xrow reveal" style="border-color:var(--g-100)">
+        <div class="xrow reveal" style="border-color:var(--g-100)" data-layer>
           <span class="yr" style="color:var(--g-600)">2020—21</span>
           <div><h3>UI/UX Designer — Synclovis Systems</h3>
             <div class="co" style="color:var(--g-600)">User research and product interface design</div></div>
           <span class="loc" style="color:var(--g-600)">Bengaluru, India</span>
         </div>
-        <div class="xrow reveal" style="border-color:var(--g-100)">
+        <div class="xrow reveal" style="border-color:var(--g-100)" data-layer>
           <span class="yr" style="color:var(--g-600)">2019—20</span>
           <div><h3>Junior UI Designer — Crazydes Design Studio</h3>
             <div class="co" style="color:var(--g-600)">Interface design across digital products</div></div>
           <span class="loc" style="color:var(--g-600)">Kochi, India</span>
         </div>
-        <div class="xrow reveal" style="border-color:var(--g-100)">
+        <div class="xrow reveal" style="border-color:var(--g-100)" data-layer>
           <span class="yr" style="color:var(--g-600)">2016—19</span>
           <div><h3>BSc Game &amp; Interactive Media Design — ICAT</h3>
             <div class="co" style="color:var(--g-600)">ICAT College of Design &amp; Media</div></div>
@@ -271,39 +275,39 @@
   </section>
 
   <!-- TOOLS -->
-  <section class="band light" id="tools" style="padding-top:0">
+  <section class="band light" id="tools" style="padding-top:0" data-canvas>
     <div class="wrap">
-      <span class="label reveal">How I work</span>
+      <span class="label reveal" data-layer="text">How I work</span>
       <div class="tools" style="margin-top:30px">
-        <div class="tcol tcol-lead reveal"><h3>Build</h3><ul>
+        <div class="tcol tcol-lead reveal" data-layer><h3>Build</h3><ul>
           <li>HTML, CSS, JS</li>
           <li>React</li>
           <li>Claude Code</li>
           <li>Vercel</li>
           <li>Working prototypes</li>
           <li>Frontend handoff</li></ul></div>
-        <div class="tcol reveal"><h3>Design</h3><ul>
+        <div class="tcol reveal" data-layer><h3>Design</h3><ul>
           <li>Figma</li><li>Design systems</li><li>User research</li></ul></div>
-        <div class="tcol reveal"><h3>Prototype</h3><ul>
+        <div class="tcol reveal" data-layer><h3>Prototype</h3><ul>
           <li>Framer</li><li>Interaction &amp; motion</li></ul></div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section class="band ink" id="contact">
+  <section class="band ink" id="contact" data-canvas>
     <div class="wrap">
-      <span class="label reveal">Contact</span>
+      <span class="label reveal" data-layer="text">Contact</span>
       <div class="reveal">
-        <a class="cmail" href="mailto:Saifalikhann98@gmail.com">Let's<br><span class="out">build</span> something.</a>
+        <a class="cmail" href="mailto:Saifalikhann98@gmail.com" data-layer="text">Let's<br><span class="out">build</span> something.</a>
       </div>
-      <p class="cavail reveal"><i></i>Available for new work<!-- TODO(saif): final copy, e.g. "Available for product design roles &amp; select builds — Dubai or remote" --></p>
+      <p class="cavail reveal" data-layer="text"><i></i>Available for new work<!-- TODO(saif): final copy, e.g. "Available for product design roles &amp; select builds — Dubai or remote" --></p>
       <div class="clinks">
-        <a class="clink" href="mailto:Saifalikhann98@gmail.com">Saifalikhann98@gmail.com</a>
-        <button class="clink ccopy" type="button" data-copy="Saifalikhann98@gmail.com" aria-live="polite">Copy email</button>
-        <a class="clink" href="tel:+971523548023">+971 52 354 8023</a>
-        <a class="clink" href="https://www.linkedin.com/in/saifali-khan-84a3a3186/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="clink" href="https://www.behance.net/saifalikha004b" target="_blank" rel="noopener">Behance</a>
+        <a class="clink" data-layer href="mailto:Saifalikhann98@gmail.com">Saifalikhann98@gmail.com</a>
+        <button class="clink ccopy" data-layer type="button" data-copy="Saifalikhann98@gmail.com" aria-live="polite">Copy email</button>
+        <a class="clink" data-layer href="tel:+971523548023">+971 52 354 8023</a>
+        <a class="clink" data-layer href="https://www.linkedin.com/in/saifali-khan-84a3a3186/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="clink" data-layer href="https://www.behance.net/saifalikha004b" target="_blank" rel="noopener">Behance</a>
       </div>
     </div>
   </section>
