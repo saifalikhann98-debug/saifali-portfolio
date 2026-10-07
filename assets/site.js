@@ -90,19 +90,24 @@ if (solid) {
   });
 }
 
-// ---- intro: the last word of the headline types through a few endings ----
+// ---- typed last word (intro headline, and "…builds it." in the approach) ----
 // Each word holds, backspaces, and the next one types in. Screen readers get
-// the static first word (the animated word is aria-hidden).
-const tw = document.querySelector('.tw');
-if (tw && !reduce) {
+// the static first word (the animated word is aria-hidden). Per element:
+// data-words, data-hold (ms each word stays), data-hold-first (ms for the
+// first word, default data-hold), data-delay (ms before the first change,
+// counted from when it is first on screen; default data-hold-first).
+if (!reduce) document.querySelectorAll('.tw').forEach(tw => {
   const word = tw.querySelector('.tw-word');
   const words = JSON.parse(tw.dataset.words);
-  let i = 0, visible = true, parked = null;
-  // pause while the hero is off-screen; pick up where it left off
+  const hold = +tw.dataset.hold || 2200, holdFirst = +tw.dataset.holdFirst || hold;
+  let i = 0, visible = false, started = false, parked = null;
+  // pause while off-screen; pick up where it left off
   const later = (fn, ms) => setTimeout(() => { if (visible) fn(); else parked = fn; }, ms);
   new IntersectionObserver(([e]) => {
     visible = e.isIntersecting;
-    if (visible && parked) { const fn = parked; parked = null; fn(); }
+    if (!visible) return;
+    if (!started) { started = true; later(erase, +tw.dataset.delay || holdFirst); }
+    else if (parked) { const fn = parked; parked = null; fn(); }
   }).observe(tw);
   const erase = () => {
     tw.classList.add('typing');
@@ -112,24 +117,9 @@ if (tw && !reduce) {
   const type = () => {
     const target = words[i], n = word.textContent.length;
     if (n < target.length) { word.textContent = target.slice(0, n + 1); later(type, 80 + Math.random() * 60); }
-    else { tw.classList.remove('typing'); later(erase, 2200); }
+    else { tw.classList.remove('typing'); later(erase, i === 0 ? holdFirst : hold); }
   };
-  later(erase, 3200);     // after the entrance has played
-}
-
-// ---- intro stats count up as they fade in (static under reduced motion) ----
-if (!reduce) {
-  document.querySelectorAll('.intro-stats [data-to]').forEach((el, i) => {
-    const to = +el.dataset.to, t0 = performance.now() + 900 + i * 70, dur = 1300;   // as each stat fades in
-    el.textContent = '0';
-    const step = t => {
-      const p = Math.min(Math.max((t - t0) / dur, 0), 1);
-      el.textContent = p < 1 ? Math.round(to * (1 - 2 ** (-10 * p))) : to;   // ease-out expo
-      if (p < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  });
-}
+});
 
 // ---- marquee: drifts on its own, speeds up and follows scroll direction ----
 const mq = document.querySelector('.marquee');
