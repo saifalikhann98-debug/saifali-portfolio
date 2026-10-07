@@ -57,17 +57,15 @@ if (clock) {
 
 // ---- hero: the outlined line fills in solid under the pointer ----
 // A solid copy of the line sits on top, masked to a circle that follows the
-// pointer; on load one sweep runs across it so the effect is discoverable.
+// pointer (or a tap on touch screens).
 const solid = document.querySelector('.giant .solid');
 if (solid) {
   const line = solid.parentElement;
   const cur = { x: 0, y: 0, r: 0 }, tgt = { x: 0, y: 0, r: 0 };
-  let running = false, sweeping = false;
-  const radius = () => line.offsetHeight * .85;
+  let running = false;
   const frame = () => {
-    const k = sweeping ? 1 : .18;
-    for (const p of ['x', 'y', 'r']) cur[p] += (tgt[p] - cur[p]) * k;
-    const settled = !sweeping && ['x', 'y', 'r'].every(p => Math.abs(tgt[p] - cur[p]) < .5);
+    for (const p of ['x', 'y', 'r']) cur[p] += (tgt[p] - cur[p]) * .18;
+    const settled = ['x', 'y', 'r'].every(p => Math.abs(tgt[p] - cur[p]) < .5);
     if (settled) Object.assign(cur, tgt);
     solid.style.setProperty('--mx', cur.x + 'px');
     solid.style.setProperty('--my', cur.y + 'px');
@@ -78,34 +76,45 @@ if (solid) {
   const wake = () => { if (!running) { running = true; requestAnimationFrame(frame); } };
   const aim = (e, on) => {
     const b = line.getBoundingClientRect();
-    tgt.x = e.clientX - b.left; tgt.y = e.clientY - b.top; tgt.r = on ? radius() : 0;
+    tgt.x = e.clientX - b.left; tgt.y = e.clientY - b.top; tgt.r = on ? line.offsetHeight * .85 : 0;
     if (!cur.r) { cur.x = tgt.x; cur.y = tgt.y; }
     wake();
   };
   const h1 = line.closest('.giant');
-  h1.addEventListener('pointermove', e => { if (!sweeping) aim(e, true); });
+  h1.addEventListener('pointermove', e => aim(e, true));
   h1.addEventListener('pointerleave', e => aim(e, false));
-  // touch: a tap builds the letters under the finger, then lets go
   h1.addEventListener('pointerdown', e => {
-    if (e.pointerType === 'mouse' || sweeping) return;
+    if (e.pointerType === 'mouse') return;
     aim(e, true);
     setTimeout(() => { tgt.r = 0; wake(); }, 650);
   });
+}
 
-  if (!reduce) {
-    document.fonts.ready.then(() => setTimeout(() => {
-      const w = line.offsetWidth, r = radius(), t0 = performance.now(), dur = 1500;
-      sweeping = true; wake();
-      const step = t => {
-        const p = Math.min((t - t0) / dur, 1), ease = p < .5 ? 2 * p * p : 1 - (-2 * p + 2) ** 2 / 2;
-        tgt.x = -r + (w + 2 * r) * ease; tgt.y = line.offsetHeight / 2;
-        tgt.r = r * Math.sin(Math.PI * Math.min(p * 1.15, 1));
-        if (p < 1) requestAnimationFrame(step);
-        else { sweeping = false; tgt.r = 0; wake(); }
-      };
-      requestAnimationFrame(step);
-    }, 1100));
-  }
+// ---- hero: the last word types out what actually got built ----
+// "it." holds, then backspaces into each product and back again. Screen
+// readers get the static "it." (the animated word is aria-hidden).
+const tw = document.querySelector('.tw');
+if (tw && !reduce) {
+  const word = tw.querySelector('.tw-word');
+  const words = JSON.parse(tw.dataset.words);
+  let i = 0, visible = true, parked = null;
+  // pause while the hero is off-screen; pick up where it left off
+  const later = (fn, ms) => setTimeout(() => { if (visible) fn(); else parked = fn; }, ms);
+  new IntersectionObserver(([e]) => {
+    visible = e.isIntersecting;
+    if (visible && parked) { const fn = parked; parked = null; fn(); }
+  }).observe(tw);
+  const erase = () => {
+    tw.classList.add('typing');
+    if (word.textContent) { word.textContent = word.textContent.slice(0, -1); later(erase, 55); }
+    else { i = (i + 1) % words.length; later(type, 280); }
+  };
+  const type = () => {
+    const target = words[i], n = word.textContent.length;
+    if (n < target.length) { word.textContent = target.slice(0, n + 1); later(type, 80 + Math.random() * 60); }
+    else { tw.classList.remove('typing'); later(erase, i === 0 ? 3600 : 1900); }
+  };
+  later(erase, 3200);
 }
 
 // ---- marquee: drifts on its own, speeds up and follows scroll direction ----

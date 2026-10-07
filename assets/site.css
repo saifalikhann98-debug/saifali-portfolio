@@ -367,6 +367,15 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
   border:1px dashed var(--g-600);background:transparent;padding:3px 8px;cursor:pointer}
 .ia .morebtn:hover{color:var(--g-200)}
 
+/* ---- hero: typed last word ---- */
+.tw{white-space:nowrap}
+.tw-caret{display:inline-block;width:.075em;height:.72em;margin-left:.05em;background:currentColor;
+  animation:blink 1.05s steps(1) infinite}
+.tw.typing .tw-caret{animation:none}
+@keyframes blink{50%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.tw-caret{display:none}}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
 /* ---- hero CTAs ---- */
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;align-self:flex-start}
 .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.78rem;letter-spacing:.05em;
