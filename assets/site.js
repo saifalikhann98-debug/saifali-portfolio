@@ -42,7 +42,3 @@ document.querySelectorAll('.morebtn').forEach(b => {
     b.setAttribute('aria-expanded', open);
   });
 });
-
-// Résumé button appears only if /resume.pdf actually exists
-const rdl = document.querySelector('.rdl');
-if (rdl) fetch('/resume.pdf', { method: 'HEAD' }).then(r => { if (r.ok) rdl.hidden = false; }).catch(() => {});
