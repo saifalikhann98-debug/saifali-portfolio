@@ -114,7 +114,21 @@ if (tw && !reduce) {
     if (n < target.length) { word.textContent = target.slice(0, n + 1); later(type, 80 + Math.random() * 60); }
     else { tw.classList.remove('typing'); later(erase, 2200); }
   };
-  later(erase, 2600);
+  later(erase, 3200);     // after the entrance has played
+}
+
+// ---- intro stats count up as they fade in (static under reduced motion) ----
+if (!reduce) {
+  document.querySelectorAll('.intro-stats [data-to]').forEach((el, i) => {
+    const to = +el.dataset.to, t0 = performance.now() + 550 + i * 100, dur = 1400;
+    el.textContent = '0';
+    const step = t => {
+      const p = Math.min(Math.max((t - t0) / dur, 0), 1);
+      el.textContent = p < 1 ? Math.round(to * (1 - 2 ** (-10 * p))) : to;   // ease-out expo
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  });
 }
 
 // ---- marquee: drifts on its own, speeds up and follows scroll direction ----
