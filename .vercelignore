@@ -1,0 +1,7 @@
+# Repo-only files: kept in git, not deployed
+README.md
+cv/
+tools/
+
+# Draft case study — remove this line when it's filled in and linked
+work/bitdelta.html
