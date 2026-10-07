@@ -368,17 +368,17 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
 .intro-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%}
 .intro-text{display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,2.2vw,26px);
   padding:calc(64px + clamp(20px,4vh,48px)) clamp(36px,5vw,80px) clamp(32px,5vh,56px) 0}
-.intro-eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--g-600)}
-.intro-h{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,3.4vw,3.5rem);
-  line-height:1.02;letter-spacing:-.035em}
-/* each line is a mask the words rise through on load; padding keeps descenders */
-.intro-h .ln{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
+.intro-hello{font-family:var(--display);font-weight:400;font-size:clamp(1.4rem,2.2vw,2.1rem);
+  letter-spacing:-.01em;color:var(--g-600);margin-bottom:clamp(4px,1.4vw,22px)}
+.intro-hello .tw-caret{background:var(--black)}
+.intro-h{font-family:var(--display);font-weight:500;font-size:clamp(2rem,3.3vw,3.4rem);
+  line-height:1.14;letter-spacing:-.025em;max-width:22ch}
+/* the sentence rises through a mask on load; padding keeps the descenders */
+.intro-h .ln{display:block;overflow:hidden;padding-bottom:.18em;margin-bottom:-.18em}
 .intro-h .ln>span{display:block}
-/* typed word on its own line, outlined like "THEN BUILDS", so the lines above never reflow */
-.intro-h .tw{display:block}
-.intro-h .tw-word{color:var(--white);-webkit-text-stroke:2.4px var(--black);paint-order:stroke fill}
-.intro-sub{max-width:46ch;font-size:clamp(1rem,1.2vw,1.1rem);line-height:1.65;color:var(--g-600)}
-.intro-sub b{color:var(--black);font-weight:600}
+.intro-h .ul{text-decoration:underline;text-decoration-thickness:.075em;text-underline-offset:.16em;
+  text-decoration-color:var(--g-200);text-decoration-skip-ink:auto}
+.intro-text .hero-cta{margin-top:clamp(6px,1.4vw,18px)}
 .skills{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
@@ -401,20 +401,18 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
   .intro-text{padding:calc(64px + clamp(20px,6vw,40px)) var(--pad) clamp(32px,8vw,56px)}
 }
 
-/* ---- intro entrance on load: portrait wipes up, lines rise, the rest fades up ----
+/* ---- intro entrance on load: portrait wipes up, the sentence rises, the rest fades up ----
    Keyframes only hold the "from" state, so with motion reduced everything is simply there. */
 @keyframes intro-up{from{opacity:0;transform:translateY(18px)}}
 @keyframes intro-rise{from{transform:translateY(110%)}}
 @keyframes intro-wipe{from{clip-path:inset(100% 0 0 0)}}
 @keyframes intro-zoom{from{transform:scale(1.12)}}
 @keyframes intro-fade{from{opacity:0}}
-.intro-eyebrow{animation:intro-up .8s .25s cubic-bezier(.16,1,.3,1) both}
-.intro-h .ln>span{animation:intro-rise 1s cubic-bezier(.16,1,.3,1) both}
-.intro-h .ln:nth-child(1)>span{animation-delay:.35s}
-.intro-h .ln:nth-child(2)>span{animation-delay:.43s}
-.intro-h .ln:nth-child(3)>span{animation-delay:.51s}
-.intro-sub{animation:intro-up .8s .7s cubic-bezier(.16,1,.3,1) both}
-.intro-text .hero-cta{animation:intro-up .8s .8s cubic-bezier(.16,1,.3,1) both}
+@keyframes intro-ul{from{text-decoration-color:transparent}}
+.intro-hello{animation:intro-up .8s .25s cubic-bezier(.16,1,.3,1) both}
+.intro-h .ln>span{animation:intro-rise 1.1s .38s cubic-bezier(.16,1,.3,1) both}
+.intro-h .ul{animation:intro-ul .9s 1.15s ease both}      /* underlines settle in once the sentence lands */
+.intro-text .hero-cta{animation:intro-up .8s .75s cubic-bezier(.16,1,.3,1) both}
 .intro-photo{clip-path:inset(0);animation:intro-wipe 1.2s .05s cubic-bezier(.77,0,.18,1) both}   /* explicit end value: inset() ↔ none would jump, not animate */
 .intro-photo img{animation:intro-zoom 1.8s .05s cubic-bezier(.16,1,.3,1) both}
 .skills{animation:intro-fade 1s 1s ease both}

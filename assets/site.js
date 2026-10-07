@@ -99,6 +99,7 @@ if (solid) {
 if (!reduce) document.querySelectorAll('.tw').forEach(tw => {
   const word = tw.querySelector('.tw-word');
   const words = JSON.parse(tw.dataset.words);
+  if (words.length < 2) return;   // one word: static, caret just blinks
   const hold = +tw.dataset.hold || 2200, holdFirst = +tw.dataset.holdFirst || hold;
   let i = 0, visible = false, started = false, parked = null;
   // pause while off-screen; pick up where it left off
