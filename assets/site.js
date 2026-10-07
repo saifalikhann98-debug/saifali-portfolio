@@ -90,9 +90,9 @@ if (solid) {
   });
 }
 
-// ---- hero: the last word types out what actually got built ----
-// "it." holds, then backspaces into each product and back again. Screen
-// readers get the static "it." (the animated word is aria-hidden).
+// ---- intro: the last word of the headline types through a few endings ----
+// Each word holds, backspaces, and the next one types in. Screen readers get
+// the static first word (the animated word is aria-hidden).
 const tw = document.querySelector('.tw');
 if (tw && !reduce) {
   const word = tw.querySelector('.tw-word');
@@ -112,9 +112,9 @@ if (tw && !reduce) {
   const type = () => {
     const target = words[i], n = word.textContent.length;
     if (n < target.length) { word.textContent = target.slice(0, n + 1); later(type, 80 + Math.random() * 60); }
-    else { tw.classList.remove('typing'); later(erase, i === 0 ? 3600 : 1900); }
+    else { tw.classList.remove('typing'); later(erase, 2200); }
   };
-  later(erase, 3200);
+  later(erase, 2600);
 }
 
 // ---- marquee: drifts on its own, speeds up and follows scroll direction ----

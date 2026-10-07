@@ -75,6 +75,8 @@ nav a,nav span{pointer-events:auto}
   animation:rise .9s cubic-bezier(.16,1,.3,1) both}
 .giant .ln:nth-child(2)>span{animation-delay:.08s}
 .giant .ln:nth-child(3)>span{animation-delay:.16s}
+.giant.reveal{opacity:1;transform:none}
+.giant.reveal:not(.in) .ln>span{animation-play-state:paused}
 /* Outlined type. Bricolage is a variable font, so its glyphs are overlapping
    contours and a plain stroke draws every seam. Instead: double the stroke,
    paint it first, then fill in the background colour on top. */
@@ -111,19 +113,10 @@ nav a,nav span{pointer-events:auto}
   -webkit-box-decoration-break:clone;box-decoration-break:clone}
 .about-sub{margin-top:clamp(22px,3vw,32px);max-width:50ch;
   font-size:clamp(1rem,1.25vw,1.12rem);line-height:1.65;color:var(--g-600)}
-.about-dyn{display:grid;grid-template-columns:41% 1fr;align-items:stretch}
-@media(max-width:860px){.about-dyn{grid-template-columns:1fr}}
-/* The portrait is a composed piece on a flat #ECEDE8 ground: show it whole,
-   anchored to the bottom (where the jacket meets the edge), and fill any spare
-   room with the same ground so the panel reads as one image. */
-.about-photo{position:relative;overflow:hidden;aspect-ratio:4/5;margin:0;background:#ECEDE8;
-  justify-self:stretch;align-self:stretch}   /* grid items with aspect-ratio otherwise size from height */
-.about-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%}
-@media(max-width:860px){.about-photo{max-height:540px}}
-.about-content{padding:clamp(54px,7vw,120px) var(--pad) clamp(54px,7vw,120px) clamp(36px,5vw,72px)}
-@media(max-width:860px){.about-content{padding:clamp(40px,9vw,64px) var(--pad)}}
-.about-content .statement{margin-top:22px;max-width:20ch}
-.about-content .about-sub{max-width:48ch}
+.about-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:end}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr}}
+.about-grid .statement{max-width:20ch}
+.about-grid .about-sub{margin-top:0;max-width:48ch}
 .about-stats{margin-top:clamp(36px,4.5vw,52px);display:grid;grid-template-columns:repeat(2,auto);
   gap:26px clamp(40px,5vw,72px);border-top:1px solid var(--g-100);padding-top:30px;justify-content:start}
 @media(max-width:520px){.about-stats{grid-template-columns:1fr}}
@@ -375,6 +368,60 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
 @keyframes blink{50%{opacity:0}}
 @media(prefers-reduced-motion:reduce){.tw-caret{display:none}}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* ---- intro (first screen): text · portrait · stats, skills strip under ---- */
+/* Portrait column: as wide as the screen height allows at 4:5, capped by width */
+.intro{--line:rgba(10,10,10,.12);--pw:clamp(340px,min(calc((100svh - 150px) * .8),40vw),720px);padding-top:64px}
+.intro-grid{display:grid;grid-template-columns:minmax(0,1fr) var(--pw) clamp(170px,15vw,240px);
+  border-top:1px solid var(--line)}
+.intro-text{display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,2.2vw,26px);
+  padding:clamp(36px,5vw,72px) clamp(28px,4vw,64px) clamp(36px,5vw,72px) var(--pad)}
+.intro-eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--g-600)}
+.intro-h{font-family:var(--display);font-weight:700;font-size:clamp(2.3rem,3.9vw,4rem);
+  line-height:1.02;letter-spacing:-.035em;max-width:13ch}
+/* typed word on its own line, outlined like "THEN BUILDS", so the lines above never reflow */
+.intro-h .tw{display:block}
+.intro-h .tw-word{color:var(--white);-webkit-text-stroke:2.4px var(--black);paint-order:stroke fill}
+.intro-sub{max-width:46ch;font-size:clamp(1rem,1.2vw,1.1rem);line-height:1.65;color:var(--g-600)}
+.intro-sub b{color:var(--black);font-weight:600}
+.intro-photo{position:relative;overflow:hidden;margin:0;aspect-ratio:4/5;background:#ECEDE8;
+  justify-self:stretch;align-self:stretch;border-left:1px solid var(--line)}
+.intro-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%}
+.intro-stats{display:flex;flex-direction:column;border-left:1px solid var(--line)}
+.intro-stats>div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;padding:24px 16px;text-align:center}
+.intro-stats>div+div{border-top:1px solid var(--line)}
+.intro-stats .n{font-family:var(--display);font-weight:700;font-size:clamp(2rem,3.2vw,3.2rem);
+  letter-spacing:-.03em;line-height:1}
+.intro-stats .n span{color:var(--g-400)}
+.intro-stats .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--g-600);line-height:1.5}
+.skills{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.skills-track{display:flex;width:max-content;animation:scroll 70s linear infinite}
+.skills:hover .skills-track{animation-play-state:paused}
+.skills-track>div{display:flex}
+.skills-track span{display:inline-flex;align-items:center;gap:14px;white-space:nowrap;
+  padding:clamp(14px,1.6vw,20px) clamp(20px,2.4vw,32px);border-right:1px solid var(--line);
+  font-family:var(--display);font-weight:500;font-size:clamp(1rem,1.5vw,1.3rem);letter-spacing:-.01em}
+.skills-track span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--black)}
+@media(max-width:1180px){
+  .intro{--pw:clamp(300px,min(calc((100svh - 150px) * .8),46vw),640px)}
+  .intro-grid{grid-template-columns:minmax(0,1fr) var(--pw)}
+  .intro-stats{grid-column:1/-1;flex-direction:row;border-left:0;border-top:1px solid var(--line)}
+  .intro-stats>div+div{border-top:0;border-left:1px solid var(--line)}
+}
+@media(max-width:760px){
+  .intro-grid{grid-template-columns:1fr}
+  .intro-text{padding:clamp(28px,8vw,48px) var(--pad)}
+  .intro-photo{border-left:0;border-top:1px solid var(--line);max-height:78svh}
+  .intro-stats>div{padding:20px 8px}
+}
+.light .btn{color:var(--black);border-color:rgba(10,10,10,.25)}
+.light .btn:hover{background:var(--black);color:var(--white);border-color:var(--black)}
+.light .btn-solid{background:var(--black);color:var(--white);border-color:var(--black)}
+.light .btn-solid:hover{background:transparent;color:var(--black)}
 
 /* ---- hero CTAs ---- */
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;align-self:flex-start}

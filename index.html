@@ -67,20 +67,13 @@
 <!-- ============ HOME ============ -->
 <main id="home">
 
-  <!-- HERO -->
-  <header class="band ink hero">
-    <div class="wrap" style="width:100%">
-      <div class="hero-top">
-        <span>Senior Product Designer — <b>Dubai, UAE</b></span>
-        <span>Fintech, 0 to 1 products</span>
-      </div>
-      <h1 class="giant">
-        <span class="ln"><span>Designs it.</span></span>
-        <span class="ln"><span class="thin">Then builds<span class="solid" aria-hidden="true">Then builds</span></span></span>
-        <span class="ln"><span class="tw" data-words='["it.", "Mizan.", "Orfyx.", "BrickBrief."]'><span class="vh">it.</span><span class="tw-word" aria-hidden="true">it.</span><span class="tw-caret" aria-hidden="true"></span></span></span>
-      </h1>
-      <div class="hero-foot">
-        <p class="hero-sub">
+  <!-- INTRO -->
+  <header class="intro light">
+    <div class="intro-grid">
+      <div class="intro-text">
+        <p class="intro-eyebrow">Senior Product Designer — Dubai, UAE</p>
+        <h1 class="intro-h">I design and build products that <span class="tw" data-words='["ship.", "scale.", "people trust."]'><span class="vh">ship.</span><span class="tw-word" aria-hidden="true">ship.</span><span class="tw-caret" aria-hidden="true"></span></span></h1>
+        <p class="intro-sub">
           Senior product designer with seven years across fintech, Web3 and commerce
           work — now shipping products <b>end to end</b>, from the first Figma
           frame to working code.
@@ -90,8 +83,34 @@
           <a class="btn" href="/resume.pdf" download>Download CV</a>
         </div>
       </div>
+      <figure class="intro-photo">
+        <picture><source type="image/webp" srcset="/img/02-saifali-khan-portrait-750.webp 750w, /img/02-saifali-khan-portrait.webp 1122w" sizes="(max-width:760px) 100vw, (max-width:1180px) 46vw, 40vw"><img src="/img/02-saifali-khan-portrait.jpg" alt="Saifali Khan, product designer in Dubai — black-and-white portrait set among geometric shapes" decoding="async" fetchpriority="high" width="1122" height="1402"></picture>
+      </figure>
+      <div class="intro-stats">
+        <div><p class="n">7<span>+</span></p><p class="k">Years in product design</p></div>
+        <div><p class="n">400K<span>+</span></p><p class="k">Fintech users</p></div>
+        <div><p class="n">3</p><p class="k">Live products, built solo</p></div>
+      </div>
+    </div>
+    <div class="skills">
+      <div class="skills-track"><div><span>Product design</span><span>Design systems</span><span>User research</span><span>Prototyping</span><span>Interaction &amp; motion</span><span>Figma</span><span>Framer</span><span>React</span><span>Frontend build</span><span>Claude Code</span></div><div aria-hidden="true"><span>Product design</span><span>Design systems</span><span>User research</span><span>Prototyping</span><span>Interaction &amp; motion</span><span>Figma</span><span>Framer</span><span>React</span><span>Frontend build</span><span>Claude Code</span></div></div>
     </div>
   </header>
+
+  <!-- MANIFESTO (was the hero) -->
+  <section class="band ink manifesto">
+    <div class="wrap">
+      <div class="hero-top">
+        <span>The approach</span>
+        <span>Figma → working code</span>
+      </div>
+      <h2 class="giant reveal">
+        <span class="ln"><span>Designs it.</span></span>
+        <span class="ln"><span class="thin">Then builds<span class="solid" aria-hidden="true">Then builds</span></span></span>
+        <span class="ln"><span>it.</span></span>
+      </h2>
+    </div>
+  </section>
 
   <!-- MARQUEE -->
   <div class="ink">
@@ -104,27 +123,27 @@
   </div>
 
   <!-- ABOUT -->
-  <section class="light about-dyn" id="about">
-    <figure class="about-photo reveal">
-      <picture><source type="image/webp" srcset="/img/02-saifali-khan-portrait-750.webp 750w, /img/02-saifali-khan-portrait.webp 1122w" sizes="(max-width:860px) min(100vw, 432px), 41vw"><img src="/img/02-saifali-khan-portrait.jpg" alt="Saifali Khan, product designer in Dubai — black-and-white portrait set among geometric shapes" loading="lazy" decoding="async" width="1122" height="1402"></picture>
-    </figure>
-    <div class="about-content">
-      <span class="label reveal">The short version</span>
-      <p class="statement reveal" style="margin-top:22px">
-        Most designers hand off a prototype and wait. I keep going until it's
-        <span class="hl">real</span> — built, interactive, and in someone's hands.
-      </p>
-      <p class="about-sub reveal">
-        I take ideas the whole distance myself — research, interface,
-        prototype and a working frontend — so design and build stop being
-        a handoff and become one loop. Recent work spans fintech platforms,
-        consumer products and e-commerce for the UAE and India.
-      </p>
-      <div class="about-stats">
-        <div class="sm reveal"><div class="n">7 yrs</div><p>Fintech, commerce & brand product design</p></div>
-        <div class="sm reveal"><div class="n">0 to 1</div><p>Products built from scratch — design + code</p></div>
-        <div class="sm reveal"><div class="n">Figma to code</div><p>Prototype to working frontend</p></div>
-        <div class="sm reveal"><div class="n">Team of 6</div><p>Designers led at D24 — plus the design system 20+ engineers build from</p></div>
+  <section class="band light" id="about">
+    <div class="wrap about-grid">
+      <div>
+        <span class="label reveal">The short version</span>
+        <p class="statement reveal" style="margin-top:22px">
+          Most designers hand off a prototype and wait. I keep going until it's
+          <span class="hl">real</span> — built, interactive, and in someone's hands.
+        </p>
+      </div>
+      <div>
+        <p class="about-sub reveal">
+          I take ideas the whole distance myself — research, interface,
+          prototype and a working frontend — so design and build stop being
+          a handoff and become one loop. Recent work spans fintech platforms,
+          consumer products and e-commerce for the UAE and India.
+        </p>
+        <div class="about-stats">
+          <div class="sm reveal"><div class="n">0 to 1</div><p>Products built from scratch — design + code</p></div>
+          <div class="sm reveal"><div class="n">Figma to code</div><p>Prototype to working frontend</p></div>
+          <div class="sm reveal"><div class="n">Team of 6</div><p>Designers led at D24 — plus the design system 20+ engineers build from</p></div>
+        </div>
       </div>
     </div>
   </section>
