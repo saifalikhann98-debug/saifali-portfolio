@@ -358,13 +358,13 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
 /* ---- intro (first screen): portrait panel | text + stats, skills strip under ----
-   The portrait panel runs full-bleed to the right edge and up under the nav.
-   Its width comes from the screen height at 4:5, so the photo fills it exactly;
-   the text starts on the same column edge as every section. */
+   The portrait is a cut-out (transparent background) standing on the dot canvas,
+   full-bleed to the right edge and up under the nav. Its column width comes from
+   the screen height at the photo's ratio; the text starts on the shared column edge. */
 .intro{--line:rgba(10,10,10,.12);--strip:72px}   /* --strip ≈ skills strip height */
-.intro-grid{display:grid;grid-template-columns:minmax(0,1fr) min(50vw,calc((100svh - var(--strip)) * .8));
+.intro-grid{display:grid;grid-template-columns:minmax(0,1fr) min(50vw,calc((100svh - var(--strip)) * .833));
   padding-left:max(var(--pad),calc((100% - var(--maxw)) / 2 + var(--pad)))}
-.intro-photo{position:relative;overflow:hidden;margin:0;background:#ECEDE8}
+.intro-photo{position:relative;overflow:hidden;margin:0}
 .intro-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%;
   transition:translate .7s cubic-bezier(.16,1,.3,1)}   /* drifts against the pointer */
 .intro-text{display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,2.2vw,26px);
@@ -398,7 +398,7 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
 /* phones and upright tablets: text first, portrait under it at full width */
 @media(max-width:860px){
   .intro-grid{grid-template-columns:1fr;padding-left:0}
-  .intro-photo{width:100%;height:min(125vw,70svh)}   /* by height, not aspect-ratio: a capped ratio would shrink the width too */
+  .intro-photo{width:100%;height:min(120vw,70svh)}   /* by height, not aspect-ratio: a capped ratio would shrink the width too */
   .intro-text{padding:calc(64px + clamp(20px,6vw,40px)) var(--pad) clamp(32px,8vw,56px)}
 }
 

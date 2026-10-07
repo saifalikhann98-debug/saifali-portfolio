@@ -126,7 +126,8 @@ if (!reduce) document.querySelectorAll('.tw').forEach(tw => {
 // Hovering a text block or button selects it like a layer (box, handles, size);
 // once after load the statement is selected on its own, so touch screens see it
 // too. With a mouse: guides and an x/y readout follow the pointer, the dot
-// canvas darkens around it, and the portrait drifts slightly the other way.
+// canvas darkens around it (also behind the cut-out portrait), and the
+// portrait drifts slightly the other way.
 const intro = document.querySelector('.intro');
 if (intro) {
   const sel = document.createElement('div');
@@ -161,21 +162,14 @@ if (intro) {
   }, reduce ? 600 : 2600);
 
   if (finePointer) {
-    const photo = intro.querySelector('.intro-photo'), img = photo?.querySelector('img');
+    const img = intro.querySelector('.intro-photo img');
     const tool = document.createElement('div');
     tool.className = 'tool';
     tool.setAttribute('aria-hidden', 'true');
     tool.innerHTML = '<div class="tool-glow"></div><span class="tool-gx"></span><span class="tool-gy"></span><span class="tool-tag"></span>';
     intro.prepend(tool);
     const tag = tool.lastChild;
-    // the tool layer covers the text side only: left of the portrait, or above it when stacked
-    const fit = () => {
-      const beside = photo && photo.offsetTop < 10;
-      tool.style.width = beside ? photo.offsetLeft + 'px' : '100%';
-      tool.style.height = !beside && photo ? photo.offsetTop + 'px' : '100%';
-    };
-    fit();
-    new ResizeObserver(fit).observe(intro);
+    // the layer spans the whole intro and sits under it: guides pass behind the cut-out portrait
     let queued = false, mx = 0, my = 0, rx = .5;
     intro.addEventListener('pointermove', e => {
       const a = intro.getBoundingClientRect();
