@@ -42,7 +42,7 @@ picture{display:contents}
 
 /* ---- nav ---- */
 nav{position:fixed;inset:0 0 auto 0;z-index:80;display:flex;align-items:center;
-  justify-content:space-between;padding:20px var(--pad);
+  justify-content:space-between;padding:20px max(var(--pad),calc((100% - var(--maxw)) / 2 + var(--pad)));
   mix-blend-mode:difference;color:#fff;pointer-events:none}
 nav a,nav span{pointer-events:auto}
 .brand{font-family:var(--display);font-weight:700;font-size:1.05rem;letter-spacing:-.01em;
@@ -370,14 +370,15 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
 /* ---- intro (first screen): text · portrait · stats, skills strip under ---- */
-/* Portrait column: as wide as the screen height allows at 4:5, capped by width */
-.intro{--line:rgba(10,10,10,.12);--pw:clamp(340px,min(calc((100svh - 150px) * .8),40vw),720px);padding-top:64px}
-.intro-grid{display:grid;grid-template-columns:minmax(0,1fr) var(--pw) clamp(170px,15vw,240px);
-  border-top:1px solid var(--line)}
+/* Same centred column as every .wrap section; only the rules run full width. */
+.intro{--line:rgba(10,10,10,.12)}
+.intro::before{content:"";display:block;height:64px;border-bottom:1px solid var(--line)}   /* clears the fixed nav */
+.intro-grid{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,.92fr) minmax(150px,.38fr)}
 .intro-text{display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,2.2vw,26px);
-  padding:clamp(36px,5vw,72px) clamp(28px,4vw,64px) clamp(36px,5vw,72px) var(--pad)}
+  padding:clamp(36px,5vw,72px) clamp(24px,3.5vw,48px) clamp(36px,5vw,72px) 0}
 .intro-eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--g-600)}
-.intro-h{font-family:var(--display);font-weight:700;font-size:clamp(2.3rem,3.9vw,4rem);
+.intro-h{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,3.4vw,3.5rem);
   line-height:1.02;letter-spacing:-.035em;max-width:13ch}
 /* typed word on its own line, outlined like "THEN BUILDS", so the lines above never reflow */
 .intro-h .tw{display:block}
@@ -387,7 +388,7 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
 .intro-photo{position:relative;overflow:hidden;margin:0;aspect-ratio:4/5;background:#ECEDE8;
   justify-self:stretch;align-self:stretch;border-left:1px solid var(--line)}
 .intro-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%}
-.intro-stats{display:flex;flex-direction:column;border-left:1px solid var(--line)}
+.intro-stats{display:flex;flex-direction:column;border-left:1px solid var(--line);border-right:1px solid var(--line)}
 .intro-stats>div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:8px;padding:24px 16px;text-align:center}
 .intro-stats>div+div{border-top:1px solid var(--line)}
@@ -407,15 +408,15 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
   font-family:var(--display);font-weight:500;font-size:clamp(1rem,1.5vw,1.3rem);letter-spacing:-.01em}
 .skills-track span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--black)}
 @media(max-width:1180px){
-  .intro{--pw:clamp(300px,min(calc((100svh - 150px) * .8),46vw),640px)}
-  .intro-grid{grid-template-columns:minmax(0,1fr) var(--pw)}
-  .intro-stats{grid-column:1/-1;flex-direction:row;border-left:0;border-top:1px solid var(--line)}
+  .intro-grid{grid-template-columns:minmax(0,1fr) minmax(0,.92fr)}
+  .intro-photo{border-right:1px solid var(--line)}
+  .intro-stats{grid-column:1/-1;flex-direction:row;border-left:0;border-right:0;border-top:1px solid var(--line)}
   .intro-stats>div+div{border-top:0;border-left:1px solid var(--line)}
 }
 @media(max-width:760px){
   .intro-grid{grid-template-columns:1fr}
-  .intro-text{padding:clamp(28px,8vw,48px) var(--pad)}
-  .intro-photo{border-left:0;border-top:1px solid var(--line);max-height:78svh}
+  .intro-text{padding:clamp(28px,8vw,48px) 0}
+  .intro-photo{border:1px solid var(--line);border-bottom:0;max-height:78svh}
   .intro-stats>div{padding:20px 8px}
 }
 .light .btn{color:var(--black);border-color:rgba(10,10,10,.25)}
