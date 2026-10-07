@@ -120,7 +120,7 @@ if (tw && !reduce) {
 // ---- intro stats count up as they fade in (static under reduced motion) ----
 if (!reduce) {
   document.querySelectorAll('.intro-stats [data-to]').forEach((el, i) => {
-    const to = +el.dataset.to, t0 = performance.now() + 550 + i * 100, dur = 1400;
+    const to = +el.dataset.to, t0 = performance.now() + 900 + i * 70, dur = 1300;   // as each stat fades in
     el.textContent = '0';
     const step = t => {
       const p = Math.min(Math.max((t - t0) / dur, 0), 1);
