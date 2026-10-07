@@ -76,7 +76,7 @@
       </div>
       <h1 class="giant">
         <span class="ln"><span>Designs it.</span></span>
-        <span class="ln"><span class="thin">Then builds</span></span>
+        <span class="ln"><span class="thin">Then builds<span class="solid" aria-hidden="true">Then builds</span></span></span>
         <span class="ln"><span>it.</span></span>
       </h1>
       <div class="hero-foot">
@@ -85,6 +85,10 @@
           work — now shipping products <b>end to end</b>, from the first Figma
           frame to working code.
         </p>
+        <div class="hero-cta">
+          <a class="btn btn-solid" href="#work">See the work <span class="ar">↓</span></a>
+          <a class="btn" href="/resume.pdf" download>Download CV</a>
+        </div>
       </div>
     </div>
   </header>
@@ -121,7 +125,7 @@
         <div class="sm reveal"><div class="n">7 yrs</div><p>Fintech, commerce & brand product design</p></div>
         <div class="sm reveal"><div class="n">0 to 1</div><p>Products built from scratch — design + code</p></div>
         <div class="sm reveal"><div class="n">Figma to code</div><p>Prototype to working frontend</p></div>
-        <div class="sm reveal"><div class="n">Dubai</div><p>Teams & clients, GMT+4</p></div>
+        <div class="sm reveal"><div class="n">Team of 6</div><p>Designers led at D24 — plus the design system 20+ engineers build from</p></div>
       </div>
     </div>
   </section>
@@ -136,7 +140,7 @@
 
       <p class="grouplbl reveal">Built from scratch — design + code</p>
       <div class="work-list">
-        <div class="wrow reveal">
+        <div class="wrow reveal" data-peek="/img/09-mizan-services-checker-advertised-vs-paid-750.webp">
           <span class="fill"></span>
           <a class="rowlink" href="/work/mizan" aria-label="Mizan — case study"></a>
           <span class="inner">
@@ -144,9 +148,10 @@
             <span><h3>Mizan</h3><span class="meta">Concept, Design, Frontend</span></span>
             <span class="blurb">Fair-price transparency for the UAE — what's advertised vs. what residents actually pay.</span>
             <span class="go">Case study <a class="golive" href="https://www.mizan-price.com/" target="_blank" rel="noopener">Live</a></span>
+            <span class="wthumb"><picture><source type="image/webp" srcset="/img/09-mizan-services-checker-advertised-vs-paid-750.webp"><img src="/img/09-mizan-services-checker-advertised-vs-paid.jpg" alt="" loading="lazy" decoding="async" width="1500" height="772"></picture></span>
           </span>
         </div>
-        <div class="wrow reveal">
+        <div class="wrow reveal" data-peek="/img/05-orfyx-home-find-a-verified-gym-request-a-pas-750.webp">
           <span class="fill"></span>
           <a class="rowlink" href="/work/orfyx" aria-label="Orfyx — case study"></a>
           <span class="inner">
@@ -154,9 +159,10 @@
             <span><h3>Orfyx</h3><span class="meta">Product, Mobile, Frontend</span></span>
             <span class="blurb">A premium fitness-pass platform for the UAE & India — find a verified gym, get a QR pass, walk straight in.</span>
             <span class="go">Case study <a class="golive" href="https://www.orfyx.com/" target="_blank" rel="noopener">Live</a></span>
+            <span class="wthumb"><picture><source type="image/webp" srcset="/img/05-orfyx-home-find-a-verified-gym-request-a-pas-750.webp"><img src="/img/05-orfyx-home-find-a-verified-gym-request-a-pas.jpg" alt="" loading="lazy" decoding="async" width="1500" height="772"></picture></span>
           </span>
         </div>
-        <div class="wrow reveal">
+        <div class="wrow reveal" data-peek="/img/13-brickbrief-landing-send-the-report-750.webp">
           <span class="fill"></span>
           <a class="rowlink" href="/work/brickbrief" aria-label="BrickBrief — case study"></a>
           <span class="inner">
@@ -164,32 +170,32 @@
             <span><h3>BrickBrief</h3><span class="meta">Product, Data, Web</span></span>
             <span class="blurb">Branded Dubai real-estate market reports for agents — prices, volumes, rents and yields for every area and building, on Dubai Land Department open data.</span>
             <span class="go">Case study <a class="golive" href="https://brickbrief.net" target="_blank" rel="noopener">Live</a></span>
+            <span class="wthumb"><picture><source type="image/webp" srcset="/img/13-brickbrief-landing-send-the-report-750.webp"><img src="/img/13-brickbrief-landing-send-the-report.jpg" alt="" loading="lazy" decoding="async" width="1500" height="772"></picture></span>
           </span>
         </div>
       </div>
 
       <p class="grouplbl reveal" style="margin-top:clamp(44px,6vw,70px)">Fintech product design — in-house</p>
       <div class="work-list">
-        <!-- Swap to the case-study rowlink pattern when /work/bitdelta content is filled in -->
-        <!-- Roles sourced from CV: designed at D24 Fintech Group (Senior UI/UX Designer). TODO(saif): per-product years if you want them shown -->
-        <a class="wrow reveal" href="https://bitdelta.com/en" target="_blank" rel="noopener">
-          <span class="fill"></span>
+        <!-- Not linked: the live sites have since changed. Swap BitDelta to the case-study rowlink
+             pattern once /work/bitdelta is filled in (and drop it from .vercelignore). -->
+        <!-- TODO(saif): per-product years if you want them shown -->
+        <div class="wrow wrow-static reveal">
           <span class="inner">
             <span class="num">04</span>
             <span><h3>BitDelta</h3><span class="meta">Fintech, Product, Web</span></span>
             <span class="blurb">D24's flagship exchange — trading, onboarding and account flows on web and mobile. Site has since changed.</span>
-            <span class="go">Visit live</span>
+            <span class="go">In-house, D24</span>
           </span>
-        </a>
-        <a class="wrow reveal" href="https://ofza.com/en" target="_blank" rel="noopener">
-          <span class="fill"></span>
+        </div>
+        <div class="wrow wrow-static reveal">
           <span class="inner">
             <span class="num">05</span>
             <span><h3>OFZA</h3><span class="meta">Fintech, Dashboards, Web</span></span>
             <span class="blurb">White-label trading platform on the BitDelta system — dashboards, market views, data-dense screens. Site has since changed.</span>
-            <span class="go">Visit live</span>
+            <span class="go">In-house, D24</span>
           </span>
-        </a>
+        </div>
       </div>
 
       <p class="grouplbl reveal" style="margin-top:clamp(44px,6vw,70px)">Freelance — brand &amp; client sites</p>
@@ -221,13 +227,11 @@
           <span class="pt"><h4>DoshFX</h4></span>
           <p>FX & trading platform — interface design across both web and the mobile app.</p>
           <span class="note">White-label platform on the BitDelta system, at D24 · site has since changed.</span>
-          <a class="u" href="https://doshfx.io/" target="_blank" rel="noopener">doshfx.io ↗</a>
         </div>
         <div class="pcard reveal">
           <span class="pt"><h4>Visiion</h4></span>
           <p>Product interface design — a clean, conversion-focused web experience.</p>
           <span class="note">White-label platform on the BitDelta system, at D24 · site has since changed.</span>
-          <a class="u" href="https://visiion.io/en" target="_blank" rel="noopener">visiion.io ↗</a>
         </div>
       </div>
     </div>
@@ -309,6 +313,7 @@
       <p class="cavail reveal"><i></i>Available for new work<!-- TODO(saif): final copy, e.g. "Available for product design roles &amp; select builds — Dubai or remote" --></p>
       <div class="clinks">
         <a class="clink" href="mailto:Saifalikhann98@gmail.com">Saifalikhann98@gmail.com</a>
+        <button class="clink ccopy" type="button" data-copy="Saifalikhann98@gmail.com" aria-live="polite">Copy email</button>
         <a class="clink" href="tel:+971523548023">+971 52 354 8023</a>
         <a class="clink" href="https://www.linkedin.com/in/saifali-khan-84a3a3186/" target="_blank" rel="noopener">LinkedIn</a>
         <a class="clink" href="https://www.behance.net/saifalikha004b" target="_blank" rel="noopener">Behance</a>

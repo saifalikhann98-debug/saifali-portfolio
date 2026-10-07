@@ -2,43 +2,60 @@
 
 Personal portfolio for **Saifali Khan**, product designer in Dubai who designs products and then builds them.
 
-Single self-contained static site:
+Plain static site — hand-written HTML, CSS and JS. No build step, no dependencies.
 
-- `index.html` — the whole site (HTML / CSS / JS, all screenshots and the portrait embedded as data URIs). No build step, no dependencies.
-- `og.png` — 1200×630 social share card used by Open Graph / Twitter tags.
+## Structure
 
-## Deploy
+| Path | What it is |
+| --- | --- |
+| `index.html` | Home — hero, about, selected work, experience, contact |
+| `work/*.html` | Case studies, served at `/work/<name>` (`cleanUrls` in `vercel.json`) |
+| `orfyx-design-system.html` | ORFYX design system & UI kit, linked from the Orfyx case study |
+| `assets/site.css` | The one stylesheet every page shares |
+| `assets/site.js` | Shared behaviour: scroll reveal, interactions, view transitions |
+| `img/` | Screenshots and portrait — each `NAME.jpg` has `NAME.webp` + a half-size WebP |
+| `404.html` | Not-found page (Vercel serves it automatically) |
+| `og.png` | 1200×630 social share card |
+| `resume.pdf` | Résumé, generated from `cv/cv.html` (see `cv/README.md`) |
+| `tools/webp.py` | Makes the WebP copies for new images |
 
-It's a static site, so any static host works (Vercel, Netlify, GitHub Pages).
-
-**Vercel:** import the repo — framework preset **Other**, no build command, output directory `./`. Or from the CLI: `vercel --prod`.
-
-Keep `index.html` and `og.png` together at the repo root so the share image resolves.
-
-## After first deploy
-
-For link previews to render everywhere, set the social image to an absolute URL once the domain is known. In `index.html`, change the two `content="og.png"` values to `content="https://<your-domain>/og.png"`, and add:
-
-```html
-<meta property="og:url" content="https://<your-domain>/" />
-```
-
-Then redeploy and test at https://www.opengraph.xyz.
+`.vercelignore` keeps repo-only files (`README.md`, `cv/`, `tools/`) and the
+unfinished `work/bitdelta.html` draft out of the deployment.
 
 ## Local preview
 
-Open `index.html` directly, or:
-
 ```bash
-python3 -m http.server 8000
-# visit http://localhost:8000
+npx serve .          # honours cleanUrls, so /work/mizan works
+# or: python3 -m http.server 8000   (then open /work/mizan.html)
 ```
+
+## Adding a case study
+
+1. Copy `work/brickbrief.html` to `work/<name>.html` and replace the content.
+   Keep the `<head>` links to `/assets/site.css` and `/assets/site.js`.
+2. Screenshots: export at 1500px wide as `img/NN-<name>-<what>.jpg`, then
+   `python3 tools/webp.py img/NN-*.jpg` and wrap the `<img>` in the same
+   `<picture>` markup the other case studies use.
+3. Add a row to the work list in `index.html`. Give its `.wrow` a
+   `data-peek="/img/...-750.webp"` for the hover preview, and add the
+   `.wthumb` picture for touch screens (copy an existing row).
+4. Add the URL to `sitemap.xml` and fix the prev/next links in `.case-nav`.
+
+## Deploy
+
+Vercel, Git integration: pushes to `main` deploy to production, other
+branches get preview URLs. Framework preset **Other**, no build command,
+output directory `./`.
+
+**Analytics:** pages load Vercel Web Analytics (`/_vercel/insights/script.js`).
+Turn it on once in the dashboard — Project → Analytics → Enable — or the
+script 404s harmlessly.
 
 ## Custom domain — how to switch
 
-This is a no-build static site, so there is no env var for the site URL.
-Absolute URLs (canonical, OG, sitemap, robots) are hardcoded and verified
-consistent. To move to a custom domain, run this from the repo root and push:
+Absolute URLs (canonical, OG, JSON-LD, sitemap, robots) are hardcoded and
+verified consistent. To move to a custom domain, run this from the repo root
+and push:
 
 ```bash
 grep -rl 'saifali-portfolio-sooty.vercel.app' --include='*.html' --include='*.xml' --include='*.txt' . \
