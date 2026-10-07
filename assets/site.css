@@ -113,15 +113,13 @@ nav a,nav span{pointer-events:auto}
   font-size:clamp(1rem,1.25vw,1.12rem);line-height:1.65;color:var(--g-600)}
 .about-dyn{display:grid;grid-template-columns:41% 1fr;align-items:stretch}
 @media(max-width:860px){.about-dyn{grid-template-columns:1fr}}
-.about-photo{position:relative;overflow:hidden;min-height:520px;margin:0}
-.about-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  object-position:50% 14%;filter:grayscale(1) contrast(1.05)}
-.about-photo figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;
-  justify-content:space-between;align-items:flex-end;gap:14px;padding:22px 24px;
-  background:linear-gradient(transparent,rgba(10,10,10,.85));color:var(--white)}
-.about-photo .nm{font-family:var(--display);font-weight:700;font-size:clamp(1.1rem,1.6vw,1.45rem);letter-spacing:-.01em}
-.about-photo .rl{font-family:var(--mono);font-size:.64rem;letter-spacing:.07em;text-transform:uppercase;opacity:.82;text-align:right;line-height:1.5}
-@media(max-width:860px){.about-photo{min-height:0;aspect-ratio:4/5;max-height:540px}}
+/* The portrait is a composed piece on a flat #ECEDE8 ground: show it whole,
+   anchored to the bottom (where the jacket meets the edge), and fill any spare
+   room with the same ground so the panel reads as one image. */
+.about-photo{position:relative;overflow:hidden;aspect-ratio:4/5;margin:0;background:#ECEDE8;
+  justify-self:stretch;align-self:stretch}   /* grid items with aspect-ratio otherwise size from height */
+.about-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%}
+@media(max-width:860px){.about-photo{max-height:540px}}
 .about-content{padding:clamp(54px,7vw,120px) var(--pad) clamp(54px,7vw,120px) clamp(36px,5vw,72px)}
 @media(max-width:860px){.about-content{padding:clamp(40px,9vw,64px) var(--pad)}}
 .about-content .statement{margin-top:22px;max-width:20ch}
@@ -354,7 +352,7 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
   .label,.nav-r,.hero-top,.sm p,.shead .cnt,.grouplbl,.wrow .meta,.wrow .go,
   .tcol h3,footer,.back,.case-eyebrow,.ux-cap,.shot figcaption,.case-nav .k,
   .states .s .t{font-size:.78rem}
-  .about-photo .rl,.xrow .loc,.case-meta .k,.ia .sfh .ds,
+  .xrow .loc,.case-meta .k,.ia .sfh .ds,
   .ia .ch span,.ia .sfh .ct,.ia .grp .gl,.flow .step .k,.branch .b .k{font-size:.75rem}
 }
 

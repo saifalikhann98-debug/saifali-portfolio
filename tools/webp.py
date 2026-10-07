@@ -1,7 +1,7 @@
 """Make the WebP copies every <picture> on the site expects.
 
 For each img/NAME.jpg this writes img/NAME.webp (same size) and a half-size
-img/NAME-750.webp (img/NAME-600.webp for the 900px portrait). Safe to re-run.
+img/NAME-750.webp (img/NAME-600.webp for images 900px wide or less). Safe to re-run.
 
     python3 tools/webp.py            # all images
     python3 tools/webp.py img/16-*.jpg
