@@ -96,6 +96,24 @@ if (solid) {
 // data-words, data-hold (ms each word stays), data-hold-first (ms for the
 // first word, default data-hold), data-delay (ms before the first change,
 // counted from when it is first on screen; default data-hold-first).
+// data-langs (optional) pairs each word with the language codes it greets
+// (space-separated); the visitor's first browser language with a match moves
+// its word to the front, so an Arabic browser opens on مرحبا. Runs with
+// reduced motion too, where that word is simply the one shown.
+document.querySelectorAll('.tw[data-langs]').forEach(tw => {
+  const words = JSON.parse(tw.dataset.words), langs = JSON.parse(tw.dataset.langs);
+  const want = (navigator.languages?.length ? navigator.languages : [navigator.language || ''])
+    .map(l => l.toLowerCase().split('-')[0]);
+  let k = -1, lang = '';
+  for (lang of want) if ((k = langs.findIndex(c => c.split(' ').includes(lang))) >= 0) break;
+  if (k <= 0) return;
+  words.unshift(...words.splice(k, 1));
+  tw.dataset.words = JSON.stringify(words);
+  tw.querySelector('.tw-word').textContent = words[0];
+  const vh = tw.querySelector('.vh');
+  vh.textContent = words[0];
+  vh.lang = lang;
+});
 if (!reduce) document.querySelectorAll('.tw').forEach(tw => {
   const word = tw.querySelector('.tw-word');
   const words = JSON.parse(tw.dataset.words);
