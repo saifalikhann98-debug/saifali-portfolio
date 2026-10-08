@@ -440,6 +440,41 @@ if (shots.length) {
   dlg.addEventListener('close', () => document.documentElement.classList.remove('lb-open'));
 }
 
+// ---- at a glance: the design process walks its steps while on screen ----
+// Hovering a step shows it and holds the walk; leaving the track resumes it.
+document.querySelectorAll('.steps').forEach(ol => {
+  const items = [...ol.children];
+  let at = 0, timer = 0, held = false;
+  const show = i => {
+    at = i;
+    items.forEach((li, j) => { li.classList.toggle('on', j === i); li.classList.toggle('done', j < i); });
+    ol.style.setProperty('--p', i / (items.length - 1));
+  };
+  show(0);
+  items.forEach((li, i) => li.addEventListener('pointerenter', () => { held = true; show(i); }));
+  ol.addEventListener('pointerleave', () => { held = false; });
+  if (reduce) return;
+  new IntersectionObserver(([e]) => {
+    clearInterval(timer);
+    if (e.isIntersecting) timer = setInterval(() => { if (!held) show((at + 1) % items.length); }, 2200);
+  }, { threshold: .5 }).observe(ol);
+});
+
+// ---- at a glance: your own cursor label joins the others on the collaboration card ----
+if (finePointer) document.querySelectorAll('.bx-collab').forEach(card => {
+  const you = card.querySelector('.mc-you');
+  let queued = false, x = 0, y = 0;
+  card.addEventListener('pointermove', e => {
+    const a = card.getBoundingClientRect();
+    x = e.clientX - a.left + 14; y = e.clientY - a.top + 18;
+    you.classList.add('on');
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => { queued = false; you.style.translate = `${x}px ${y}px`; });
+  });
+  card.addEventListener('pointerleave', () => you.classList.remove('on'));
+});
+
 // ---- page transitions (cross-document View Transitions, where supported) ----
 // Every case title is named `case-title` in CSS. Going home → case, the clicked
 // row's title takes the name too, so it morphs into the big case title.

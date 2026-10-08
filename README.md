@@ -8,7 +8,7 @@ Plain static site — hand-written HTML, CSS and JS. No build step, no dependenc
 
 | Path | What it is |
 | --- | --- |
-| `index.html` | Home — intro (text + portrait, skills strip), the approach, selected work, experience, contact |
+| `index.html` | Home — intro (text + portrait, skills strip), the approach, at a glance (card grid), selected work, experience, contact |
 | `work/*.html` | Case studies, served at `/work/<name>` (`cleanUrls` in `vercel.json`) |
 | `orfyx-design-system.html` | ORFYX design system & UI kit, linked from the Orfyx case study |
 | `assets/site.css` | The one stylesheet every page shares |
