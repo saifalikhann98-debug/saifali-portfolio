@@ -546,20 +546,58 @@ document.querySelectorAll('.bx-process').forEach(card => {
   }, { threshold: .35 }).observe(card);
 });
 
-// ---- at a glance: your own cursor label joins the others on the collaboration card ----
-if (finePointer) document.querySelectorAll('.bx-collab').forEach(card => {
-  const you = card.querySelector('.mc-you');
-  let queued = false, x = 0, y = 0;
-  card.addEventListener('pointermove', e => {
-    const a = card.getBoundingClientRect();
-    x = e.clientX - a.left + 14; y = e.clientY - a.top + 18;
-    you.classList.add('on');
-    if (queued) return;
-    queued = true;
-    requestAnimationFrame(() => { queued = false; you.style.translate = `${x}px ${y}px`; });
-  });
-  card.addEventListener('pointerleave', () => you.classList.remove('on'));
-});
+// ---- custom pointer (mouse only) ----
+// The multiplayer arrow from the cards, following the mouse exactly (no easing, so it
+// never feels laggy). Over something clickable it grows, and a pill says what a click
+// does; data-cursor="…" on any element sets that text (the collaboration card says "You").
+// The system cursor stays until the first mouse move, so a freshly loaded page is
+// never left without a visible pointer.
+if (finePointer) {
+  const make = (cls, html) => {
+    const el = document.createElement('div');
+    el.className = cls;
+    el.setAttribute('aria-hidden', 'true');
+    el.innerHTML = html;
+    document.body.append(el);
+    return el;
+  };
+  // two layers: the arrow inverts over what's under it, the pill stays solid
+  const cur = make('cursor', '<svg viewBox="0 0 16 16"><path d="M2 1.5l11 5.2-4.6 1.5-2 4.6z"/></svg>');
+  const tag = make('cursor-pill', '<b></b>');
+  const pill = tag.firstChild, root = document.documentElement;
+  const say = el => {
+    const t = el.closest?.('[data-cursor], a, button, .steps');
+    if (!t) return null;
+    if (t.dataset.cursor) return t.dataset.cursor;
+    if (t.closest('.steps')) return 'Drag';
+    if (t.matches('.zoom')) return 'Zoom';
+    if (t.matches('.ccopy')) return 'Copy';
+    const h = t.getAttribute('href') || '';
+    if (t.hasAttribute('download')) return 'Download';
+    if (h.startsWith('mailto:')) return 'Email';
+    if (h.startsWith('tel:')) return 'Call';
+    if (t.target === '_blank') return 'Visit ↗';
+    if (h.startsWith('/work/')) return 'View case';
+    return '';                                  // any other link or button: the arrow just grows
+  };
+  let over = null;
+  addEventListener('pointermove', e => {
+    if (e.pointerType !== 'mouse') return;
+    cur.style.translate = tag.style.translate = `${e.clientX}px ${e.clientY}px`;
+    if (!cur.classList.contains('on')) { cur.classList.add('on'); tag.classList.add('on'); root.classList.add('cur-on'); }
+    if (e.target === over) return;
+    over = e.target;
+    const text = say(over);
+    if (text) pill.textContent = text;
+    tag.classList.toggle('label', !!text);
+    cur.classList.toggle('hot', text !== null);
+  }, { passive: true });
+  const hide = () => { cur.classList.remove('on'); tag.classList.remove('on'); };
+  root.addEventListener('mouseleave', hide);
+  addEventListener('blur', hide);
+  addEventListener('pointerdown', e => { if (e.pointerType === 'mouse') cur.classList.add('press'); });
+  addEventListener('pointerup', () => cur.classList.remove('press'));
+}
 
 // ---- page transitions (cross-document View Transitions, where supported) ----
 // Every case title is named `case-title` in CSS. Going home → case, the clicked
