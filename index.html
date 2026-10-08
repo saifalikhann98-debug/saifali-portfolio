@@ -138,7 +138,7 @@
         <article class="bx bx-years reveal" data-layer>
           <span class="bx-k">Experience</span>
           <div class="bx-big"><span class="bx-n">7<i>+</i></span><span class="bx-u">years in<br>product design</span></div>
-          <p><b>Senior UI/UX Designer at D24 Fintech Group.</b> Leading a team of six designers across BitDelta and the white-label platforms built on it.</p>
+          <p><b>Senior UI/UX Designer at D24 Fintech Group.</b> Designing BitDelta and the white-label platforms built on it.</p>
           <p><b>One system, five platforms.</b> The design system 20+ engineers build from.</p>
           <div class="ruler" aria-hidden="true"><i></i></div>
           <div class="ruler-l" aria-hidden="true"><span>2019</span><span>Now</span></div>
@@ -157,14 +157,30 @@
           <div class="bx-stat"><span class="bx-n">150<i>+</i></span><p>countries they're used in.</p></div>
         </article>
         <article class="bx bx-process reveal" data-layer>
-          <span class="bx-k">My design process</span>
-          <ol class="steps">
-            <li><b>Discover</b><span>Research, data and time with the people who'll use it.</span></li>
-            <li><b>Define</b><span>The problem, the scope, and the number that proves it worked.</span></li>
-            <li><b>Design</b><span>Flows, system and prototypes in Figma.</span></li>
-            <li><b>Build</b><span>The production frontend — in code, not a handoff.</span></li>
-            <li><b>Ship</b><span>Launch, measure, and straight into the next iteration.</span></li>
-          </ol>
+          <div class="ps-head"><span class="bx-k">My design process</span><button class="ps-play" type="button" aria-label="Pause the walkthrough"><i></i><span>Pause</span></button></div>
+          <div class="steps" role="tablist" aria-label="Design process steps"><button class="st" type="button" role="tab" id="ps-t1" aria-controls="ps-p1" aria-selected="true" tabindex="0"><b>Discover</b></button><button class="st" type="button" role="tab" id="ps-t2" aria-controls="ps-p2" aria-selected="false" tabindex="-1"><b>Define</b></button><button class="st" type="button" role="tab" id="ps-t3" aria-controls="ps-p3" aria-selected="false" tabindex="-1"><b>Design</b></button><button class="st" type="button" role="tab" id="ps-t4" aria-controls="ps-p4" aria-selected="false" tabindex="-1"><b>Build</b></button><button class="st" type="button" role="tab" id="ps-t5" aria-controls="ps-p5" aria-selected="false" tabindex="-1"><b>Ship</b></button><span class="ph" aria-hidden="true"></span></div>
+          <div class="sp-wrap">
+            <div class="sp" role="tabpanel" id="ps-p1" aria-labelledby="ps-t1">
+              <div class="sp-t"><span class="sp-n">01 / 05</span><h4>Discover</h4><p>Research, data and time with the people who'll use it.</p><ul><li>Interviews</li><li>Analytics</li><li>Competitor audit</li></ul></div>
+              <div class="stage v-disc" aria-hidden="true"><i class="note" style="--x:9%;--y:18%;--d:.1s">Users</i><i class="note note-in" style="--x:39%;--y:54%;--d:.3s">Insight</i><i class="note" style="--x:66%;--y:20%;--d:.5s">Data</i><span class="lens"></span></div>
+            </div>
+            <div class="sp" role="tabpanel" id="ps-p2" aria-labelledby="ps-t2" hidden>
+              <div class="sp-t"><span class="sp-n">02 / 05</span><h4>Define</h4><p>The problem, the scope, and the number that proves it worked.</p><ul><li>Problem statement</li><li>Scope</li><li>Success metric</li></ul></div>
+              <div class="stage v-def" aria-hidden="true"><i style="--w:62%"></i><i style="--w:80%"></i><i class="pick" style="--w:46%"><span class="sel-mini"><b>Problem</b></span></i><i style="--w:70%"></i></div>
+            </div>
+            <div class="sp" role="tabpanel" id="ps-p3" aria-labelledby="ps-t3" hidden>
+              <div class="sp-t"><span class="sp-n">03 / 05</span><h4>Design</h4><p>Flows, system and prototypes in Figma.</p><ul><li>User flows</li><li>Design system</li><li>Prototype</li></ul></div>
+              <div class="stage v-des" aria-hidden="true"><div class="wf"><i class="wf-bar"></i><i class="wf-img"></i><i class="wf-l" style="--w:84%;--d:.4s"></i><i class="wf-l" style="--w:56%;--d:.5s"></i><i class="wf-btn">Check</i><span class="mc wf-cur"><svg viewBox="0 0 16 16"><path d="M2 1.5l11 5.2-4.6 1.5-2 4.6z"/></svg></span></div></div>
+            </div>
+            <div class="sp" role="tabpanel" id="ps-p4" aria-labelledby="ps-t4" hidden>
+              <div class="sp-t"><span class="sp-n">04 / 05</span><h4>Build</h4><p>The production frontend — in code, not a handoff.</p><ul><li>React</li><li>HTML &amp; CSS</li><li>Components</li></ul></div>
+              <div class="stage v-build" aria-hidden="true"><pre class="code"><span style="--n:6;--d:0.10s">&lt;Card&gt;</span><span style="--n:21;--d:0.39s">  &lt;h3&gt;Fair price&lt;/h3&gt;</span><span style="--n:24;--d:1.10s">  &lt;Button&gt;Check&lt;/Button&gt;</span><span style="--n:7;--d:1.89s">&lt;/Card&gt;</span></pre><div class="prev"><b>Fair price</b><i>Check</i></div></div>
+            </div>
+            <div class="sp" role="tabpanel" id="ps-p5" aria-labelledby="ps-t5" hidden>
+              <div class="sp-t"><span class="sp-n">05 / 05</span><h4>Ship</h4><p>Launch, measure, and straight into the next iteration.</p><ul><li>Launch</li><li>Measure</li><li>Iterate</li></ul></div>
+              <div class="stage v-ship" aria-hidden="true"><div class="dep"><span class="dep-a">Deploying…</span><span class="dep-b">Live</span></div><div class="bar"><i></i></div><svg class="spark" viewBox="0 0 200 44"><path pathLength="100" d="M0 40 L28 36 L52 38 L78 27 L102 30 L128 18 L152 20 L178 8 L200 3"/></svg></div>
+            </div>
+          </div>
         </article>
       </div>
     </div>
