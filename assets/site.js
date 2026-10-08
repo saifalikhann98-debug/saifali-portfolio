@@ -440,24 +440,92 @@ if (shots.length) {
   dlg.addEventListener('close', () => document.documentElement.classList.remove('lb-open'));
 }
 
-// ---- at a glance: the design process walks its steps while on screen ----
-// Hovering a step shows it and holds the walk; leaving the track resumes it.
-document.querySelectorAll('.steps').forEach(ol => {
-  const items = [...ol.children];
-  let at = 0, timer = 0, held = false;
-  const show = i => {
-    at = i;
-    items.forEach((li, j) => { li.classList.toggle('on', j === i); li.classList.toggle('done', j < i); });
-    ol.style.setProperty('--p', i / (items.length - 1));
+// ---- at a glance: the design process, as a timeline you can play and scrub ----
+// While on screen it plays: the fill runs toward the next step like a playhead and
+// each step replays its scene. Click a step, drag along the track or use the arrow
+// keys to move; hovering or focusing the card holds it, the button pauses for good.
+// Reduced motion: it starts paused and the scenes are still pictures.
+document.querySelectorAll('.bx-process').forEach(card => {
+  const track = card.querySelector('.steps'), tabs = [...track.querySelectorAll('[role=tab]')];
+  const panels = tabs.map(t => document.getElementById(t.getAttribute('aria-controls')));
+  const btn = card.querySelector('.ps-play'), n = tabs.length, dwell = 3800;
+  let at = 0, t = 0, last = 0, raf = 0, seen = false, held = false, paused = reduce, drag = false;
+  const paint = p => track.style.setProperty('--p', p);
+  const show = (i, focus) => {
+    if (i !== at || !panels[i].classList.contains('play')) {
+      panels.forEach((pn, j) => { pn.hidden = j !== i; pn.classList.remove('play'); });
+      void panels[i].offsetWidth;            // restart the scene's animations
+      panels[i].classList.add('play');
+    }
+    at = i; t = 0;
+    tabs.forEach((tab, j) => {
+      tab.setAttribute('aria-selected', j === i);
+      tab.tabIndex = j === i ? 0 : -1;
+      tab.classList.toggle('done', j < i);
+    });
+    if (focus) tabs[i].focus();
+    paint(i / (n - 1));
   };
-  show(0);
-  items.forEach((li, i) => li.addEventListener('pointerenter', () => { held = true; show(i); }));
-  ol.addEventListener('pointerleave', () => { held = false; });
-  if (reduce) return;
+  const playing = () => seen && !held && !paused && !drag;
+  const tick = now => {
+    raf = 0;
+    if (!playing()) return;
+    t += Math.min(now - last, 100) / dwell; last = now;
+    if (t >= 1) show((at + 1) % n);
+    else if (at < n - 1) paint((at + t) / (n - 1));
+    raf = requestAnimationFrame(tick);
+  };
+  const run = () => { if (playing() && !raf) { last = performance.now(); raf = requestAnimationFrame(tick); } };
+  const label = () => {
+    btn.classList.toggle('paused', paused);
+    btn.lastChild.textContent = paused ? 'Play' : 'Pause';
+    btn.setAttribute('aria-label', paused ? 'Play the walkthrough' : 'Pause the walkthrough');
+  };
+  show(0); label();
+
+  btn.addEventListener('click', () => { paused = !paused; label(); run(); });
+  tabs.forEach((tab, i) => tab.addEventListener('click', () => show(i)));
+  track.addEventListener('keydown', e => {
+    const k = { ArrowRight: at + 1, ArrowLeft: at - 1, Home: 0, End: n - 1 }[e.key];
+    if (k === undefined) return;
+    e.preventDefault();
+    show((k + n) % n, true);
+  });
+  // drag anywhere on the track to scrub; it snaps to the nearest step on release
+  const ratio = e => {
+    const r = track.getBoundingClientRect();
+    return Math.min(1, Math.max(0, (e.clientX - r.left - r.width * .1) / (r.width * .8)));
+  };
+  const scrub = e => {
+    const p = ratio(e), i = Math.round(p * (n - 1));
+    if (i !== at) show(i);
+    paint(p);
+  };
+  track.addEventListener('pointerdown', e => {
+    if (e.button) return;
+    drag = true; card.classList.add('dragging');
+    track.setPointerCapture(e.pointerId);
+    scrub(e);
+  });
+  track.addEventListener('pointermove', e => { if (drag) scrub(e); });
+  const drop = () => {
+    if (!drag) return;
+    drag = false; card.classList.remove('dragging');
+    show(at); run();
+  };
+  track.addEventListener('pointerup', drop);
+  track.addEventListener('pointercancel', drop);
+  // hold while someone is reading it
+  card.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') held = true; });
+  card.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { held = false; run(); } });
+  card.addEventListener('focusin', () => { held = true; });
+  card.addEventListener('focusout', e => { if (!card.contains(e.relatedTarget)) { held = false; run(); } });
+  let first = true;   // the opening scene plays when the card is first seen, not on load
   new IntersectionObserver(([e]) => {
-    clearInterval(timer);
-    if (e.isIntersecting) timer = setInterval(() => { if (!held) show((at + 1) % items.length); }, 2200);
-  }, { threshold: .5 }).observe(ol);
+    seen = e.isIntersecting;
+    if (seen && first) { first = false; panels[at].classList.remove('play'); show(at); }
+    run();
+  }, { threshold: .35 }).observe(card);
 });
 
 // ---- at a glance: your own cursor label joins the others on the collaboration card ----

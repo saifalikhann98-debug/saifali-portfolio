@@ -601,23 +601,130 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
 .ruler-l{display:flex;justify-content:space-between;margin-top:-6px;font-family:var(--mono);font-size:.66rem;
   letter-spacing:.12em;text-transform:uppercase;color:var(--g-600)}
 
-/* process: the active step walks the track (site.js); hover a step to read it */
-.steps{--p:0;position:relative;list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
-  margin-top:auto;padding:6px 0 3.2em}
-.steps::before,.steps::after{content:"";position:absolute;top:14px;left:10%;right:10%;height:1px;background:var(--g-200)}
-.steps::after{right:auto;width:calc(80% * var(--p));background:var(--black);transition:width .6s cubic-bezier(.16,1,.3,1)}
-.steps li{display:flex;flex-direction:column;align-items:center;gap:12px;cursor:default}
-.steps li::before{content:"";position:relative;z-index:1;width:17px;height:17px;border-radius:50%;
+/* process: a timeline you can play, scrub and step through (site.js). While it plays,
+   the fill runs toward the next step like a playhead; each step has its own little scene.
+   Scene keyframes hold only their start state, so with motion reduced each scene is
+   simply its finished picture. */
+.ps-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.ps-play{display:inline-flex;align-items:center;gap:8px;padding:8px 11px;cursor:pointer;
+  font:500 .64rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--black);
+  background:var(--paper);border:1px solid var(--g-200);transition:border-color .2s}
+.ps-play:hover{border-color:var(--black)}
+.ps-play i{width:8px;height:9px;border-left:3px solid;border-right:3px solid}
+.ps-play.paused i{border:0;background:currentColor;clip-path:polygon(0 0,100% 50%,0 100%)}
+.steps{--p:0;position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:4px 0 2px;
+  margin-top:4px;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab}
+.dragging .steps{cursor:grabbing}
+.steps::before,.steps::after{content:"";position:absolute;top:12px;left:10%;right:10%;height:1px;background:var(--g-200)}
+.steps::after{right:auto;top:11.5px;height:2px;width:calc(80% * var(--p));background:var(--black);transition:width .2s ease-out}
+.ph{position:absolute;z-index:2;top:12.5px;left:calc(10% + 80% * var(--p));width:9px;height:9px;margin:-4.5px 0 0 -4.5px;
+  border-radius:50%;background:var(--black);box-shadow:0 0 0 4px rgba(10,10,10,.1);pointer-events:none;
+  transition:left .2s ease-out,box-shadow .2s}
+.dragging .steps::after,.dragging .ph{transition:none}
+.dragging .ph{box-shadow:0 0 0 8px rgba(10,10,10,.12)}
+.st{display:flex;flex-direction:column;align-items:center;gap:12px;padding:0;border:0;background:none;
+  font:inherit;color:inherit;cursor:inherit}
+.st::before{content:"";position:relative;z-index:1;width:17px;height:17px;border-radius:50%;
   border:1.5px solid var(--g-300);background:var(--paper) center/9px no-repeat;
-  transition:background-color .3s,border-color .3s,box-shadow .3s}
-.steps li.done::before{background-color:var(--black);border-color:var(--black);
+  transition:background-color .3s,border-color .3s,box-shadow .3s,transform .3s}
+.st:hover::before{border-color:var(--black);transform:scale(1.12)}
+.st.done::before{background-color:var(--black);border-color:var(--black);
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 5.2l2.3 2.3L8.5 2.8' fill='none' stroke='%23FAFAF7' stroke-width='1.6'/%3E%3C/svg%3E")}
-.steps li.on::before{background-color:var(--black);border-color:var(--black);box-shadow:0 0 0 6px rgba(10,10,10,.08)}
-.steps b{font-family:var(--display);font-weight:500;font-size:1rem;color:var(--g-400);transition:color .3s}
-.steps li.on b,.steps li.done b{color:var(--black)}
-.steps span{position:absolute;left:0;right:0;bottom:0;text-align:center;font-size:.95rem;color:var(--g-600);
-  opacity:0;transform:translateY(6px);transition:opacity .35s ease,transform .35s ease}
-.steps li.on span{opacity:1;transform:none}
+.st[aria-selected="true"]::before{background-color:var(--black);border-color:var(--black);box-shadow:0 0 0 6px rgba(10,10,10,.08)}
+.st b{font-family:var(--display);font-weight:500;font-size:1rem;color:var(--g-400);transition:color .3s}
+.st[aria-selected="true"] b,.st.done b,.st:hover b{color:var(--black)}
+.st:focus-visible{outline:none}
+.st:focus-visible b{outline:2px solid var(--black);outline-offset:4px}
+
+/* the panels share one grid cell, so the card never changes height between steps */
+.sp-wrap{display:grid;margin-top:10px}
+.sp{grid-area:1/1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(20px,3.4vw,48px);align-items:center}
+.sp[hidden]{display:grid;visibility:hidden}
+.sp.play{animation:sp-in .45s cubic-bezier(.16,1,.3,1) both}
+@keyframes sp-in{from{opacity:0;transform:translateY(8px)}}
+.sp-n{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--g-400)}
+.sp h4{margin:8px 0 10px;font-family:var(--display);font-weight:600;font-size:clamp(1.4rem,2.3vw,2.1rem);letter-spacing:-.02em;line-height:1.05}
+.sp ul{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;list-style:none}
+.sp li{padding:6px 9px;border:1px solid var(--g-200);font:500 .62rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--g-600)}
+.stage{position:relative;height:clamp(160px,14vw,190px);overflow:hidden;border:1px solid var(--g-200);
+  background:var(--paper) radial-gradient(circle,rgba(10,10,10,.12) 1px,transparent 1.3px) 0 0/16px 16px}
+.stage i{font-style:normal}
+@keyframes s-pop{from{opacity:0;transform:scale(.6)}}
+@keyframes s-drop{from{opacity:0;transform:translateY(-10px)}}
+
+/* 01 discover: notes land, a lens looks them over */
+.note{position:absolute;left:var(--x);top:var(--y);padding:9px 11px;border:1px solid var(--black);background:var(--paper);
+  font:500 .6rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.note-in{background:var(--black);color:var(--paper)}
+.lens{position:absolute;left:12%;top:26%;width:46px;height:46px;border:2px solid var(--black);border-radius:50%;
+  background:rgba(255,255,255,.35)}
+.lens::after{content:"";position:absolute;right:-12px;bottom:-5px;width:15px;height:3px;background:var(--black);transform:rotate(45deg)}
+.play .note{animation:s-pop .5s var(--d) cubic-bezier(.16,1,.3,1) both}
+.play .lens{animation:s-pop .4s .7s both,lens 4.4s 1.1s ease-in-out infinite}
+@keyframes lens{0%,100%{left:12%;top:26%}33%{left:43%;top:48%}66%{left:68%;top:14%}}
+
+/* 02 define: the lines dim and one is boxed — that's the problem */
+.v-def{display:flex;flex-direction:column;justify-content:center;gap:13px;padding:0 13%}
+.v-def>i{position:relative;display:block;width:var(--w);height:9px;background:var(--g-100)}
+.v-def>.pick{background:var(--black)}
+.sel-mini{position:absolute;inset:-8px -9px;border:1px solid var(--black);
+  background:linear-gradient(var(--black),var(--black)) 0 0/5px 5px no-repeat,linear-gradient(var(--black),var(--black)) 100% 0/5px 5px no-repeat,
+    linear-gradient(var(--black),var(--black)) 0 100%/5px 5px no-repeat,linear-gradient(var(--black),var(--black)) 100% 100%/5px 5px no-repeat}
+.sel-mini b{position:absolute;left:calc(100% + 8px);top:50%;translate:0 -50%;padding:4px 7px;white-space:nowrap;
+  background:var(--black);color:var(--paper);font:500 .58rem/1 var(--mono);letter-spacing:.06em}
+.play .v-def>i{animation:def-dim .5s .8s both}
+.play .v-def>.pick{animation:def-pick .5s .5s both}
+.play .sel-mini{animation:s-pop .45s .9s cubic-bezier(.16,1,.3,1) both}
+@keyframes def-dim{from{background:var(--g-200)}}
+@keyframes def-pick{from{background:var(--g-200)}}
+
+/* 03 design: a wireframe assembles, then gets clicked */
+.wf{position:absolute;left:50%;top:50%;translate:-50% -50%;width:min(60%,230px);display:flex;flex-direction:column;gap:7px;
+  padding:11px;border:1px solid var(--black);background:var(--paper)}
+.wf>i{display:block}
+.wf-bar{width:40%;height:7px;background:var(--black)}
+.wf-img{height:clamp(30px,3vw,44px);background:var(--g-100)}
+.wf-l{width:var(--w);height:5px;background:var(--g-200)}
+.wf-btn{align-self:flex-start;padding:6px 10px;background:var(--black);color:var(--paper);
+  font:500 .56rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.wf-cur{left:44px;bottom:2px}
+.play .wf-bar{animation:s-drop .45s .1s both}
+.play .wf-img{animation:s-drop .45s .25s both}
+.play .wf-l{animation:s-drop .45s var(--d) both}
+.play .wf-btn{animation:s-drop .45s .6s both,wf-press .3s 1.9s ease}
+.play .wf-cur{animation:wf-cur 1s .9s cubic-bezier(.16,1,.3,1) both}
+@keyframes wf-press{50%{transform:scale(.9)}}
+@keyframes wf-cur{from{opacity:0;translate:120px 60px}}
+
+/* 04 build: the code types, then the thing it describes appears */
+.v-build{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
+.code{margin:0;padding:16px 18px;overflow:hidden;background:var(--black);color:var(--g-200);font:400 .68rem/1.75 var(--mono)}
+.code span{display:block;width:calc(var(--n) * 1ch);overflow:hidden;white-space:pre}
+.prev{align-self:center;justify-self:center;display:flex;flex-direction:column;gap:8px;padding:12px 14px;
+  border:1px solid var(--black);background:var(--paper)}
+.prev b{font-family:var(--display);font-weight:600;font-size:.9rem}
+.prev i{align-self:flex-start;padding:6px 10px;background:var(--black);color:var(--paper);
+  font:500 .56rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.play .code span{animation:type calc(var(--n) * 28ms) var(--d) steps(var(--n)) both}
+.play .prev{animation:s-pop .45s 2.3s cubic-bezier(.16,1,.3,1) both}
+@keyframes type{from{width:0}}
+
+/* 05 ship: deploy, go live, watch it get used */
+.v-ship{display:flex;flex-direction:column;justify-content:center;gap:12px;padding:0 11%}
+.dep{position:relative;height:1em;font:500 .64rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.dep span{position:absolute;left:0;top:0;display:flex;align-items:center;gap:7px}
+.dep-a{color:var(--g-400);opacity:0}
+.dep-b::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--black)}
+.bar{height:6px;overflow:hidden;background:var(--g-100)}
+.bar i{display:block;height:100%;background:var(--black);transform-origin:left}
+.spark{width:100%;height:auto;fill:none;stroke:var(--black);stroke-width:1.6;stroke-linejoin:round;stroke-dasharray:100}
+.play .dep-a{animation:dep-a 1.6s both}
+.play .dep-b{animation:s-pop .4s 1.6s both}
+.play .bar i{animation:fill 1.4s .1s cubic-bezier(.65,0,.35,1) both}
+.play .spark{animation:draw 1.3s 1.8s ease both}
+@keyframes dep-a{0%,88%{opacity:1}}
+@keyframes fill{from{transform:scaleX(0)}}
+@keyframes draw{from{stroke-dashoffset:100}}
 
 @media(max-width:1023px){
   .bento{grid-template-columns:repeat(2,minmax(0,1fr));
@@ -637,8 +744,13 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
   .bento .bx-collab{min-height:270px}
   .mc-me{top:22px;right:20px}
   .bx-k,.pr-i b,.ruler-l{font-size:.75rem}
-  .steps b{font-size:.82rem}
-  .steps span{font-size:.9rem;padding:0 4px}
+  .st b{font-size:.8rem}
+  .sp{grid-template-columns:minmax(0,1fr);gap:18px}
+  .stage{height:170px}
+  .v-build{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}
+  .code{padding:14px 12px;font-size:.6rem}
+  .sp ul{margin-top:12px}
+  .sp li,.ps-play{font-size:.7rem}
 }
 
 /* ---- screenshot lightbox ---- */
