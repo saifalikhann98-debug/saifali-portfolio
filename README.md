@@ -53,13 +53,17 @@ script 404s harmlessly.
 
 ## Custom domain — how to switch
 
-Absolute URLs (canonical, OG, JSON-LD, sitemap, robots) are hardcoded and
-verified consistent. To move to a custom domain, run this from the repo root
+The site lives at **saifalikhan.vercel.app** (primary; the original
+`saifali-portfolio-sooty.vercel.app` redirects to it).
+
+Absolute URLs (canonical, OG, JSON-LD, sitemap, robots, and the portfolio line
+in `cv/cv.html`) are hardcoded and verified consistent. To move to a custom
+domain, run this from the repo root, regenerate `resume.pdf` (see `cv/README.md`)
 and push:
 
 ```bash
-grep -rl 'saifali-portfolio-sooty.vercel.app' --include='*.html' --include='*.xml' --include='*.txt' . \
-  | xargs sed -i '' 's|saifali-portfolio-sooty.vercel.app|YOUR-DOMAIN.com|g'
+grep -rl 'saifalikhan.vercel.app' --include='*.html' --include='*.xml' --include='*.txt' . \
+  | xargs sed -i '' 's|saifalikhan.vercel.app|YOUR-DOMAIN.com|g'
 ```
 
 Then, in the Vercel dashboard (project **saifali-portfolio**):
