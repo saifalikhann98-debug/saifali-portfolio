@@ -46,6 +46,24 @@ document.querySelectorAll('.morebtn').forEach(b => {
   });
 });
 
+// ---- nav: a frosted bar once the page scrolls, light or dark to match the section under it ----
+const nav = document.querySelector('nav');
+if (nav) {
+  let queued = false;
+  const paintNav = () => {
+    queued = false;
+    const scrolled = scrollY > 8;
+    nav.classList.toggle('scrolled', scrolled);
+    if (!scrolled) return;
+    // the nav ignores the pointer, so this finds the page under its left edge
+    const under = document.elementFromPoint(2, nav.offsetHeight / 2)?.closest('.light, .ink');
+    nav.classList.toggle('on-ink', !under || under.classList.contains('ink'));
+  };
+  addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(paintNav); } }, { passive: true });
+  addEventListener('resize', paintNav);
+  paintNav();
+}
+
 // ---- live Dubai time in the nav ----
 const clock = document.querySelector('.nav-r .m');
 if (clock) {

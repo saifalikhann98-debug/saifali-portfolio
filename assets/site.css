@@ -45,6 +45,15 @@ nav{position:fixed;inset:0 0 auto 0;z-index:80;display:flex;align-items:center;
   justify-content:space-between;padding:20px max(var(--pad),calc((100% - var(--maxw)) / 2 + var(--pad)));
   mix-blend-mode:difference;color:#fff;pointer-events:none}
 nav a,nav span{pointer-events:auto}
+/* once the page scrolls: a frosted bar in the colours of the section under it (site.js).
+   At the very top the nav stays bare and inverts over whatever is behind it. */
+nav::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .3s ease;
+  background:rgba(250,250,247,.84);box-shadow:0 1px 0 var(--g-100);
+  -webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px)}
+nav.scrolled{mix-blend-mode:normal;color:var(--black)}
+nav.scrolled::before{opacity:1}
+nav.scrolled.on-ink{color:var(--white)}
+nav.on-ink::before{background:rgba(10,10,10,.8);box-shadow:0 1px 0 var(--g-800)}
 .brand{font-family:var(--display);font-weight:700;font-size:1.05rem;letter-spacing:-.01em;
   display:flex;align-items:center;gap:.4em}
 .brand sup{font-family:var(--mono);font-size:.5em;font-weight:400;top:-.8em}
