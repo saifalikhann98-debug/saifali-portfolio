@@ -50,14 +50,26 @@ document.querySelectorAll('.morebtn').forEach(b => {
 const nav = document.querySelector('nav');
 if (nav) {
   let queued = false;
+  // on the home page, underline the link of the section you're in
+  const spots = [...nav.querySelectorAll('a[href^="#"]')]
+    .map(a => [a, document.querySelector(a.getAttribute('href'))]).filter(([, sec]) => sec && sec.id !== 'home');
+  const markNav = () => {
+    const line = innerHeight * .3;
+    spots.forEach(([a, sec]) => {
+      const r = sec.getBoundingClientRect();
+      if (r.top <= line && r.bottom > line) a.setAttribute('aria-current', 'location');
+      else a.removeAttribute('aria-current');
+    });
+  };
   const paintNav = () => {
     queued = false;
     const scrolled = scrollY > 8;
     nav.classList.toggle('scrolled', scrolled);
-    if (!scrolled) return;
+    if (!scrolled) { markNav(); return; }
     // the nav ignores the pointer, so this finds the page under its left edge
     const under = document.elementFromPoint(2, nav.offsetHeight / 2)?.closest('.light, .ink');
     nav.classList.toggle('on-ink', !under || under.classList.contains('ink'));
+    markNav();
   };
   addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(paintNav); } }, { passive: true });
   addEventListener('resize', paintNav);
