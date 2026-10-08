@@ -662,13 +662,13 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
 @keyframes s-drop{from{opacity:0;transform:translateY(-10px)}}
 
 /* 01 discover: notes land, a lens looks them over */
-.note{position:absolute;left:var(--x);top:var(--y);padding:9px 11px;border:1px solid var(--black);background:var(--paper);
+.sn{position:absolute;left:var(--x);top:var(--y);padding:9px 11px;border:1px solid var(--black);background:var(--paper);
   font:500 .6rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase}
-.note-in{background:var(--black);color:var(--paper)}
+.sn-in{background:var(--black);color:var(--paper)}
 .lens{position:absolute;left:12%;top:26%;width:46px;height:46px;border:2px solid var(--black);border-radius:50%;
   background:rgba(255,255,255,.35)}
 .lens::after{content:"";position:absolute;right:-12px;bottom:-5px;width:15px;height:3px;background:var(--black);transform:rotate(45deg)}
-.play .note{animation:s-pop .5s var(--d) cubic-bezier(.16,1,.3,1) both}
+.play .sn{animation:s-pop .5s var(--d) cubic-bezier(.16,1,.3,1) both}
 .play .lens{animation:s-pop .4s .7s both,lens 4.4s 1.1s ease-in-out infinite}
 @keyframes lens{0%,100%{left:12%;top:26%}33%{left:43%;top:48%}66%{left:68%;top:14%}}
 
