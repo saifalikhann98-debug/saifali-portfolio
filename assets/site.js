@@ -11,6 +11,15 @@ if (location.pathname === '/' && location.hash.startsWith('#case-')) {
 const yr = document.getElementById('yr');
 if (yr) yr.textContent = new Date().getFullYear();
 
+// Years of experience count from a start month, so the site never goes stale:
+// <span data-since="2019-03">7</span> shows whole years since March 2019. The number
+// in the markup is the value when it was written, for no-JS and search engines.
+document.querySelectorAll('[data-since]').forEach(el => {
+  const [y, m] = el.dataset.since.split('-').map(Number), now = new Date();
+  const years = now.getFullYear() - y - (now.getMonth() + 1 < m ? 1 : 0);
+  if (years > 0) el.textContent = years;
+});
+
 // ---- scroll reveal ----
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
