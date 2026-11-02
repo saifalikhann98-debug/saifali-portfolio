@@ -135,6 +135,9 @@
     </div>
   </div>
   <div class="wrap">
+    <!-- App Store screen gallery, hidden at the owner's request: a <template> is never rendered,
+         so nothing loads and the lightbox ignores it. Unwrap it to show the screens again. -->
+    <template id="mg-hidden">
     <div class="mg reveal">
       <div class="mg-tabs" role="tablist" aria-label="Mobile screens by product"><button type="button" role="tab" id="mg-t-bitdelta" aria-controls="mg-bitdelta" aria-selected="true" tabindex="0">BitDelta</button><button type="button" role="tab" id="mg-t-pro" aria-controls="mg-pro" aria-selected="false" tabindex="-1">BitDelta Pro</button><button type="button" role="tab" id="mg-t-india" aria-controls="mg-india" aria-selected="false" tabindex="-1">BitDelta India</button></div>
       <div class="mg-set" id="mg-bitdelta" role="tabpanel" aria-labelledby="mg-t-bitdelta" data-cursor="Drag"><figure class="phone shot"><picture><source type="image/webp" srcset="/img/19-bitdelta-app-1.webp"><img src="/img/19-bitdelta-app-1.jpg" alt="BitDelta app home — total balance, 24h change and quick actions" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Home</figcaption></figure><figure class="phone shot"><picture><source type="image/webp" srcset="/img/19-bitdelta-app-2.webp"><img src="/img/19-bitdelta-app-2.jpg" alt="BitDelta markets — spot and derivatives lists with favourites" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Markets</figcaption></figure><figure class="phone shot"><picture><source type="image/webp" srcset="/img/19-bitdelta-app-3.webp"><img src="/img/19-bitdelta-app-3.jpg" alt="BitDelta copy trading — follow lead traders with minimised risk" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Copy trading</figcaption></figure><figure class="phone shot"><picture><source type="image/webp" srcset="/img/19-bitdelta-app-4.webp"><img src="/img/19-bitdelta-app-4.jpg" alt="BitDelta Lite and Advanced modes on the home screen" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Lite / Advanced</figcaption></figure><figure class="phone shot"><picture><source type="image/webp" srcset="/img/19-bitdelta-app-5.webp"><img src="/img/19-bitdelta-app-5.jpg" alt="BitDelta wallet — balances, deposit and withdraw" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Wallet</figcaption></figure></div>
@@ -142,6 +145,7 @@
       <div class="mg-set" id="mg-india" role="tabpanel" aria-labelledby="mg-t-india" data-cursor="Drag" hidden><figure class="phone shot"><picture><source type="image/webp" srcset="/img/21-bitdelta-india-app-1.webp"><img src="/img/21-bitdelta-india-app-1.jpg" alt="BitDelta India app home — INR balance and quick actions" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Home</figcaption></figure><figure class="phone shot"><picture><source type="image/webp" srcset="/img/21-bitdelta-india-app-3.webp"><img src="/img/21-bitdelta-india-app-3.jpg" alt="BitDelta India derivatives — leverage with risk controls" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Derivatives</figcaption></figure></div>
       <p class="mg-note">Frames from each app's App Store listing · click any screen to enlarge</p>
     </div>
+    </template>
   </div>
 
   <div class="wrap case-body reveal">
