@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>BitDelta — Case Study | Saifali Khan</title>
-<meta name="robots" content="noindex" />
 <meta name="description" content="Case study — BitDelta, BitDelta Pro and BitDelta India: three trading products on one design system, across web and mobile. Designed by Saifali Khan." />
 <meta name="theme-color" content="#0A0A0A" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A0A0A'/%3E%3Ctext x='50' y='54' font-family='Arial,Helvetica,sans-serif' font-size='46' font-weight='800' fill='%23FAFAF7' text-anchor='middle' dominant-baseline='middle'%3ESK%3C/text%3E%3C/svg%3E" />
@@ -15,14 +14,14 @@
 <meta property="og:site_name" content="Saifali Khan" />
 <meta property="og:title" content="BitDelta — Case Study" />
 <meta property="og:description" content="Three trading products, one design system — BitDelta, BitDelta Pro and BitDelta India, across web and mobile." />
-<meta property="og:image" content="https://saifalikhan.vercel.app/og.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
+<meta property="og:image" content="https://saifalikhan.vercel.app/img/16-bitdelta-web-home.jpg" />
+<meta property="og:image:width" content="1500" />
+<meta property="og:image:height" content="740" />
 <meta property="og:locale" content="en_AE" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="BitDelta — Case Study" />
 <meta name="twitter:description" content="Three trading products, one design system — BitDelta, BitDelta Pro and BitDelta India, across web and mobile." />
-<meta name="twitter:image" content="https://saifalikhan.vercel.app/og.png" />
+<meta name="twitter:image" content="https://saifalikhan.vercel.app/img/16-bitdelta-web-home.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -45,11 +44,10 @@
   .fam-i a:hover{color:var(--white)}
   @media(max-width:820px){.fam{grid-template-columns:minmax(0,1fr)}}
 
-  .ds-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);margin:clamp(20px,3vw,40px) 0}
-  .ds-tile{margin:0}
-  .ds-tile img{display:block;width:100%;height:auto;border:1px solid var(--g-800);border-radius:4px}
-  .ds-tile figcaption,.phone figcaption{margin-top:10px;font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;color:var(--g-300)}
-  @media(max-width:680px){.ds-board{grid-template-columns:minmax(0,1fr)}}
+  .ds-board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);margin:clamp(20px,3vw,40px) 0}
+  .ds-board .shot{margin:0}
+  .phone figcaption{margin-top:10px;font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;color:var(--g-300)}
+  @media(max-width:820px){.ds-board{grid-template-columns:minmax(0,1fr)}}
 
   .mg{margin:clamp(20px,3vw,40px) 0}
   .mg-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
@@ -61,14 +59,14 @@
     margin:0 calc(-1 * var(--pad));padding:0 var(--pad) 18px;scroll-padding-inline:var(--pad);scrollbar-width:thin;scrollbar-color:var(--g-600) transparent}
   .mg-set[hidden]{display:none}
   .mg-set.dragging{scroll-snap-type:none;user-select:none}
+  .mg-set img{-webkit-user-drag:none;user-select:none}
   .phone{flex:none;width:clamp(190px,21vw,250px);margin:0;scroll-snap-align:start}
-  .phone .frame{aspect-ratio:390/844;padding:6px;border:1px solid var(--g-600);border-radius:30px;background:var(--g-800);overflow:hidden}
-  .phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:24px}
+  /* App Store frames already carry their own device art, so no extra phone frame here */
+  .phone.shot{margin:0}
+  .phone img{display:block;width:100%;height:auto;aspect-ratio:600/1300;object-fit:cover;object-position:top;
+    border:1px solid var(--g-800);border-radius:18px}
+  .mg-note{margin-top:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;color:var(--g-300)}
 
-  /* draft only: where an exported screen goes (removed once the images are in) */
-  .slot{display:grid;place-items:center;height:100%;aspect-ratio:var(--ar,auto);border:1px dashed var(--g-600);border-radius:24px;
-    padding:14px;text-align:center;font-family:var(--mono);font-size:.68rem;line-height:1.5;letter-spacing:.06em;color:var(--g-300)}
-  .ds-tile .slot{height:auto;width:100%;border-radius:4px;--ar:16/10}
 </style>
 </head>
 <body class="page-work">
@@ -123,11 +121,11 @@
     <h2 data-layer="text">One design system</h2>
     <div class="bodytext">
       <p>I built and own the design system every one of these products builds from — tokens, components and the developer handoff process. It's the <em>single source of truth for 20+ engineers</em> across the product suite.</p>
-      <p>The same system carried the white-label platforms built on BitDelta — DIFX, DoshFX, OFZA and Visiion — <em>each launched in two weeks or less</em>.</p>
+      <p>The same system carried the white-label platforms built on BitDelta — DIFX, DoshFX, OFZA and Visiion — <em>each launched in two weeks or less</em>. Below, the three products live today: one balance-first home pattern, themed per brand.</p>
     </div>
   </div>
   <div class="wrap">
-    <div class="ds-board reveal"><figure class="ds-tile" data-layer><div class="slot">Colour &amp; tokens</div><figcaption>One token set, themed per brand</figcaption></figure><figure class="ds-tile" data-layer><div class="slot">Type scale</div><figcaption>Display, UI and numeric styles for dense trading data</figcaption></figure><figure class="ds-tile" data-layer><div class="slot">Components</div><figcaption>Buttons, inputs, order tickets, tables, charts chrome</figcaption></figure><figure class="ds-tile" data-layer><div class="slot">Brand themes</div><figcaption>The same screen in BitDelta, Pro and India</figcaption></figure></div>
+    <div class="ds-board reveal"><figure class="shot" data-layer><picture><source type="image/webp" srcset="/img/16-bitdelta-web-home-750.webp 750w, /img/16-bitdelta-web-home.webp 1500w" sizes="(max-width:820px) 90vw, 370px"><img src="/img/16-bitdelta-web-home.jpg" alt="bitdelta.com home — Step into the future of crypto, with the BitDelta app home screen" loading="lazy" decoding="async" width="1500" height="740"></picture><figcaption>BitDelta — bitdelta.com, the global exchange: the app home on a dark brand theme.</figcaption></figure><figure class="shot" data-layer><picture><source type="image/webp" srcset="/img/17-bitdelta-pro-web-home-750.webp 750w, /img/17-bitdelta-pro-web-home.webp 1500w" sizes="(max-width:820px) 90vw, 370px"><img src="/img/17-bitdelta-pro-web-home.jpg" alt="bitdelta.pro home — Trade global markets, your way, with the BitDelta Pro app home screen" loading="lazy" decoding="async" width="1500" height="740"></picture><figcaption>BitDelta Pro — bitdelta.pro, multi-asset CFDs: the same balance-first home, re-themed light.</figcaption></figure><figure class="shot" data-layer><picture><source type="image/webp" srcset="/img/18-bitdelta-india-web-home-750.webp 750w, /img/18-bitdelta-india-web-home.webp 1500w" sizes="(max-width:820px) 90vw, 370px"><img src="/img/18-bitdelta-india-web-home.jpg" alt="bitdelta.in home — a new standard for secure crypto trading in India, with the BitDelta India app" loading="lazy" decoding="async" width="1500" height="740"></picture><figcaption>BitDelta India — bitdelta.in: the global home screen, carried into the India brand.</figcaption></figure></div>
   </div>
 
   <div class="wrap case-body reveal">
@@ -139,9 +137,10 @@
   <div class="wrap">
     <div class="mg reveal">
       <div class="mg-tabs" role="tablist" aria-label="Mobile screens by product"><button type="button" role="tab" id="mg-t-bitdelta" aria-controls="mg-bitdelta" aria-selected="true" tabindex="0">BitDelta</button><button type="button" role="tab" id="mg-t-pro" aria-controls="mg-pro" aria-selected="false" tabindex="-1">BitDelta Pro</button><button type="button" role="tab" id="mg-t-india" aria-controls="mg-india" aria-selected="false" tabindex="-1">BitDelta India</button></div>
-      <div class="mg-set" id="mg-bitdelta" role="tabpanel" aria-labelledby="mg-t-bitdelta" data-cursor="Drag"><figure class="phone"><div class="frame"><div class="slot">BitDelta<br>Home</div></div><figcaption>Home</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta<br>Markets</div></div><figcaption>Markets</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta<br>Spot trade</div></div><figcaption>Spot trade</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta<br>Buy crypto</div></div><figcaption>Buy crypto</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta<br>Deposit</div></div><figcaption>Deposit</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta<br>KYC</div></div><figcaption>KYC</figcaption></figure></div>
-      <div class="mg-set" id="mg-pro" role="tabpanel" aria-labelledby="mg-t-pro" data-cursor="Drag" hidden><figure class="phone"><div class="frame"><div class="slot">BitDelta Pro<br>Watchlist</div></div><figcaption>Watchlist</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta Pro<br>Chart</div></div><figcaption>Chart</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta Pro<br>Order ticket</div></div><figcaption>Order ticket</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta Pro<br>Positions</div></div><figcaption>Positions</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta Pro<br>Copy trading</div></div><figcaption>Copy trading</figcaption></figure></div>
-      <div class="mg-set" id="mg-india" role="tabpanel" aria-labelledby="mg-t-india" data-cursor="Drag" hidden><figure class="phone"><div class="frame"><div class="slot">BitDelta India<br>Onboarding</div></div><figcaption>Onboarding</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta India<br>INR deposit</div></div><figcaption>INR deposit</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta India<br>Markets</div></div><figcaption>Markets</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta India<br>Trade</div></div><figcaption>Trade</figcaption></figure></div>
+      <div class="mg-set" id="mg-bitdelta" role="tabpanel" aria-labelledby="mg-t-bitdelta" data-cursor="Drag"><figure class="phone shot"><picture><source type="image/webp" srcset="/img/19-bitdelta-app-1.webp"><img src="/img/19-bitdelta-app-1.jpg" alt="BitDelta app home — total balance, 24h change and quick actions" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Home</figcaption></figure><figure class="phone shot"><picture><source type="image/webp" srcset="/img/19-bitdelta-app-2.webp"><img src="/img/19-bitdelta-app-2.jpg" alt="BitDelta markets — spot and derivatives lists with favourites" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Markets</figcaption></figure><figure class="phone shot"><picture><source type="image/webp" srcset="/img/19-bitdelta-app-3.webp"><img src="/img/19-bitdelta-app-3.jpg" alt="BitDelta copy trading — follow lead traders with minimised risk" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Copy trading</figcaption></figure><figure class="phone shot"><picture><source type="image/webp" srcset="/img/19-bitdelta-app-4.webp"><img src="/img/19-bitdelta-app-4.jpg" alt="BitDelta Lite and Advanced modes on the home screen" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Lite / Advanced</figcaption></figure><figure class="phone shot"><picture><source type="image/webp" srcset="/img/19-bitdelta-app-5.webp"><img src="/img/19-bitdelta-app-5.jpg" alt="BitDelta wallet — balances, deposit and withdraw" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Wallet</figcaption></figure></div>
+      <div class="mg-set" id="mg-pro" role="tabpanel" aria-labelledby="mg-t-pro" data-cursor="Drag" hidden><figure class="phone shot"><picture><source type="image/webp" srcset="/img/20-bitdelta-pro-app-1.webp"><img src="/img/20-bitdelta-pro-app-1.jpg" alt="BitDelta Pro markets — 5,000+ instruments across forex, stocks, commodities and crypto" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Markets</figcaption></figure><figure class="phone shot"><picture><source type="image/webp" srcset="/img/20-bitdelta-pro-app-2.webp"><img src="/img/20-bitdelta-pro-app-2.jpg" alt="BitDelta Pro deposit — fund by card, bank transfer or crypto" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Deposit</figcaption></figure><figure class="phone shot"><picture><source type="image/webp" srcset="/img/20-bitdelta-pro-app-3.webp"><img src="/img/20-bitdelta-pro-app-3.jpg" alt="BitDelta Pro chart and one-tap order placement" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Chart & trade</figcaption></figure><figure class="phone shot"><picture><source type="image/webp" srcset="/img/20-bitdelta-pro-app-4.webp"><img src="/img/20-bitdelta-pro-app-4.jpg" alt="BitDelta Pro order ticket — stop loss, take profit, advanced order types" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Order ticket</figcaption></figure><figure class="phone shot"><picture><source type="image/webp" srcset="/img/20-bitdelta-pro-app-5.webp"><img src="/img/20-bitdelta-pro-app-5.jpg" alt="BitDelta Pro account and settings" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Account</figcaption></figure></div>
+      <div class="mg-set" id="mg-india" role="tabpanel" aria-labelledby="mg-t-india" data-cursor="Drag" hidden><figure class="phone shot"><picture><source type="image/webp" srcset="/img/21-bitdelta-india-app-1.webp"><img src="/img/21-bitdelta-india-app-1.jpg" alt="BitDelta India app home — INR balance and quick actions" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Home</figcaption></figure><figure class="phone shot"><picture><source type="image/webp" srcset="/img/21-bitdelta-india-app-3.webp"><img src="/img/21-bitdelta-india-app-3.jpg" alt="BitDelta India derivatives — leverage with risk controls" loading="lazy" decoding="async" width="600" height="1300"></picture><figcaption>Derivatives</figcaption></figure></div>
+      <p class="mg-note">Frames from each app's App Store listing · click any screen to enlarge</p>
     </div>
   </div>
 
@@ -149,13 +148,13 @@
     <h2 data-layer="text">What shipped</h2>
     <div class="bodytext">
       <p><em>BitDelta</em> on web and mobile — then four white-label platforms on the same system, each in two weeks or less.</p>
-      <p><em>BitDelta Pro</em> — the all-new app, August 2025: CFDs across forex, equities, indices, commodities and crypto.</p>
-      <p><em>BitDelta India</em> — launched April 2026, INR-native trading on the group's technology.</p>
+      <p><em>BitDelta Pro</em> — I designed the all-new app, released August 2025: CFDs across forex, equities, indices, commodities and crypto.</p>
+      <p><em>BitDelta India</em> — I designed it for the April 2026 launch: INR-native trading on the group's technology.</p>
     </div>
   </div>
 
   <div class="case-nav">
-    <a href="/work/orfyx"><div class="k">Prev</div><div class="n">Orfyx</div></a>
+    <a href="/work/brickbrief"><div class="k">Prev</div><div class="n">BrickBrief</div></a>
     <a href="/"><div class="k">Index</div><div class="n">All work</div></a>
   </div>
 </article>
@@ -179,9 +178,17 @@
       });
     });
     document.querySelectorAll('.mg-set').forEach(set => {
-      let x0 = 0, s0 = 0, down = false;
-      set.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; x0 = e.clientX; s0 = set.scrollLeft; set.classList.add('dragging'); set.setPointerCapture(e.pointerId); });
-      set.addEventListener('pointermove', e => { if (down) set.scrollLeft = s0 - (e.clientX - x0); });
+      let x0 = 0, s0 = 0, down = false, moved = false;
+      set.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; moved = false; x0 = e.clientX; s0 = set.scrollLeft; });
+      set.addEventListener('pointermove', e => {
+        if (!down) return;
+        if (!moved && Math.abs(e.clientX - x0) > 5) { moved = true; set.classList.add('dragging'); set.setPointerCapture(e.pointerId); }
+        if (moved) set.scrollLeft = s0 - (e.clientX - x0);
+      });
+      // a drag isn't a click: don't open the screenshot viewer at the end of one
+      set.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+      // the browser's own image drag would cancel the gesture
+      set.addEventListener('dragstart', e => e.preventDefault());
       const up = () => { down = false; set.classList.remove('dragging'); };
       set.addEventListener('pointerup', up); set.addEventListener('pointercancel', up);
     });
