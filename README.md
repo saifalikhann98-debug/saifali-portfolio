@@ -19,8 +19,7 @@ Plain static site — hand-written HTML, CSS and JS. No build step, no dependenc
 | `resume.pdf` | Résumé, generated from `cv/cv.html` (see `cv/README.md`) |
 | `tools/webp.py` | Makes the WebP copies for new images |
 
-`.vercelignore` keeps repo-only files (`README.md`, `cv/`, `tools/`) and the
-unfinished `work/bitdelta.html` draft out of the deployment.
+`.vercelignore` keeps repo-only files (`README.md`, `cv/`, `tools/`) out of the deployment.
 
 ## Local preview
 
