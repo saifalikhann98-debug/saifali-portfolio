@@ -1,0 +1,9 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>shot</title>
+<!-- Temporary capture helper (not deployed: tools/ is in .vercelignore). Shows the image
+     in ?i= edge to edge, so a full-page screenshot at a given viewport width is the image. -->
+<style>html,body{margin:0;background:#fff}img{display:block;width:100vw;height:auto}</style>
+<img id="i" alt="">
+<script>document.getElementById('i').src = new URLSearchParams(location.search).get('i');</script>
