@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>BitDelta — Case Study | Saifali Khan</title>
 <meta name="robots" content="noindex" />
-<meta name="description" content="Case study — BitDelta crypto exchange. UI/UX for trading surfaces. Draft — content in progress." />
+<meta name="description" content="Case study — BitDelta, BitDelta Pro and BitDelta India: three trading products on one design system, across web and mobile. Designed by Saifali Khan." />
 <meta name="theme-color" content="#0A0A0A" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A0A0A'/%3E%3Ctext x='50' y='54' font-family='Arial,Helvetica,sans-serif' font-size='46' font-weight='800' fill='%23FAFAF7' text-anchor='middle' dominant-baseline='middle'%3ESK%3C/text%3E%3C/svg%3E" />
 <!-- Open Graph / social sharing -->
@@ -14,14 +14,14 @@
 <link rel="canonical" href="https://saifalikhan.vercel.app/work/bitdelta" />
 <meta property="og:site_name" content="Saifali Khan" />
 <meta property="og:title" content="BitDelta — Case Study" />
-<meta property="og:description" content="UI/UX for a crypto exchange — case study draft." />
+<meta property="og:description" content="Three trading products, one design system — BitDelta, BitDelta Pro and BitDelta India, across web and mobile." />
 <meta property="og:image" content="https://saifalikhan.vercel.app/og.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:locale" content="en_AE" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="BitDelta — Case Study" />
-<meta name="twitter:description" content="UI/UX for a crypto exchange — case study draft." />
+<meta name="twitter:description" content="Three trading products, one design system — BitDelta, BitDelta Pro and BitDelta India, across web and mobile." />
 <meta name="twitter:image" content="https://saifalikhan.vercel.app/og.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,15 +29,46 @@
 <link rel="stylesheet" href="/assets/site.css" />
 <script src="/assets/site.js" defer></script>
 <style>
-  /* draft-only: NDA note + TODO placeholder */
-  .nda-note{display:flex;align-items:center;gap:10px;margin:18px 0 0;padding:10px 14px;
-    border:1px solid var(--g-600);font-family:var(--mono);font-size:.72rem;
-    letter-spacing:.04em;color:var(--g-200);width:fit-content}
-  .nda-note::before{content:"NDA";font-weight:700;color:var(--white);border:1px solid var(--g-600);
-    padding:2px 6px;font-size:.6rem;letter-spacing:.1em}
-  .todo{border:1px dashed var(--g-600);padding:14px 16px;font-family:var(--mono);
-    font-size:.78rem;line-height:1.6;color:var(--g-300)}
-  .todo b{color:var(--white)}
+  /* BitDelta case only: the product family, the design-system board, the phone gallery */
+  .fam{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:clamp(20px,3vw,40px) 0;
+    background:var(--g-800);border:1px solid var(--g-800)}
+  .fam-i{display:flex;flex-direction:column;gap:12px;padding:clamp(22px,2.6vw,34px);background:var(--black)}
+  .fam-i .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--g-300)}
+  .fam-i h3{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(1.5rem,2.6vw,2.2rem);
+    letter-spacing:-.02em;line-height:.95}
+  .fam-i p{font-size:.98rem;line-height:1.55;color:var(--g-200)}
+  .fam-i ul{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:8px;list-style:none}
+  .fam-i li{padding:6px 8px;border:1px solid var(--g-600);font:500 .6rem/1 var(--mono);letter-spacing:.08em;
+    text-transform:uppercase;color:var(--g-200)}
+  .fam-i a{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;color:var(--g-300);text-decoration:underline;
+    text-underline-offset:3px;width:fit-content}
+  .fam-i a:hover{color:var(--white)}
+  @media(max-width:820px){.fam{grid-template-columns:minmax(0,1fr)}}
+
+  .ds-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);margin:clamp(20px,3vw,40px) 0}
+  .ds-tile{margin:0}
+  .ds-tile img{display:block;width:100%;height:auto;border:1px solid var(--g-800);border-radius:4px}
+  .ds-tile figcaption,.phone figcaption{margin-top:10px;font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;color:var(--g-300)}
+  @media(max-width:680px){.ds-board{grid-template-columns:minmax(0,1fr)}}
+
+  .mg{margin:clamp(20px,3vw,40px) 0}
+  .mg-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+  .mg-tabs button{padding:9px 12px;border:1px solid var(--g-600);background:none;color:var(--g-200);cursor:pointer;
+    font:500 .66rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+  .mg-tabs button:hover{border-color:var(--white);color:var(--white)}
+  .mg-tabs [aria-selected="true"]{background:var(--white);border-color:var(--white);color:var(--black)}
+  .mg-set{display:flex;gap:clamp(14px,2vw,24px);overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;
+    margin:0 calc(-1 * var(--pad));padding:0 var(--pad) 18px;scroll-padding-inline:var(--pad);scrollbar-width:thin;scrollbar-color:var(--g-600) transparent}
+  .mg-set[hidden]{display:none}
+  .mg-set.dragging{scroll-snap-type:none;user-select:none}
+  .phone{flex:none;width:clamp(190px,21vw,250px);margin:0;scroll-snap-align:start}
+  .phone .frame{aspect-ratio:390/844;padding:6px;border:1px solid var(--g-600);border-radius:30px;background:var(--g-800);overflow:hidden}
+  .phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:24px}
+
+  /* draft only: where an exported screen goes (removed once the images are in) */
+  .slot{display:grid;place-items:center;height:100%;aspect-ratio:var(--ar,auto);border:1px dashed var(--g-600);border-radius:24px;
+    padding:14px;text-align:center;font-family:var(--mono);font-size:.68rem;line-height:1.5;letter-spacing:.06em;color:var(--g-300)}
+  .ds-tile .slot{height:auto;width:100%;border-radius:4px;--ar:16/10}
 </style>
 </head>
 <body class="page-work">
@@ -50,61 +81,76 @@
 </nav>
 
 <article id="case-bitdelta" class="case ink" data-canvas data-canvas-auto=".case-title" data-canvas-delay="900">
-
   <div class="wrap case-hero">
     <a class="back" href="/"><span class="ar">←</span>&nbsp; Back to all work</a>
     <div class="case-eyebrow reveal">
-      <span>Fintech / Employed work</span><span><b>TODO(saif): years</b></span><span>Product, Trading UI</span>
+      <span>04 / Fintech — in-house at D24</span><span><b>2021—now</b></span><span>Product, Mobile, Design system</span>
     </div>
     <h1 class="case-title" data-layer="text">BitDelta</h1>
-    <p class="case-lede reveal" data-layer="text">TODO(saif): one-line lede — what BitDelta is and what you owned.</p>
-    <p class="nda-note reveal">Screens redrawn and anonymised — original work under NDA.</p>
+    <p class="case-lede reveal" data-layer="text">Three trading products, one design system — the BitDelta exchange, BitDelta Pro and BitDelta India, across web and mobile.</p>
+    <a class="livelink reveal" href="https://bitdelta.com/en" target="_blank" rel="noopener"><span class="dot"></span>Visit live site — bitdelta.com</a>
     <div class="case-meta reveal" data-layer>
-      <div><div class="k">Role</div><div class="v">TODO(saif)</div></div>
-      <div><div class="k">Type</div><div class="v">Crypto exchange, Web</div></div>
-      <div><div class="k">Years</div><div class="v">TODO(saif)</div></div>
-      <div><div class="k">Status</div><div class="v">Shipped — site has since changed</div></div>
+      <div><div class="k">Role</div><div class="v">Senior UI/UX Designer</div></div>
+      <div><div class="k">Products</div><div class="v">BitDelta, Pro, India</div></div>
+      <div><div class="k">Platforms</div><div class="v">Web, iOS, Android</div></div>
+      <div><div class="k">Reach</div><div class="v">400K+ verified users</div></div>
     </div>
   </div>
 
   <div class="wrap case-body reveal">
-    <h2 data-layer="text">Constraint</h2>
+    <h2 data-layer="text">Three products</h2>
     <div class="bodytext">
-      <div class="todo"><b>TODO(saif):</b> the constraint that shaped the work — regulatory, latency,
-        legacy platform, team, timeline. Not "the problem" — the box you had to design inside.</div>
+      <p>BitDelta began as the group's crypto exchange and grew into a family: <em>BitDelta Pro</em> for multi-asset trading and <em>BitDelta India</em> for the Indian market — plus the white-label platforms built on the same core. Each has its own audience, rules and brand. They share one design language.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="fam reveal">
+      <div class="fam-i" data-layer><span class="k">Crypto exchange</span><h3>BitDelta</h3>
+        <p>The group's flagship. Buy, sell and store crypto, and trade spot and derivatives — on web and mobile.</p>
+        <ul><li>Spot</li><li>Derivatives</li><li>Web + app</li></ul>
+        <a href="https://bitdelta.com/en" target="_blank" rel="noopener">bitdelta.com ↗</a></div>
+      <div class="fam-i" data-layer><span class="k">Multi-asset CFDs</span><h3>BitDelta Pro</h3>
+        <p>5,000+ instruments across forex, equities, indices, commodities and crypto from one account, with copy trading and MetaTrader&nbsp;5 alongside BitDelta's own terminal.</p>
+        <ul><li>Forex</li><li>Equities</li><li>Copy trading</li></ul>
+        <a href="https://bitdelta.pro/" target="_blank" rel="noopener">bitdelta.pro ↗</a></div>
+      <div class="fam-i" data-layer><span class="k">India</span><h3>BitDelta India</h3>
+        <p>An India-focused exchange, launched in April 2026 on the group's technology — with INR-native trading.</p>
+        <ul><li>INR</li><li>Crypto</li><li>Launched 2026</li></ul></div>
     </div>
   </div>
 
   <div class="wrap case-body reveal">
-    <h2 data-layer="text">One flow, end to end</h2>
+    <h2 data-layer="text">One design system</h2>
     <div class="bodytext">
-      <div class="todo"><b>TODO(saif):</b> pick a single flow (e.g. place a spot trade / onboard &amp; KYC)
-        and walk it start to finish. Suggested beats: entry point → decision screen → confirmation →
-        failure state → resolution.</div>
+      <p>I built and own the design system every one of these products builds from — tokens, components and the developer handoff process. It's the <em>single source of truth for 20+ engineers</em> across the product suite.</p>
+      <p>The same system carried the white-label platforms built on BitDelta — DIFX, DoshFX, OFZA and Visiion — <em>each launched in two weeks or less</em>.</p>
     </div>
+  </div>
+  <div class="wrap">
+    <div class="ds-board reveal"><figure class="ds-tile" data-layer><div class="slot">Colour &amp; tokens</div><figcaption>One token set, themed per brand</figcaption></figure><figure class="ds-tile" data-layer><div class="slot">Type scale</div><figcaption>Display, UI and numeric styles for dense trading data</figcaption></figure><figure class="ds-tile" data-layer><div class="slot">Components</div><figcaption>Buttons, inputs, order tickets, tables, charts chrome</figcaption></figure><figure class="ds-tile" data-layer><div class="slot">Brand themes</div><figcaption>The same screen in BitDelta, Pro and India</figcaption></figure></div>
   </div>
 
   <div class="wrap case-body reveal">
-    <h2 data-layer="text">Decisions</h2>
+    <h2 data-layer="text">Mobile</h2>
     <div class="bodytext">
-      <div class="todo"><b>TODO(saif):</b> 2–4 decisions, each with the <b>rejected alternative</b> and why.
-        Format: "Chose X over Y because Z" — the Y matters as much as the X.</div>
+      <p>On mobile I designed the money-in flows end to end — <em>buy crypto, fiat deposit, wallet onboarding and KYC</em>: the screens every new user passes through before their first trade.</p>
     </div>
   </div>
-
-  <div class="wrap case-body reveal">
-    <h2 data-layer="text">Screens</h2>
-    <div class="bodytext">
-      <div class="todo"><b>TODO(saif):</b> 3–5 redrawn, anonymised screens → /img/bitdelta-*.jpg
-        (1500×771 like the other cases). Each gets a one-line figcaption.</div>
+  <div class="wrap">
+    <div class="mg reveal">
+      <div class="mg-tabs" role="tablist" aria-label="Mobile screens by product"><button type="button" role="tab" id="mg-t-bitdelta" aria-controls="mg-bitdelta" aria-selected="true" tabindex="0">BitDelta</button><button type="button" role="tab" id="mg-t-pro" aria-controls="mg-pro" aria-selected="false" tabindex="-1">BitDelta Pro</button><button type="button" role="tab" id="mg-t-india" aria-controls="mg-india" aria-selected="false" tabindex="-1">BitDelta India</button></div>
+      <div class="mg-set" id="mg-bitdelta" role="tabpanel" aria-labelledby="mg-t-bitdelta" data-cursor="Drag"><figure class="phone"><div class="frame"><div class="slot">BitDelta<br>Home</div></div><figcaption>Home</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta<br>Markets</div></div><figcaption>Markets</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta<br>Spot trade</div></div><figcaption>Spot trade</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta<br>Buy crypto</div></div><figcaption>Buy crypto</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta<br>Deposit</div></div><figcaption>Deposit</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta<br>KYC</div></div><figcaption>KYC</figcaption></figure></div>
+      <div class="mg-set" id="mg-pro" role="tabpanel" aria-labelledby="mg-t-pro" data-cursor="Drag" hidden><figure class="phone"><div class="frame"><div class="slot">BitDelta Pro<br>Watchlist</div></div><figcaption>Watchlist</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta Pro<br>Chart</div></div><figcaption>Chart</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta Pro<br>Order ticket</div></div><figcaption>Order ticket</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta Pro<br>Positions</div></div><figcaption>Positions</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta Pro<br>Copy trading</div></div><figcaption>Copy trading</figcaption></figure></div>
+      <div class="mg-set" id="mg-india" role="tabpanel" aria-labelledby="mg-t-india" data-cursor="Drag" hidden><figure class="phone"><div class="frame"><div class="slot">BitDelta India<br>Onboarding</div></div><figcaption>Onboarding</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta India<br>INR deposit</div></div><figcaption>INR deposit</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta India<br>Markets</div></div><figcaption>Markets</figcaption></figure><figure class="phone"><div class="frame"><div class="slot">BitDelta India<br>Trade</div></div><figcaption>Trade</figcaption></figure></div>
     </div>
   </div>
 
   <div class="wrap case-body reveal">
     <h2 data-layer="text">What shipped</h2>
     <div class="bodytext">
-      <div class="todo"><b>TODO(saif):</b> what went live, at what scale, and your part in it.
-        No metrics unless real.</div>
+      <p><em>BitDelta</em> on web and mobile — then four white-label platforms on the same system, each in two weeks or less.</p>
+      <p><em>BitDelta Pro</em> — the all-new app, August 2025: CFDs across forex, equities, indices, commodities and crypto.</p>
+      <p><em>BitDelta India</em> — launched April 2026, INR-native trading on the group's technology.</p>
     </div>
   </div>
 
@@ -113,5 +159,33 @@
     <a href="/"><div class="k">Index</div><div class="n">All work</div></a>
   </div>
 </article>
+<script>
+  // phone gallery: product tabs (arrow keys move between them) and drag-to-scroll with a mouse
+  (() => {
+    const tabs = [...document.querySelectorAll('.mg-tabs [role=tab]')];
+    const show = (t, focus) => {
+      tabs.forEach(b => {
+        const on = b === t;
+        b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1;
+        document.getElementById(b.getAttribute('aria-controls')).hidden = !on;
+      });
+      if (focus) t.focus();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => show(t));
+      t.addEventListener('keydown', e => {
+        const k = { ArrowRight: i + 1, ArrowLeft: i - 1 }[e.key];
+        if (k !== undefined) { e.preventDefault(); show(tabs[(k + tabs.length) % tabs.length], true); }
+      });
+    });
+    document.querySelectorAll('.mg-set').forEach(set => {
+      let x0 = 0, s0 = 0, down = false;
+      set.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; x0 = e.clientX; s0 = set.scrollLeft; set.classList.add('dragging'); set.setPointerCapture(e.pointerId); });
+      set.addEventListener('pointermove', e => { if (down) set.scrollLeft = s0 - (e.clientX - x0); });
+      const up = () => { down = false; set.classList.remove('dragging'); };
+      set.addEventListener('pointerup', up); set.addEventListener('pointercancel', up);
+    });
+  })();
+</script>
 </body>
 </html>
