@@ -46,6 +46,10 @@
 
   .ds-board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);margin:clamp(20px,3vw,40px) 0}
   .ds-board .shot{margin:0}
+  .ds-board figcaption a{color:var(--g-200);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+  .ds-board figcaption a:hover{color:var(--white)}
+  .livelinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+  .livelinks .livelink{margin-top:0}
   .phone figcaption{margin-top:10px;font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;color:var(--g-300)}
   @media(max-width:820px){.ds-board{grid-template-columns:minmax(0,1fr)}}
 
@@ -86,7 +90,7 @@
     </div>
     <h1 class="case-title" data-layer="text">BitDelta</h1>
     <p class="case-lede reveal" data-layer="text">Three trading products, one design system — the BitDelta exchange, BitDelta Pro and BitDelta India, across web and mobile.</p>
-    <a class="livelink reveal" href="https://bitdelta.com/en" target="_blank" rel="noopener"><span class="dot"></span>Visit live site — bitdelta.com</a>
+    <div class="livelinks reveal"><a class="livelink" href="https://bitdelta.com/en" target="_blank" rel="noopener"><span class="dot"></span>bitdelta.com</a><a class="livelink" href="https://bitdelta.pro/" target="_blank" rel="noopener"><span class="dot"></span>bitdelta.pro</a><a class="livelink" href="https://bitdelta.in/en" target="_blank" rel="noopener"><span class="dot"></span>bitdelta.in</a></div>
     <div class="case-meta reveal" data-layer>
       <div><div class="k">Role</div><div class="v">Senior UI/UX Designer</div></div>
       <div><div class="k">Products</div><div class="v">BitDelta, Pro, India</div></div>
@@ -113,7 +117,8 @@
         <a href="https://bitdelta.pro/" target="_blank" rel="noopener">bitdelta.pro ↗</a></div>
       <div class="fam-i" data-layer><span class="k">India</span><h3>BitDelta India</h3>
         <p>An India-focused exchange, launched in April 2026 on the group's technology — with INR-native trading.</p>
-        <ul><li>INR</li><li>Crypto</li><li>Launched 2026</li></ul></div>
+        <ul><li>INR</li><li>Crypto</li><li>Launched 2026</li></ul>
+        <a href="https://bitdelta.in/en" target="_blank" rel="noopener">bitdelta.in ↗</a></div>
     </div>
   </div>
 
@@ -125,7 +130,7 @@
     </div>
   </div>
   <div class="wrap">
-    <div class="ds-board reveal"><figure class="shot" data-layer><picture><source type="image/webp" srcset="/img/16-bitdelta-web-home-750.webp 750w, /img/16-bitdelta-web-home.webp 1500w" sizes="(max-width:820px) 90vw, 370px"><img src="/img/16-bitdelta-web-home.jpg" alt="bitdelta.com home — Step into the future of crypto, with the BitDelta app home screen" loading="lazy" decoding="async" width="1500" height="740"></picture><figcaption>BitDelta — bitdelta.com, the global exchange: the app home on a dark brand theme.</figcaption></figure><figure class="shot" data-layer><picture><source type="image/webp" srcset="/img/17-bitdelta-pro-web-home-750.webp 750w, /img/17-bitdelta-pro-web-home.webp 1500w" sizes="(max-width:820px) 90vw, 370px"><img src="/img/17-bitdelta-pro-web-home.jpg" alt="bitdelta.pro home — Trade global markets, your way, with the BitDelta Pro app home screen" loading="lazy" decoding="async" width="1500" height="740"></picture><figcaption>BitDelta Pro — bitdelta.pro, multi-asset CFDs: the same balance-first home, re-themed light.</figcaption></figure><figure class="shot" data-layer><picture><source type="image/webp" srcset="/img/18-bitdelta-india-web-home-750.webp 750w, /img/18-bitdelta-india-web-home.webp 1500w" sizes="(max-width:820px) 90vw, 370px"><img src="/img/18-bitdelta-india-web-home.jpg" alt="bitdelta.in home — a new standard for secure crypto trading in India, with the BitDelta India app" loading="lazy" decoding="async" width="1500" height="740"></picture><figcaption>BitDelta India — bitdelta.in: the global home screen, carried into the India brand.</figcaption></figure></div>
+    <div class="ds-board reveal"><figure class="shot" data-layer><picture><source type="image/webp" srcset="/img/16-bitdelta-web-home-750.webp 750w, /img/16-bitdelta-web-home.webp 1500w" sizes="(max-width:820px) 90vw, 370px"><img src="/img/16-bitdelta-web-home.jpg" alt="bitdelta.com home — Step into the future of crypto, with the BitDelta app home screen" loading="lazy" decoding="async" width="1500" height="740"></picture><figcaption>BitDelta — bitdelta.com, the global exchange: the app home on a dark brand theme. <a href="https://bitdelta.com/en" target="_blank" rel="noopener">Visit bitdelta.com ↗</a></figcaption></figure><figure class="shot" data-layer><picture><source type="image/webp" srcset="/img/17-bitdelta-pro-web-home-750.webp 750w, /img/17-bitdelta-pro-web-home.webp 1500w" sizes="(max-width:820px) 90vw, 370px"><img src="/img/17-bitdelta-pro-web-home.jpg" alt="bitdelta.pro home — Trade global markets, your way, with the BitDelta Pro app home screen" loading="lazy" decoding="async" width="1500" height="740"></picture><figcaption>BitDelta Pro — bitdelta.pro, multi-asset CFDs: the same balance-first home, re-themed light. <a href="https://bitdelta.pro/" target="_blank" rel="noopener">Visit bitdelta.pro ↗</a></figcaption></figure><figure class="shot" data-layer><picture><source type="image/webp" srcset="/img/18-bitdelta-india-web-home-750.webp 750w, /img/18-bitdelta-india-web-home.webp 1500w" sizes="(max-width:820px) 90vw, 370px"><img src="/img/18-bitdelta-india-web-home.jpg" alt="bitdelta.in home — a new standard for secure crypto trading in India, with the BitDelta India app" loading="lazy" decoding="async" width="1500" height="740"></picture><figcaption>BitDelta India — bitdelta.in: the global home screen, carried into the India brand. <a href="https://bitdelta.in/en" target="_blank" rel="noopener">Visit bitdelta.in ↗</a></figcaption></figure></div>
   </div>
 
   <div class="wrap case-body reveal">
