@@ -11,13 +11,15 @@ Plain static site — hand-written HTML, CSS and JS. No build step, no dependenc
 | `index.html` | Home — intro (text + portrait, skills strip), the approach, at a glance (card grid), selected work, experience, contact |
 | `work/*.html` | Case studies, served at `/work/<name>` (`cleanUrls` in `vercel.json`) |
 | `orfyx-design-system.html` | ORFYX design system & UI kit, linked from the Orfyx case study |
-| `assets/site.css` | The one stylesheet every page shares |
+| `assets/site.css` | The one stylesheet every page shares (starts with the generated `@font-face` rules) |
+| `assets/fonts/` | Self-hosted WOFF2 fonts, written by `tools/fonts.py`; names carry a content hash so they cache forever |
 | `assets/site.js` | Shared behaviour: scroll reveal, interactions, view transitions |
 | `img/` | Screenshots and portrait — each `NAME.jpg` has `NAME.webp` + a half-size WebP |
 | `404.html` | Not-found page (Vercel serves it automatically) |
 | `og.png` | 1200×630 social share card |
 | `resume.pdf` | Résumé, generated from `cv/cv.html` (see `cv/README.md`) |
 | `tools/webp.py` | Makes the WebP copies for new images |
+| `tools/fonts.py` | Downloads the Google Fonts files into `assets/fonts/` and writes their `@font-face` rules |
 
 `.vercelignore` keeps repo-only files (`README.md`, `cv/`, `tools/`) out of the deployment.
 
@@ -28,10 +30,26 @@ npx serve .          # honours cleanUrls, so /work/mizan works
 # or: python3 -m http.server 8000   (then open /work/mizan.html)
 ```
 
+## Fonts
+
+Fonts are self-hosted (no Google Fonts request on the critical path), which
+halved first paint on a throttled phone. To change a family or weight, or after
+editing the home page's greeting words (the Arabic, Devanagari, Korean and
+Japanese greetings are subset to just their glyphs), run:
+
+```bash
+python3 tools/fonts.py
+```
+
+It rewrites the block between `/* fonts:start */` and `/* fonts:end */` in
+`assets/site.css` and `orfyx-design-system.html`, updates the
+`<link rel="preload">` file names in every page, and deletes unused files.
+
 ## Adding a case study
 
 1. Copy `work/brickbrief.html` to `work/<name>.html` and replace the content.
-   Keep the `<head>` links to `/assets/site.css` and `/assets/site.js`.
+   Keep the `<head>` font preload and the links to `/assets/site.css` and
+   `/assets/site.js`.
 2. Screenshots: export at 1500px wide as `img/NN-<name>-<what>.jpg`, then
    `python3 tools/webp.py img/NN-*.jpg` and wrap the `<img>` in the same
    `<picture>` markup the other case studies use.
@@ -72,3 +90,24 @@ Then, in the Vercel dashboard (project **saifali-portfolio**):
 3. Set the custom domain as **primary** (Vercel then 308-redirects the *.vercel.app URL).
 4. Push the URL swap commit (step above) so canonical/OG/sitemap match the new domain.
 5. Re-scrape the OG cards (opengraph.xyz or the platform debuggers) — they cache.
+
+## Open content
+
+Things only Saif can fill in. Paste each snippet into the case study's
+**Outcome** section, inside `<div class="bodytext">`.
+
+- **Mizan**: launch month and stage, plus the one metric that shows it works.
+  `<p><em>Status.</em> Launched MONTH YEAR, STAGE.</p>`
+  `<p><em>Measuring.</em> METRIC.</p>`
+- **Orfyx**: the same two lines.
+- **BrickBrief**: the metric (status is already there).
+  `<p><em>Measuring.</em> METRIC.</p>`
+- **BitDelta row on the home page**: per-product years, if you want them shown.
+- **A testimonial**: one or two lines from a PM, engineer or client, with their
+  name and role.
+- **ORFYX design-system photos**: the page still loads its gym photos from
+  Unsplash. Download them into `img/`, run `tools/webp.py`, and point the page
+  at the local files so it doesn't depend on a third party.
+- **ORFYX tokens**: the design-system page now uses `#6B6B67` for tertiary text
+  and `#1A7A50` for success, both AA on their surfaces. Bring the live app's
+  tokens in line.

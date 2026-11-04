@@ -22,9 +22,7 @@
 <meta name="twitter:title" content="BitDelta Case Study" />
 <meta name="twitter:description" content="Three trading products, one design system: BitDelta, BitDelta Pro and BitDelta India, across web and mobile." />
 <meta name="twitter:image" content="https://saifalikhan.vercel.app/img/16-bitdelta-web-home.jpg" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin-11f6ab2d.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="/assets/site.css" />
 <script src="/assets/site.js" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -135,15 +133,10 @@
     <div class="ds-board reveal"><figure class="shot" data-layer><picture><source type="image/webp" srcset="/img/16-bitdelta-web-home-750.webp 750w, /img/16-bitdelta-web-home.webp 1500w" sizes="(max-width:820px) 90vw, 370px"><img src="/img/16-bitdelta-web-home.jpg" alt="bitdelta.com home: Step into the future of crypto, with the BitDelta app home screen" loading="lazy" decoding="async" width="1500" height="740"></picture><figcaption>BitDelta at bitdelta.com, the global exchange: the app home on a dark brand theme. <a href="https://bitdelta.com/en" target="_blank" rel="noopener">Visit bitdelta.com ↗</a></figcaption></figure><figure class="shot" data-layer><picture><source type="image/webp" srcset="/img/17-bitdelta-pro-web-home-750.webp 750w, /img/17-bitdelta-pro-web-home.webp 1500w" sizes="(max-width:820px) 90vw, 370px"><img src="/img/17-bitdelta-pro-web-home.jpg" alt="bitdelta.pro home: Trade global markets, your way, with the BitDelta Pro app home screen" loading="lazy" decoding="async" width="1500" height="740"></picture><figcaption>BitDelta Pro at bitdelta.pro, multi-asset CFDs: the same balance-first home, re-themed light. <a href="https://bitdelta.pro/" target="_blank" rel="noopener">Visit bitdelta.pro ↗</a></figcaption></figure><figure class="shot" data-layer><picture><source type="image/webp" srcset="/img/18-bitdelta-india-web-home-750.webp 750w, /img/18-bitdelta-india-web-home.webp 1500w" sizes="(max-width:820px) 90vw, 370px"><img src="/img/18-bitdelta-india-web-home.jpg" alt="bitdelta.in home: a new standard for secure crypto trading in India, with the BitDelta India app" loading="lazy" decoding="async" width="1500" height="740"></picture><figcaption>BitDelta India at bitdelta.in: the global home screen, carried into the India brand. <a href="https://bitdelta.in/en" target="_blank" rel="noopener">Visit bitdelta.in ↗</a></figcaption></figure></div>
   </div>
 
-  <div class="wrap case-body reveal">
-    <h2 data-layer="text">Mobile</h2>
-    <div class="bodytext">
-      <p>On mobile I designed the money-in flows end to end: <em>buy crypto, fiat deposit, wallet onboarding and KYC</em>. These are the screens every new user passes through before their first trade.</p>
-    </div>
-  </div>
   <div class="wrap">
-    <!-- App Store screen gallery, hidden at the owner's request: a <template> is never rendered,
-         so nothing loads and the lightbox ignores it. Unwrap it to show the screens again. -->
+    <!-- App Store screen gallery, hidden for now: a <template> is never rendered, so nothing
+         loads and the lightbox ignores it. To show the screens again, unwrap it and put a
+         "Mobile" case-body heading back above it. -->
     <template id="mg-hidden">
     <div class="mg reveal">
       <div class="mg-tabs" role="tablist" aria-label="Mobile screens by product"><button type="button" role="tab" id="mg-t-bitdelta" aria-controls="mg-bitdelta" aria-selected="true" tabindex="0">BitDelta</button><button type="button" role="tab" id="mg-t-pro" aria-controls="mg-pro" aria-selected="false" tabindex="-1">BitDelta Pro</button><button type="button" role="tab" id="mg-t-india" aria-controls="mg-india" aria-selected="false" tabindex="-1">BitDelta India</button></div>
@@ -159,6 +152,7 @@
     <h2 data-layer="text">What shipped</h2>
     <div class="bodytext">
       <p><em>BitDelta</em> on web and mobile, then four white-label platforms on the same system, each in two weeks or less.</p>
+      <p><em>The money-in flows.</em> On mobile I designed buy crypto, fiat deposit, wallet onboarding and KYC end to end: the screens every new user passes through before their first trade.</p>
       <p><em>BitDelta Pro.</em> I designed the all-new app, released in August 2025, with CFDs across forex, equities, indices, commodities and crypto.</p>
       <p><em>BitDelta India.</em> I designed it for the April 2026 launch: INR-native trading on the group's technology.</p>
     </div>

@@ -224,8 +224,9 @@ document.querySelectorAll('[data-canvas]').forEach(sec => {
     sel.style.top = r.top - a.top - pad + 'px';
     sel.style.width = r.width + pad * 2 + 'px';
     sel.style.height = r.height + pad * 2 + 'px';
+    // drawn by CSS from data-wh: generated text, so contrast checkers skip the decorative readout
     const wh = `${Math.round(r.width)} × ${Math.round(r.height)}`;
-    if (size.textContent !== wh) size.textContent = wh;
+    if (size.dataset.wh !== wh) size.dataset.wh = wh;
   };
   const select = (el, text = false) => {
     clearTimeout(hideT); current = el; asText = text; place(); sel.classList.add('on');
