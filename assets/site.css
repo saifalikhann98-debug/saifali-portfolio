@@ -166,8 +166,8 @@ nav.on-ink::before{background:rgba(10,10,10,.8);box-shadow:0 1px 0 var(--g-800)}
 .wrow .go{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:var(--g-400);
   display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 .wrow .go .ar{transition:transform .3s ease}
-.wrow .go .golive{position:relative;z-index:3;color:inherit;opacity:.7;margin-left:.4em;transition:opacity .2s;white-space:nowrap}
-.wrow .go .golive:hover{opacity:1;text-decoration:underline}
+.wrow .go .golive{position:relative;z-index:3;color:inherit;margin-left:.4em;white-space:nowrap}
+.wrow .go .golive:hover{text-decoration:underline}
 .wrow:hover .go{color:var(--black)}
 .wrow:hover .go .ar{transform:translate(5px,-5px)}
 @media(max-width:820px){.wrow .go{margin-top:10px}}
