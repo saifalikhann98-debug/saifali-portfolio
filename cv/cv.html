@@ -24,7 +24,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{background:var(--paper)}
-  body{width:210mm;height:296.5mm;overflow:hidden;font-family:var(--body);color:var(--ink);font-size:8.2pt;line-height:1.35;
+  body{width:210mm;height:296.5mm;overflow:hidden;font-family:var(--body);color:var(--ink);font-size:8.2pt;line-height:1.33;
     -webkit-print-color-adjust:exact;print-color-adjust:exact;display:flex;flex-direction:column}
   a{color:inherit;text-decoration:none}
 
@@ -52,7 +52,7 @@
   main{padding:4.2mm var(--px) 0;flex:1;display:flex;flex-direction:column}
 
   /* section heading: "01 / Profile" then a hairline to the edge */
-  .sec{display:flex;align-items:center;gap:3mm;margin:3.3mm 0 1.5mm;font-family:var(--mono);font-size:6.6pt;
+  .sec{display:flex;align-items:center;gap:3mm;margin:3mm 0 1.5mm;font-family:var(--mono);font-size:6.6pt;
     letter-spacing:.16em;text-transform:uppercase;color:var(--g-400)}
   .sec:first-child{margin-top:0}
   .sec b{color:var(--ink);font-weight:500}
@@ -61,7 +61,7 @@
   .profile{font-size:8.9pt;line-height:1.42;color:var(--ink)}
 
   /* experience rows, like .xrow on the site */
-  .x{padding:1.85mm 0;border-top:1px solid var(--g-100)}
+  .x{padding:1.75mm 0;border-top:1px solid var(--g-100)}
   .xh{display:flex;justify-content:space-between;align-items:baseline;gap:4mm}
   .sec + .x{border-top:0;padding-top:.4mm}
   .yr{font-family:var(--mono);font-size:6.7pt;color:var(--g-400);letter-spacing:.02em;white-space:nowrap}
@@ -69,7 +69,7 @@
   .x h3{font-family:var(--display);font-weight:650;font-size:10.6pt;letter-spacing:-.01em;line-height:1.2}
   .x h3 em{font-style:normal;font-weight:500;color:var(--g-400)}
   ul{list-style:none;margin-top:.9mm}
-  li{position:relative;padding-left:3.6mm;margin-top:.5mm;color:var(--g-600)}
+  li{position:relative;padding-left:3.6mm;margin-top:.35mm;color:var(--g-600)}
   li::before{content:"";position:absolute;left:.3mm;top:1.6mm;width:1.3mm;height:1.3mm;background:var(--black)}
   li b{color:var(--ink);font-weight:600}
 
@@ -93,10 +93,9 @@
   .skills dd{color:var(--ink)}
 
   .edu{display:flex;justify-content:space-between;align-items:baseline;gap:4mm}
-  .edu h3{font-family:var(--display);font-weight:650;font-size:10.6pt;letter-spacing:-.01em}
-  .edu h3 em{font-style:normal;font-weight:500;color:var(--g-400)}
+  .edu b{font-weight:600}
 
-  footer{margin-top:auto;padding:3mm 0 4.6mm;display:flex;flex-wrap:nowrap;gap:1.4mm}
+  footer{margin-top:auto;padding:3mm 0 4.2mm;display:flex;flex-wrap:nowrap;gap:1.4mm}
   .chip{font-family:var(--mono);font-size:5.9pt;letter-spacing:.06em;white-space:nowrap;text-transform:uppercase;color:var(--ink);
     border:1px solid var(--g-200);border-radius:999px;padding:1.4mm 2.5mm 1.2mm}
   .chip.k{border-color:var(--black);background:var(--black);color:var(--white)}
@@ -175,24 +174,25 @@
     </div>
     <div class="w">
       <span class="num">04</span>
+      <h3>OFZA</h3>
+      <span><a class="u" href="https://ofza.com/en">ofza.com</a></span>
+      <p>White-label trading platform on the BitDelta system, with dashboards and market views. Site has since changed.</p>
+    </div>
+    <div class="w">
+      <span class="num">05</span>
       <h3>Punarnavam &amp; Arabian Mist <span class="pill"><i></i>Live</span></h3>
       <span><a class="u" href="https://www.punarnavamayur.com/">punarnavamayur.com</a><a class="u" href="https://www.arabianmistperfumes.com/">arabianmistperfumes.com</a></span>
       <p>Brand identity and storefront for an Ayurvedic healing retreat in Kerala and a UAE luxury perfume house.</p>
     </div>
 
-    <div class="sec"><b>04</b> / Skills</div>
+    <div class="sec"><b>04</b> / Skills &amp; education</div>
     <dl class="skills">
       <dt>Design</dt><dd>Figma, design systems, interaction design, prototyping and motion (Framer), developer handoff</dd>
       <dt>Build</dt><dd>HTML, CSS, JavaScript, React, production frontends, AI-assisted development (Claude Code)</dd>
       <dt>Methods</dt><dd>Product thinking, zero-to-one product design, user research, usability testing, design leadership</dd>
       <dt>Domains</dt><dd>Crypto and trading, fintech, AI products, e-commerce, marketplaces</dd>
+      <dt>Education</dt><dd class="edu"><span><b>BSc, Game &amp; Interactive Media Design</b> at ICAT College of Design &amp; Media</span><span class="yr">2016 - 2019</span></dd>
     </dl>
-
-    <div class="sec"><b>05</b> / Education</div>
-    <div class="edu">
-      <h3>BSc, Game &amp; Interactive Media Design <em>at ICAT College of Design &amp; Media</em></h3>
-      <span class="yr">2016 - 2019</span>
-    </div>
 
     <footer>
       <span class="chip k">Strengths</span>
