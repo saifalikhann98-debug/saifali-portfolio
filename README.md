@@ -21,6 +21,17 @@ Plain static site — hand-written HTML, CSS and JS. No build step, no dependenc
 
 `.vercelignore` keeps repo-only files (`README.md`, `cv/`, `tools/`) out of the deployment.
 
+## Hidden for now: BrickBrief
+
+BrickBrief is off the live site. `work/brickbrief.html` and its screenshots stay in the
+repo but are listed in `.vercelignore`, and its row is removed from the work list.
+To bring it back:
+
+1. Remove the two BrickBrief lines from `.vercelignore`.
+2. Re-add its work row in `index.html` (the row is in commit `3b82a60`, PR #23) and renumber the rows after it.
+3. Restore its entries in `sitemap.xml`, the 404 links, and the prev/next links in
+   `work/orfyx.html` and `work/bitdelta.html` (BitDelta's eyebrow number too).
+
 ## Local preview
 
 ```bash
