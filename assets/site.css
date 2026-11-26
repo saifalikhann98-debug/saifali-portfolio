@@ -527,6 +527,7 @@ footer{padding:26px var(--pad);display:flex;justify-content:space-between;flex-w
 .bx p b{color:var(--black);font-weight:600}
 .bx-n{font-family:var(--display);font-weight:800;font-size:clamp(3.2rem,5.4vw,5rem);line-height:.9;letter-spacing:-.045em}
 /* outlined like the site's other outlined type: doubled stroke under a card-coloured fill hides the glyph's inner seams */
+[data-show][hidden]{display:none}
 .bx-n i{font-style:normal;color:var(--paper);-webkit-text-stroke:3.2px var(--black);paint-order:stroke fill;margin-left:.04em}
 .bx-big{display:flex;align-items:flex-end;gap:16px}
 .bx-u{font-family:var(--display);font-weight:500;font-size:1.05rem;line-height:1.15;padding-bottom:.35em}
