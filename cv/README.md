@@ -14,5 +14,8 @@ and thin rules between sections. Both fonts are the portfolio's, SIL OFL, licenc
 The files in `fonts/` are fixed-weight cuts of the variable fonts, one per weight the CV uses.
 Chrome embeds variable fonts as Type 3 in PDFs; fixed weights embed as normal TrueType.
 
+The profile's years are typed in, unlike the website's: "nearly 8 years" (from March 2019)
+is right until March 2027, then change it to "8+".
+
 After editing: regenerate, check it is still `Pages: 1` (`pdfinfo resume.pdf`) and that the
 Education line keeps a bottom margin of about 10mm, replace `resume.pdf`, commit.

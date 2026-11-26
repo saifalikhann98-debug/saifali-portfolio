@@ -14,10 +14,17 @@ if (yr) yr.textContent = new Date().getFullYear();
 // Years of experience count from a start month, so the site never goes stale:
 // <span data-since="2019-03">7</span> shows whole years since March 2019. The number
 // in the markup is the value when it was written, for no-JS and search engines.
+// With data-round, from six months past a whole year it rounds up ("nearly 8"):
+// inside the nearest [data-since-wrap], [data-show="rounded"] shows only then and
+// [data-show="exact"] (the "+") only otherwise.
 document.querySelectorAll('[data-since]').forEach(el => {
   const [y, m] = el.dataset.since.split('-').map(Number), now = new Date();
-  const years = now.getFullYear() - y - (now.getMonth() + 1 < m ? 1 : 0);
-  if (years > 0) el.textContent = years;
+  const months = (now.getFullYear() - y) * 12 + (now.getMonth() + 1 - m);
+  if (months < 12) return;
+  const rounded = el.hasAttribute('data-round') && months % 12 >= 6;
+  el.textContent = Math.floor(months / 12) + (rounded ? 1 : 0);
+  const wrap = el.closest('[data-since-wrap]');
+  if (wrap) wrap.querySelectorAll('[data-show]').forEach(s => { s.hidden = (s.dataset.show === 'rounded') !== rounded; });
 });
 
 // ---- scroll reveal ----
